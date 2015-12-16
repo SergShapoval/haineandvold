@@ -37,9 +37,10 @@
 						<label class="input__label input__label--manami" for="input-32">
 							<span class="input__label-content input__label-content--manami">Логин</span>
 					</label>
-				</span> <span style="color: black"
+					<div style="color: black"
 					ng-show="myForm.username.$dirty && myForm.username.$invalid"> <span
-						ng-show="myForm.username.$error.required">Username is required.</span></span></td>
+						ng-show="myForm.username.$error.required">Введите логин</span></div>
+				</span> </td>
 			</tr>
 
 			<tr>
@@ -50,11 +51,15 @@
 						class="input__label input__label--manami" for="input-33">
 							<span class="input__label-content input__label-content--manami">Пароль</span>
 					</label>
+						<span style="color:black" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+  <span ng-show="myForm.password.$error.required">Введите пароль</span></span>
 				</span>
-				<span style="color:black" ng-show="myForm.password.$dirty && myForm.password.$invalid">
-  <span ng-show="myForm.password.$error.required">Password is required.</span></span>
+			
 				</td>
+				
 			</tr>
+
+
 
 			<!-- <input class="buttonLogin" type="submit" value="Войти" /> -->
 			<button type="submit" class="slide_from_left buttLogin"
@@ -65,7 +70,6 @@
 		<a href="registration"><button class="slide_from_left">Регистрация</button></a>
 		<a href="restorepass"><button class="slide_from_left">Забыли пароль?</button></a>
 	</div>
-
 
 
 		<script>

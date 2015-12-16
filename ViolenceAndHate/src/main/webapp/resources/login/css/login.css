@@ -9,14 +9,16 @@
 }
 
 #formLogin {
+	text-align:center;
 	width: 250px;
 	height: 250px;
 	position: absolute;
-	top: 0;
+	top: 130px;
 	right: 0;
-	bottom: 0;
+	bottom: 20px;
 	left: 0;
-	margin: auto;
+	margin: 0 auto;
+	
 }
 
 h2,h5
@@ -26,8 +28,9 @@ h2,h5
 }
 .errorMessage
 {
-	color:red;
+	color:black;
 	align:center;
+	margin:0 auto;
 }
 
 

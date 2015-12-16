@@ -139,9 +139,13 @@
 								class="input__label input__label--manami" for="input-34">
 									<span class="input__label-content input__label-content--manami">Возраст</span>
 							</label>
-						</span> <span style="color: black">
-						 <span ng-show="regForm.age.$error.required">Введите
-									возраст</span></span></td>
+							</span>
+							<span style="color: black"
+							ng-show="regForm.age.$dirty && regForm.age.$invalid">
+								<span ng-show="regForm.age.$error.required">Введите
+									возраст</span>
+						</span>
+							 </td>
 					</tr>
 					<tr>
 						<td><span class="input input--manami"> <form:input
@@ -151,9 +155,11 @@
 								class="input__label input__label--manami" for="input-34">
 									<span class="input__label-content input__label-content--manami">Вес</span>
 							</label>
-						</span><span style="color: black">
-						 <span ng-show="regForm.weight.$error.required">Введите
-									возраст</span></span></td>
+						</span><span style="color: black"
+							ng-show="regForm.weight.$dirty && regForm.weight.$invalid">
+								<span ng-show="regForm.weight.$error.required">Введите
+									вес</span>
+						</span></td>
 					</tr>
 					<tr>
 						<td><span class="input input--manami"> <form:input
@@ -164,9 +170,11 @@
 									<span class="input__label-content input__label-content--manami">Рост</span>
 							</label>
 						</span>
-						<span style="color: black">
-						 <span ng-show="regForm.weight.$error.required">Введите
-									возраст</span></span>
+						<span style="color: black"
+							ng-show="regForm.height.$dirty && regForm.height.$invalid">
+								<span ng-show="regForm.height.$error.required">Введите
+									рост</span>
+						</span>
 						</td>
 					</tr>
 					<tr>
