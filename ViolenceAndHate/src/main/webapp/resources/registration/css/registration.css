@@ -1,0 +1,47 @@
+.bgrReg {
+	background-color: rgb(129, 9, 9);
+}
+
+h2, h5 {
+	text-align: center;
+	color: white;
+}
+
+table {
+	margin: auto;
+}
+.buttonCenter
+{
+	align:center;
+}
+
+select
+{
+	background-color: rgba(0,0,0,0);
+	border:2px double gray;
+	width:230px;
+	color:gray;
+		border:5px solid gray;
+	
+}
+
+
+#wrapper {
+	margin:auto;
+width:300px;
+}
+#left_block {
+float:center;
+width:50px;
+
+}
+#right_block {
+float:right;
+width:0px;
+
+}
+#header
+{
+text-align:center;
+padding-top:20px;
+}

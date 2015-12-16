@@ -1,0 +1,38 @@
+
+.bgrLogin {
+	background-color: rgb(129, 9, 9);
+}
+.blockHead
+{
+	width:100px;
+	hieght:100px;
+}
+
+#formLogin {
+	width: 250px;
+	height: 250px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+}
+
+h2,h5
+{
+	text-align:center;
+	color: white;
+}
+.errorMessage
+{
+	color:red;
+	align:center;
+}
+
+
+#header
+{
+text-align:center;
+padding-top:20px;
+}
