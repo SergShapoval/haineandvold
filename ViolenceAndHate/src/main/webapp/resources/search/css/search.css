@@ -1,9 +1,12 @@
 #blockOfFilters
 {
-   float:right;
-   width:230px;
-   text-align:center;
+margin:10px auto;
+ max-width: 1400px;
+}
 
+#blockOfResults
+{
+	padding-top:30px;
 }
 
 .bgrSearch
@@ -29,10 +32,10 @@ label
 select
 {
 	background-color: rgba(0,0,0,0);
-	border:2px double gray;
-	width:230px;
+	border:2px double blue;
+	width:200px;
 	color:gray;
-	border:5px solid gray;
+	border: 3px solid rgb(64,154,255);
 	
 }
 
@@ -50,6 +53,7 @@ select
 table {
   max-width: 960px;
   margin: 10px auto;
+  border: 2px solid yellow;
 }
 
 caption {

@@ -86,11 +86,11 @@ response.setCharacterEncoding("UTF-8");
 		<img src="<c:url value="/resources/logo/logo.png"/>" />
 	</div>
 	<h2>Подбор оппонента</h2>
-	<h5>Чтобы ускорить поиск - используйте фильтры</h5>
+	
 	<c:url var="getSearch" value="search" />
 	<div id="blockOfFilters">
 		<form:form modelAttribute="users" method="POST" action="${getSearch}" accept-charset="utf-8">
-			<div>
+			
 				<label>Вес(до):</label>
 				<form:select path="weight" name="weight">
 					<form:option value=""></form:option>
@@ -104,16 +104,14 @@ response.setCharacterEncoding("UTF-8");
 					<form:option value="110"></form:option>
 					<form:option value="120"></form:option>
 				</form:select>
-			</div>
-			<div>
+		
 				<label>Пол:</label>
 				<form:select path="gender">
 					<form:option value=""></form:option>
 					<form:option value="Мужской"></form:option>
 					<form:option value="Женский"></form:option>
 				</form:select>
-			</div>
-			<div>
+			
 				<label>Место:</label>
 				<form:select path="place">
 					<form:option value=""></form:option>
@@ -128,8 +126,7 @@ response.setCharacterEncoding("UTF-8");
 					<form:option value="Холодная гора"></form:option>
 					<form:option value="Червонозаводской"></form:option>
 				</form:select>
-			</div>
-			<div>
+			
 			<label>Возрост(до):</label>
 				<form:select path="age">
 					<form:option value=""></form:option>
@@ -161,14 +158,15 @@ response.setCharacterEncoding("UTF-8");
 					<form:option value="44"></form:option>
 					<form:option value="45"></form:option>
 				</form:select>
-			</div>
+
 			<button class="slide_from_left" type="submit">Искать</button>
+		
 		</form:form>
-	</div>
+	
+</div>
 
 
-
-
+<div id="blockOfResults">
 <c:if test="${!empty listUsersSort}">
 
 	
@@ -186,7 +184,7 @@ response.setCharacterEncoding("UTF-8");
 			<c:forEach items="${listUsersSort}" var="users">
 			<tr>
 			
-				<td>${users.name}</td>
+				<td><a href="<c:url value='/user/search/${users.username}'/>"> ${users.name}</a></td>
 				<td>${users.surname}</td>
 				<td>${users.gender}</td>
 				<td>${users.weight}</td>
@@ -199,7 +197,7 @@ response.setCharacterEncoding("UTF-8");
 		</table>
 
 </c:if>
-
+</div>
 </body>
 <script src="<c:url value="/resources/menu/menu.js"/>" type="text/javascript"></script>
 <script src="<c:url value="/resources/buttonLogout/buttonLogout.js"/>" type="text/javascript"></script>

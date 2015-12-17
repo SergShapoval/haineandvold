@@ -16,7 +16,7 @@ response.setCharacterEncoding("UTF-8");
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Admin Profile Page | Beingjavaguys.com</title>
+<title>Панель администратора | Violence and Hate</title>
 <link href="<c:url value="/resources/admin/css/admin.css"/>"
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/menu/menu.css"/>" rel="stylesheet"

@@ -22,6 +22,7 @@
 	rel="stylesheet" type="text/css">
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>
+	<script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
 </head>
 <body class="bgrFeedback">
 

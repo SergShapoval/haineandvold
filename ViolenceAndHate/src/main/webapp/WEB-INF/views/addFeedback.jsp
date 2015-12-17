@@ -30,6 +30,7 @@ response.setCharacterEncoding("UTF-8");
 	<link href="<c:url value="/resources/registration/css/buttonsReg.css"/>"
 	rel="stylesheet" type="text/css">
 	<script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>" type="text/javascript"></script>
+	<script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
 </head>
 <body class="bgrFeedback">
 <div class="button">
@@ -89,15 +90,27 @@ response.setCharacterEncoding("UTF-8");
 	<div id="blockFeedback">
 		<c:url var="sendFeedback" value="feedback" />
 		<form:form modelAttribute="feedback" method="POST"
-			action="${sendFeedback}" accept-charset="utf-8">
+			action="${sendFeedback}" accept-charset="utf-8" ng-app="vandh" ng-controller="validateCtrl"
+			name="fbForm" novalidation="true">
 			<table>
 				<tr>
 					<td><span class="input input--manami"> <form:input size="30"
 								path="emailforfb" class="input__field input__field--manami"
-								type="text" id="input-32" /> <label
+								type="email" id="input-32" name="emailforfb" ng-model="emailforfb" required="true"/> <label
 							class="input__label input__label--manami" for="input-32">
 								<span class="input__label-content input__label-content--manami">E-mail</span>
-						</label></span></td>
+								
+					
+						</label>
+					
+						</span>
+						<span style="color: black"
+							ng-show="fbForm.emailforfb.$dirty && fbForm.emailforfb.$invalid">
+								<div ng-show="fbForm.emailforfb.$error.required">Введите
+									e-mail</div> <div ng-show="fbForm.emailforfb.$error.email">Некорректный
+									e-mail</div>
+						</span>
+						</td>
 				</tr>
 				<tr>
 					<td>
@@ -106,13 +119,21 @@ response.setCharacterEncoding("UTF-8");
 				</tr>
 				<tr>
 				<td><span class="input input--manami">
-				<button type="submit" class="slide_from_left buttonSend">Отправить</button>
+				<button type="submit" class="slide_from_left buttonSend" ng-disabled="
+  fbForm.emailforfb.$dirty && fbForm.emailforfb.$invalid">Отправить</button>
 				</span></td>
 				</tr>
 			</table>
 			
 		</form:form>
 	</div>
+		<script>
+		var app = angular.module('vandh', []);
+		app.controller('validateCtrl', function($scope) {
+			$scope.emailforfb = '';
+		});
+	</script>
+	
 </body>
 <script src="<c:url value="/resources/menu/menu.js"/>" type="text/javascript"></script>
 <script src="<c:url value="/resources/buttonLogout/buttonLogout.js"/>" type="text/javascript"></script>

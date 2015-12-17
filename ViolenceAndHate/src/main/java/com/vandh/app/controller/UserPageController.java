@@ -30,5 +30,12 @@ public class UserPageController {
 		return "user";
 	}
 	
+	
+	@RequestMapping(value="/user/search/{username}", method = RequestMethod.GET)
+	public String getAnotherUserInfo(@PathVariable(value="username") String username, Model model) {
+		model.addAttribute("users", new Users());
+		model.addAttribute("userInfo", this.usersService.userInfo(username));
+		return "anotherUser";
+	}
 }
 

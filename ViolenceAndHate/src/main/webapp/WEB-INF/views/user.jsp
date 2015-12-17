@@ -71,8 +71,6 @@
 					</form>
 				</div>
 			</ul>
-
-
 		</div>
 	</div>
 
@@ -130,8 +128,6 @@
 			</tr>
 		</table>
 	</c:forEach>
-
-
 </body>
 <script src="<c:url value="/resources/menu/menu.js"/>"
 	type="text/javascript"></script>
