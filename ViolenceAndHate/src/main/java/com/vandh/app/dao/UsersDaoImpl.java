@@ -11,6 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.csrf.CsrfAuthenticationStrategy;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +31,7 @@ public class UsersDaoImpl implements UsersDao {
 	private SessionFactory sessionFactory;
 
 	private MailSender mailSender;
-
+	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 	public void setMailSender(MailSender mailSender) {
 		this.mailSender = mailSender;
 	}
@@ -137,17 +138,24 @@ public class UsersDaoImpl implements UsersDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public String restorePassUser(String toAddress) {
-
-		String toAddr = toAddress;
-		String query = "select*from users where users.email LIKE '%s'";
+	public void restorePassUser(String toAddress, String newPassword) {
+		String query = "UPDATE users SET users.password = '%s' WHERE users.email LIKE '%s'";
 		Session session = null;
 		session = sessionFactory.openSession();
-		List<Users> userPassword = session.createSQLQuery(String.format(query, toAddress)).addEntity(Users.class)
-				.list();
-		String foundPassword = userPassword.get(0).getPassword().toString();
-		return foundPassword;
+		session.createSQLQuery(String.format(query, newPassword, toAddress)).addEntity(Users.class).executeUpdate();
+		session.close();
+		session=null;
 
+	}
+
+	@Override
+	public void confirmUserAccount(String username) {
+		String query = "UPDATE users SET users.enabled = 1 WHERE users.username LIKE '%s'";
+		Session session = null;
+		session = sessionFactory.openSession();
+		session.createSQLQuery(String.format(query, username)).addEntity(Users.class).executeUpdate();
+		session.close();
+		session=null;
 	}
 
 }

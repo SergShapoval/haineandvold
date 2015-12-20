@@ -25,8 +25,7 @@
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/registration/inputs/set2.css"/>"
 	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/registration/css/fontsReg.css"/>"
-	rel="stylesheet" type="text/css">
+
 <link href="<c:url value="/resources/registration/css/buttonsReg.css"/>"
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/login/inputs/normalize.css"/>"
@@ -222,7 +221,7 @@ regForm.username.$dirty && regForm.username.$invalid ||
 						</span></td>
 					</tr>
 				</table>
-				<form:input path="enabled" type="hidden" value="true" />
+				<form:input path="enabled" type="hidden" value="false" />
 			</form:form>
 		</div>
 	</div>

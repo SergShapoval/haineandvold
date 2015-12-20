@@ -18,6 +18,8 @@
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/registration/css/buttonsReg.css"/>"
 	rel="stylesheet" type="text/css">	
+	<link href="<c:url value="/resources/modalWindow/modalWin.css"/>"
+	rel="stylesheet" type="text/css">	
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>
 </head>
@@ -124,9 +126,15 @@
 	</c:forEach>
 	
 	
-	<button class="slide_from_left">Написать сообщение</button>
-	
-	
+<a href="#openModal"><button class="slide_from_left">Написать сообщение</button></a>
+
+<div id="openModal" class="modalDialog">
+	<div>
+		<a href="#close" title="Close" class="close">X</a>
+		<h3>Отправить сообщение пользователю ${username}</h3>
+		
+	</div>
+</div>
 </body>
 <script src="<c:url value="/resources/menu/menu.js"/>"
 	type="text/javascript"></script>

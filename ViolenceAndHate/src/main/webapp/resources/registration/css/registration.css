@@ -45,3 +45,9 @@ width:0px;
 text-align:center;
 padding-top:20px;
 }
+#centerConfirmButton
+{
+	text-align:center;
+	margin:0 auto;
+}
+

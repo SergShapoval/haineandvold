@@ -55,8 +55,13 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	@Override
-	public String restorePassUser(String toAddress) {
-		return userDao.restorePassUser(toAddress);
+	public void restorePassUser(String toAddress, String newPassword) {
+		this.userDao.restorePassUser(toAddress, newPassword);
+	}
+
+	@Override
+	public void confirmUserAccount(String username) {
+	this.userDao.confirmUserAccount(username);
 	}
 
 }

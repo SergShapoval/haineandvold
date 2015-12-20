@@ -51,8 +51,8 @@
 						class="input__label input__label--manami" for="input-33">
 							<span class="input__label-content input__label-content--manami">Пароль</span>
 					</label>
-						<span style="color:black" ng-show="myForm.password.$dirty && myForm.password.$invalid">
-  <span ng-show="myForm.password.$error.required">Введите пароль</span></span>
+						<div style="color:black" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+  <span ng-show="myForm.password.$error.required">Введите пароль</span></div>
 				</span>
 			
 				</td>

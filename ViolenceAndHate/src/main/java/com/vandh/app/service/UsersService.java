@@ -13,5 +13,6 @@ public interface UsersService {
 	    public List<Users> userInfo(String username);
 	    public List<Users> listUsers();
 	    public	List<Users> listUsersSort(String weight, String gender, String place, String ageTo);
-	    public String restorePassUser(String toAddress);
+	    public void restorePassUser(String toAddress, String newPassword);
+	    public void confirmUserAccount(String username);
 }

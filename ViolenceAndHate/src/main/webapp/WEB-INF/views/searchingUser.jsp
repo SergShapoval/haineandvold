@@ -184,7 +184,7 @@ response.setCharacterEncoding("UTF-8");
 			<c:forEach items="${listUsersSort}" var="users">
 			<tr>
 			
-				<td><a href="<c:url value='/user/search/${users.username}'/>"> ${users.name}</a></td>
+				<td><a href="<c:url value='/user/search/${users.username}'/>" target="_blank"> ${users.name}</a></td>
 				<td>${users.surname}</td>
 				<td>${users.gender}</td>
 				<td>${users.weight}</td>

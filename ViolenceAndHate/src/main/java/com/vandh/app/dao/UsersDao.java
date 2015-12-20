@@ -17,10 +17,10 @@ public interface UsersDao {
 
 	public List<Users> listUsers();
 
-	public List<Users> listUsersSort(String weight,String gender, String place, String ageTo);
-	
-	public String restorePassUser(String toAddress);
-	
-	
+	public List<Users> listUsersSort(String weight, String gender, String place, String ageTo);
+
+	public void restorePassUser(String toAddress, String newPassword);
+
+	public void confirmUserAccount(String username);
 
 }
