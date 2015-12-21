@@ -12,10 +12,11 @@
         <property name="hibernate.connection.CharSet">utf8</property>
         <property name="hibernate.connection.characterEncoding">utf8</property>
         <property name="hibernate.connection.useUnicode">true</property>
-    <mapping class="com.vandh.app.models.Users"/>
-      <mapping class="com.vandh.app.models.UserRole"/>
+     <mapping class="com.vandh.app.models.Users"/>
+     <mapping class="com.vandh.app.models.UserRole"/>
      <mapping class="com.vandh.app.models.Feedback"/>
-        
+     <mapping class="com.vandh.app.models.Dialog"/>
+     <mapping class="com.vandh.app.models.Message"/>
      
     
       <!-- DB schema will be updated if needed -->

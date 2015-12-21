@@ -26,9 +26,15 @@ public class Users {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private Set<UserRole> userRole = new HashSet<UserRole>(0);
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private Set<Dialog> dialog = new HashSet<Dialog>(0);
+	
 	@Column(name = "name", nullable = false, length = 30)
 	private String name;
 	
+
+
 	@Column(name = "surname", nullable = false, length = 30)
 	private String surname;
 	
@@ -157,4 +163,13 @@ public class Users {
 	public void setUserRole(Set<UserRole> userRole) {
 		this.userRole = userRole;
 	}
+	
+	public Set<Dialog> getDialog() {
+		return dialog;
+	}
+
+	public void setDialog(Set<Dialog> dialog) {
+		this.dialog = dialog;
+	}
+	
 }
