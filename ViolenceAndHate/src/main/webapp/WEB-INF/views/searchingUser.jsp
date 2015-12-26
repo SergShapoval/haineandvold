@@ -17,82 +17,85 @@ response.setCharacterEncoding("UTF-8");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="<c:url value="/resources/search/css/search.css"/>"
-	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/registration/css/buttonsReg.css"/>"
-	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/menu/menu.css"/>" rel="stylesheet"
-	type="text/css">
-<link href="<c:url value="/resources/buttonLogout/buttonLogout.css"/>"
-	rel="stylesheet" type="text/css">
-<script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
-	type="text/javascript"></script>
+
 
 <title>Поиск оппонента | Violence and Kick</title>
-</head>
-<body class="bgrSearch">
-	<body class="bgrRules">
-	<div class="button">
-	<a class="btn-open" href="#"><img
-			src="<c:url value="/resources/menu/menu.png"/>"> </a>
-</div>
-<div class="overlay">
-<div id="header">
-	<img src="<c:url value="/resources/logo/logo.png"/>" />
-</div>
-<h2>Меню</h2>
-<h5>Для выхода с меню кликните по кнопке меню или пустому месту</h5>
-	<div class="wrap">
-		<ul class="wrap-nav">
-			<li>Навигация
-			<ul>
-				<li><a href="/app/user">Мой профиль</a></li>
-				<li><a href="/app/user/messages">Мои сообщения</a></li>
-				<li><a href="/app/user/search">Поиск оппонента</a></li>
-					<li><a href="/app/user/feedback">Написать администраторам</a></li>
-			</ul>
-			</li>
-		
-			<li>Информация
-			<ul>
-				<li><a href="/app/user/rules">Правила</a></li>
-				<li><a href="/app/user/contacts">Наши контакты</a></li>
-				
-				
-			
-			</ul>
-			</li>
-			 <security:authorize ifAnyGranted="ROLE_ADMIN">
-			<li>Администрация
-			<ul>
-			<li><a href="/app/admin">Админка/Список пользователей</a></li>
-			<li><a href="/app/admin/feedbacklist">Отзывы/Вопросы/Предложения</a></li>
-			</ul>
-			</li>
-				</security:authorize>
-				<div id="buttonLogout">
-	<c:url var="logoutUrl" value="j_spring_security_logout" />
-	<form action="${logoutUrl}" method="post">
-		<button class="buttonLogout" type="submit">Выйти</button> <input
-							type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
-	</form>
-	</div>
-	</ul>
-	</div>
-	</div>
 
-<div id="header">
-		<img src="<c:url value="/resources/logo/logo.png"/>" />
-	</div>
-	<h2>Подбор оппонента</h2>
-	
+	<link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
+	rel="stylesheet" type="text/css">
+	<link href="<c:url value="/resources/bootstrap/bootswatch.less.css"/>"
+	rel="stylesheet" type="text/css">
+	<link href="<c:url value="/resources/bootstrap/variables.less.css"/>"
+	rel="stylesheet" type="text/css">
+	<link href="<c:url value="/resources/CSS/styles.css"/>"
+	rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Violence and Hate</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+       
+   <li><a href="/app/user">Профиль</a></li>
+<li><a href="/app/user/messages">Сообщения</a></li>
+<li><a href="/app/user/search">Поиск оппонента</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Информация<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/app/user/rules">Правила</a></li>
+            <li><a href="/app/user/contacts">Наши контакты</a></li>
+            <li class="divider"></li>
+            <li><a href="/app/user/feedback">Написать администрации</a></li>
+          </ul>
+        </li>
+        <security:authorize ifAnyGranted="ROLE_ADMIN">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Администрирование<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/app/admin">Админка/Список пользователей</a></li>
+            <li><a href="/app/admin/feedbacklist">Отзывы/Вопросы/Предложения</a></li>
+           
+          </ul>
+        </li>
+        </security:authorize>
+      </ul>
+    
+    <c:url var="logoutUrl" value="j_spring_security_logout" />
+      <form class="navbar-form navbar-right" action="${logoutUrl}" method="post">
+						<button class="btn btn-default" type="submit">Выйти</button>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+					</form>
+    </div>
+  </div>
+</nav>
+
+		<img class="img-responsive center-block" src="<c:url value="/resources/logo/logo.png"/>" />
+
+
+	<h2 class="text-center">Подбор оппонента</h2>
+
 	<c:url var="getSearch" value="search" />
-	<div id="blockOfFilters">
-		<form:form modelAttribute="users" method="POST" action="${getSearch}" accept-charset="utf-8">
-			
-				<label>Вес(до):</label>
-				<form:select path="weight" name="weight">
+	
+	
+ 
+ <div class="container textCenter">
+		<form:form class="form-inline centerBlock"  modelAttribute="users" method="POST" action="${getSearch}" accept-charset="utf-8">
+
+<div class="form-group">
+				<label for="weight">Вес(до):</label>
+				<form:select multiple="" class="form-control input-sm" path="weight" name="weight">
 					<form:option value=""></form:option>
 					<form:option value="40"></form:option>
 					<form:option value="50"></form:option>
@@ -104,16 +107,19 @@ response.setCharacterEncoding("UTF-8");
 					<form:option value="110"></form:option>
 					<form:option value="120"></form:option>
 				</form:select>
+		</div>
 		
-				<label>Пол:</label>
-				<form:select path="gender">
+		<div class="form-group">
+				<label for="gender">Пол:</label>
+				<form:select  multiple="" class="form-control input-sm" name="gender" path="gender">
 					<form:option value=""></form:option>
 					<form:option value="Мужской"></form:option>
 					<form:option value="Женский"></form:option>
 				</form:select>
-			
-				<label>Место:</label>
-				<form:select path="place">
+			</div>
+				<div class="form-group">
+				<label for="place">Место:</label>
+				<form:select multiple="" class="form-control input-small" name="place" path="place">
 					<form:option value=""></form:option>
 					<form:option value="Дзержинский"></form:option>
 					<form:option value="Киевский"></form:option>
@@ -126,9 +132,11 @@ response.setCharacterEncoding("UTF-8");
 					<form:option value="Холодная гора"></form:option>
 					<form:option value="Червонозаводской"></form:option>
 				</form:select>
+			</div>
 			
-			<label>Возрост(до):</label>
-				<form:select path="age">
+			<div class="form-group">
+			<label for="age">Возрост(до):</label>
+				<form:select multiple="" class="form-control input-small" name="age" path="age">
 					<form:option value=""></form:option>
 					<form:option value="19"></form:option>
 					<form:option value="20"></form:option>
@@ -158,28 +166,28 @@ response.setCharacterEncoding("UTF-8");
 					<form:option value="44"></form:option>
 					<form:option value="45"></form:option>
 				</form:select>
+</div>
 
-			<button class="slide_from_left" type="submit">Искать</button>
-		
+			<button class="btn btn-success" type="submit">Искать</button>
+
 		</form:form>
 	
 </div>
-
-
-<div id="blockOfResults">
+<br>
+<div>
 <c:if test="${!empty listUsersSort}">
 
 	
-		<table>
+		<table class="table table-striped table-bordered table-condensed table-hover">
 		
 			<tr>
-				<th>Name</th>
-				<th>Surname</th>
-				<th>Gender</th>
-				<th>Weight</th>
-				<th>Height</th>
-				<th>Sport</th>
-				<th>Place</th>
+				<th>Имя</th>
+				<th>Фамилия</th>
+				<th>Пол</th>
+				<th>Вес</th>
+				<th>Рост</th>
+				<th>Спортивные навыки</th>
+				<th>Место</th>
 			</tr>
 			<c:forEach items="${listUsersSort}" var="users">
 			<tr>
@@ -199,7 +207,9 @@ response.setCharacterEncoding("UTF-8");
 </c:if>
 </div>
 </body>
-<script src="<c:url value="/resources/menu/menu.js"/>" type="text/javascript"></script>
-<script src="<c:url value="/resources/buttonLogout/buttonLogout.js"/>" type="text/javascript"></script>
+	<script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
+	type="text/javascript"></script>
+	<script src="<c:url value="/resources/bootstrap/bootstrap.js"/>"
+	type="text/javascript"></script>
 
 </html>

@@ -33,14 +33,25 @@ public class LoginController {
 	public ModelAndView getLoginForm(
 			@ModelAttribute Users users,
 			@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout)
+			@RequestParam(value = "logout", required = false) String logout,
+			@RequestParam(value="passupd", required = false) String passupd,
+			@RequestParam(value="confirm", required=false) String confirm
+			)
 	{
 		String message = "";
 		if (error != null) {
-			message = "Неверный логин или пароль !";
+			message = "Неверный логин или пароль";
 		} else if (logout != null)
 		{
-			message = "Logout successful !";
+			message = "Ждём вас в следуйщий раз";
+		}
+		else if(passupd!=null)
+		{
+			message = "Пароль обновлён";
+		}
+		else if(confirm!=null)
+		{
+			message = "Аккаунт подтверждён";
 		}
 			
 		return new ModelAndView("login", "message", message);

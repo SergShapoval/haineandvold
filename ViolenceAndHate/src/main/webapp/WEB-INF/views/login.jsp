@@ -6,73 +6,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login</title>
-<link href="<c:url value="/resources/login/css/login.css"/>"
+<title>Войти в систему | Violence and Hate</title>
+<link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
 	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/login/inputs/demo.css"/>"
+<link href="<c:url value="/resources/bootstrap/bootswatch.less.css"/>"
 	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/login/inputs/set1.css"/>"
+<link href="<c:url value="/resources/bootstrap/variables.less.css"/>"
 	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/registration/css/buttonsReg.css"/>"
-	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/login/inputs/normalize.css"/>"
-	rel="stylesheet" type="text/css">
+<link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
+	type="text/css">
 <script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
 </head>
 
-<body class="bgrLogin">
-	<div id="header">
-		<img src="<c:url value="/resources/logo/logo.png"/>" />
+<body>
 
-	</div>
-	<div id="formLogin">
+	<img class="img-responsive center-block"
+		src="<c:url value="/resources/logo/logo.png"/>" />
+	<h2 class="text-center">Введите логин и пароль для авторизации</h2>
+<br>
+	<div class="col-xs-4 centerBlock textCenter">
 		<form:form method="post" action="j_spring_security_check"
 			modelAttribute="users" ng-app="myApp" ng-controller="validateCtrl"
 			name="myForm" novalidation="true">
-			<tr>
-				<td><span class="errorMessage">${message}</span> <span
-					class="input input--manami"> <form:input path="username"
-							class="input__field input__field--manami" type="text"
-							id="input-32" name="username" ng-model="username" required="true" />
-						<label class="input__label input__label--manami" for="input-32">
-							<span class="input__label-content input__label-content--manami">Логин</span>
-					</label>
-					<div style="color: black"
-					ng-show="myForm.username.$dirty && myForm.username.$invalid"> <span
-						ng-show="myForm.username.$error.required">Введите логин</span></div>
-				</span> </td>
-			</tr>
 
-			<tr>
-				<td><span class="input input--manami"> <form:input
-							path="password" class="input__field input__field--manami"
-							type="password" id="input-33" name="password" ng-model="password"
-							required="true" /> <label
-						class="input__label input__label--manami" for="input-33">
-							<span class="input__label-content input__label-content--manami">Пароль</span>
-					</label>
-						<div style="color:black" ng-show="myForm.password.$dirty && myForm.password.$invalid">
-  <span ng-show="myForm.password.$error.required">Введите пароль</span></div>
-				</span>
-			
-				</td>
-				
-			</tr>
+			<div class="form-group">
+				<label class="control-label" for="username">Логин</label> <span
+					class="errorMessage">${message}</span>
+				<form:input class="form-control input-sm" path="username" id="username" type="text"
+					name="username" ng-model="username" required="true" />
+				<div style="color: black"
+					ng-show="myForm.username.$dirty && myForm.username.$invalid">
+					<span ng-show="myForm.username.$error.required">Введите
+						логин</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="password">Пароль</label>
+				<form:input class="form-control input-sm" path="password" type="password" name="password"
+					ng-model="password" id="password" required="true" />
 
+				<div style="color: black"
+					ng-show="myForm.password.$dirty && myForm.password.$invalid">
+					<span ng-show="myForm.password.$error.required">Введите
+						пароль</span>
+				</div>
 
+			</div>
 
-			<!-- <input class="buttonLogin" type="submit" value="Войти" /> -->
-			<button type="submit" class="slide_from_left buttLogin"
+<div class="textCenter">
+			<button type="submit" class="btn btn-success"
 				ng-disabled="myForm.username.$dirty && myForm.username.$invalid ||
-  myForm.password.$dirty && myForm.password.$invalid">Войти</button>
+  myForm.password.$dirty && myForm.password.$invalid">Войти</button></div>
 		</form:form>
-	
-		<a href="registration"><button class="slide_from_left">Регистрация</button></a>
-		<a href="restorepass"><button class="slide_from_left">Забыли пароль?</button></a>
 	</div>
+	<br>
+	<div class="textCenter ">
+	<a href="registration"><button class="btn btn-primary">Регистрация</button></a>
+	<a href="restorepass"><button class="btn btn-danger">Забыли
+			пароль?</button></a>
+</div>
 
 
-		<script>
+	<script>
 		var app = angular.module('myApp', []);
 		app.controller('validateCtrl', function($scope) {
 			$scope.username = '';
@@ -80,4 +75,8 @@
 		});
 	</script>
 </body>
+<script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
+	type="text/javascript"></script>
+<script src="<c:url value="/resources/bootstrap/bootstrap.js"/>"
+	type="text/javascript"></script>
 </html>

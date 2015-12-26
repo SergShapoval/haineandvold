@@ -68,7 +68,7 @@ public class RestorePasswordController {
 		String toAddress= new String(valueDecoded);
 		this.usersService.restorePassUser(toAddress, encoder.encode(newPassword));
 		System.out.println("PASSWORD CHANGED!!!!!");
-		return "redirect:/login";
+		return "redirect:/login?passupd";
 	}
 	
 	@RequestMapping(value = "/updatepassword/{mail}", method = RequestMethod.GET)

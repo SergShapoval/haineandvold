@@ -50,11 +50,9 @@ public class RegistrationController {
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public String addUser(@ModelAttribute("users") Users u, @RequestParam(value = "username") String username,
 			@RequestParam(value = "password") String password, @RequestParam(value="email") String mailForConfirmation, BindingResult bindingResult) {
-		
+
 		String usernameHashed=new String(username);
 		byte[]   bytesEncoded = Base64.encode(usernameHashed.getBytes());
-			
-		
 		UserRoleDaoImpl userRoleDaoImpl = new UserRoleDaoImpl();
 		userReg = username;
 		userRoleDaoImpl.setUsername(username);
@@ -97,7 +95,7 @@ public class RegistrationController {
 		byte[] usernameDecoded= Base64.decode(username.getBytes());
 		System.out.println("Decoded value is " + new String(usernameDecoded));
 		this.usersService.confirmUserAccount(new String(usernameDecoded));
-		return "redirect:/login";
+		return "redirect:/login?confirm";
 	}
 	
 }

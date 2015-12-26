@@ -13,53 +13,42 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Восстановление пароля | Violence and Hate</title>
-<link
-	href="<c:url value="/resources/restorePassword/css/restorePassword.css"/>"
+<link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
 	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/login/inputs/demo.css"/>"
+<link href="<c:url value="/resources/bootstrap/bootswatch.less.css"/>"
 	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/login/inputs/set1.css"/>"
+<link href="<c:url value="/resources/bootstrap/variables.less.css"/>"
 	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/registration/css/buttonsReg.css"/>"
-	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/login/inputs/normalize.css"/>"
-	rel="stylesheet" type="text/css">
+<link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
+	type="text/css">
+
 <script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
 </head>
-<body class="backgRestPass">
-	<div id="header">
-		<img src="<c:url value="/resources/logo/logo.png"/>" />
-	</div>
-	<h2>Введите новый пароль</h2>
-<div id="blockCenter">
-	<form:form method="POST" modelAttribute="users" action="/app/updatepassword/${mail}"
-		ng-app="vandh" ng-controller="validateCtrlUpdatePass"
-		name="updatePassForm" novalidation="true">
-		<table>
-			<tr>
-				<td><span class="input input--manami"> <form:input
-							path="password" class="input__field input__field--manami"
-							type="password" id="input-32" name="password" ng-model="password"
-							required="true" /> <label
-						class="input__label input__label--manami" for="input-32">
-							<span class="input__label-content input__label-content--manami">Новый пароль</span>
-					</label>
-				</span>
-					<div style="color: black"
-						ng-show="updatePassForm.password.$dirty && updatePassForm.password.$invalid">
-						<span ng-show="updatePassForm.password.$error.required">Введите
-							новый пароль</span>
-					</div></td>
+<body>
 
-			</tr>
-			<tr>
-				<td><button class="slide_from_left" type="submit"
-				>Обновить пароль</button>
-					</td>
-			</tr>
+	<img class="img-responsive center-block"
+		src="<c:url value="/resources/logo/logo.png"/>" />
 
-		</table>
-	</form:form>
+	<h2 class="text-center">Введите новый пароль</h2>
+
+	<div class="col-xs-4 centerBlock textCenter">
+		<form:form method="POST" modelAttribute="users"
+			action="/app/updatepassword/${mail}" ng-app="vandh"
+			ng-controller="validateCtrlUpdatePass" name="updatePassForm"
+			novalidation="true">
+				<div class="form-group">
+			<label class="control-label" for="password">Новый пароль</label>
+			<form:input class="form-control input-sm" path="password" type="password" id="password" name="password" ng-model="password"
+				required="true" />
+			<div style="color: black"
+				ng-show="updatePassForm.password.$dirty && updatePassForm.password.$invalid">
+				<span ng-show="updatePassForm.password.$error.required">Введите
+					новый пароль</span>
+			</div>
+</div>
+			<button class="btn btn-success" type="submit">Обновить пароль</button>
+		
+		</form:form>
 	</div>
 	<script>
 		var app = angular.module('vandh', []);
@@ -68,4 +57,8 @@
 		});
 	</script>
 </body>
+<script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
+	type="text/javascript"></script>
+<script src="<c:url value="/resources/bootstrap/bootstrap.js"/>"
+	type="text/javascript"></script>
 </html>

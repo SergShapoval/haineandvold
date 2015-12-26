@@ -1,0 +1,9 @@
+.centerBlock {
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+.textCenter
+{
+	text-align:center;
+}

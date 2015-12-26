@@ -5,121 +5,124 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="security"%>
 <%@page language="java" session="true"%>
 
 <%
-request.setCharacterEncoding("UTF-8"); 
-response.setCharacterEncoding("UTF-8"); 
+	request.setCharacterEncoding("UTF-8");
+	response.setCharacterEncoding("UTF-8");
 %>
 
 <!DOCTYPE HTML>
 <html>
 <head>
 <title>Панель администратора | Violence and Hate</title>
-<link href="<c:url value="/resources/admin/css/admin.css"/>"
+<link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
 	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/menu/menu.css"/>" rel="stylesheet"
+<link href="<c:url value="/resources/bootstrap/bootswatch.less.css"/>"
+	rel="stylesheet" type="text/css">
+<link href="<c:url value="/resources/bootstrap/variables.less.css"/>"
+	rel="stylesheet" type="text/css">
+<link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
 	type="text/css">
-<link href="<c:url value="/resources/buttonLogout/buttonLogout.css"/>"
-	rel="stylesheet" type="text/css">
-<script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
-	type="text/javascript"></script>
+
 </head>
-<body class="bgrAdmin">
-<div class="button">
-	<a class="btn-open" href="#"><img
-			src="<c:url value="/resources/menu/menu.png"/>"> </a>
-</div>
-<div class="overlay">
-<div id="header">
-	<img src="<c:url value="/resources/logo/logo.png"/>" />
-</div>
-<h2>Меню</h2>
-<h5>Для выхода с меню кликните по кнопке меню или пустому месту</h5>
-	<div class="wrap">
-		<ul class="wrap-nav">
-			<li>Навигация
-		<ul>
-				<li><a href="/app/user">Мой профиль</a></li>
-				<li><a href="/app/user/messages">Мои сообщения</a></li>
-				<li><a href="/app/user/search">Поиск оппонента</a></li>
-					<li><a href="/app/user/feedback">Написать администраторам</a></li>
-			</ul>
-			</li>
-		
-			<li>Информация
-			<ul>
-				<li><a href="/app/user/rules">Правила</a></li>
-				<li><a href="/app/user/contacts">Наши контакты</a></li>
-				
-				
-			
-			</ul>
-			</li>
-			 <security:authorize ifAnyGranted="ROLE_ADMIN">
-			<li>Администрация
-			<ul>
-			<li><a href="/app/admin">Админка/Список пользователей</a></li>
-			<li><a href="/app/admin/feedbacklist">Отзывы/Вопросы/Предложения</a></li>
-			</ul>
-			</li>
-				</security:authorize>
-				<div id="buttonLogout">
-	<c:url var="logoutUrl" value="j_spring_security_logout" />
-	<form action="${logoutUrl}" method="post">
-		<button class="buttonLogout" type="submit">Выйти</button> <input
-							type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
-	</form>
-	</div>
-	</ul>
-	</div>
-	</div>
+<body>
 
-<div id="header">
-	<img src="<c:url value="/resources/logo/logo.png"/>"/>
-</div>
-		
-	 <h2>Панель администратора</h2>
-		<h5>Святая из святых</h5>
-		
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Violence and Hate</a>
+			</div>
 
-<c:if test="${!empty listUsers}">
-    <table>
-    <tr>
-        <th width="80">Username</th>
-        <th width="120">Name</th>
-        <th width="120">Surname</th>
-        <th width="60">Email</th>
-        <th width="60">Gender</th>
-        <th width="60">Age</th>
-        <th width="60">Weight</th>
-        <th width="60">Height</th>
-        <th width="60">Sport</th>
-        <th width="60">Place</th>
-    </tr>
-    <c:forEach items="${listUsers}" var="users">
-        <tr>
-        	<td>${users.username}</td>
-            <td>${users.name}</td>
-            <td>${users.surname}</td>
-            <td>${users.email}</td>
-            <td>${users.gender}</td>
-            <td>${users.age}</td>
-            <td>${users.weight}</td>
-            <td>${users.height}</td>
-            <td>${users.sport}</td>
-            <td>${users.place}</td>
-            <td><a href="<c:url value='/remove/${users.username}'/>">Удалить</a></td>
-        <!--     <td><a href="<c:url value='/edit/${person.id}' />" >Edit</a></td>
-            <td><a href="<c:url value='/remove/${person.id}' />" >Delete</a></td> -->
-        </tr>
-    </c:forEach>
-    </table>
-</c:if>
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+
+					<li><a href="/app/user">Профиль</a></li>
+					<li><a href="/app/user/messages">Сообщения</a></li>
+					<li><a href="/app/user/search">Поиск оппонента</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false">Информация<span
+							class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/app/user/rules">Правила</a></li>
+							<li><a href="/app/user/contacts">Наши контакты</a></li>
+							<li class="divider"></li>
+							<li><a href="/app/user/feedback">Написать администрации</a></li>
+						</ul></li>
+					<security:authorize ifAnyGranted="ROLE_ADMIN">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-expanded="false">Администрирование<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="/app/admin">Админка/Список пользователей</a></li>
+								<li><a href="/app/admin/feedbacklist">Отзывы/Вопросы/Предложения</a></li>
+
+							</ul></li>
+					</security:authorize>
+				</ul>
+
+				<c:url var="logoutUrl" value="j_spring_security_logout" />
+				<form class="navbar-form navbar-right" action="${logoutUrl}"
+					method="post">
+					<button class="btn btn-default" type="submit">Выйти</button>
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+				</form>
+			</div>
+		</div>
+	</nav>
+	
+		<img class="img-responsive center-block"  src="<c:url value="/resources/logo/logo.png"/>" />
+	<h2 class="text-center">Панель администратора</h2>
+
+
+
+	<c:if test="${!empty listUsers}">
+		<table class="table table-striped table-bordered table-condensed table-hover">
+			<tr>
+				<th>Никнейм</th>
+				<th>Имя</th>
+				<th>Фамилия</th>
+				<th>Email</th>
+				<th>Пол</th>
+				<th>Возраст</th>
+				<th>Вес</th>
+				<th>Рост</th>
+				<th >Спортивные навыки</th>
+				<th>Место</th>
+			</tr>
+			<c:forEach items="${listUsers}" var="users">
+				<tr>
+					<td>${users.username}</td>
+					<td>${users.name}</td>
+					<td>${users.surname}</td>
+					<td>${users.email}</td>
+					<td>${users.gender}</td>
+					<td>${users.age}</td>
+					<td>${users.weight}</td>
+					<td>${users.height}</td>
+					<td>${users.sport}</td>
+					<td>${users.place}</td>
+					<td><a
+						onClick="return window.confirm('Вы действительно хотите удалить пользователя?')"
+						href="<c:url value='/remove/${users.username}'/>">Удалить</a></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</c:if>
 
 </body>
-<script src="<c:url value="/resources/menu/menu.js"/>" type="text/javascript"></script>
-<script src="<c:url value="/resources/buttonLogout/buttonLogout.js"/>" type="text/javascript"></script>
-</html> 
+<script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
+	type="text/javascript"></script>
+<script src="<c:url value="/resources/bootstrap/bootstrap.js"/>"
+	type="text/javascript"></script>
+</html>

@@ -16,6 +16,7 @@
 		<intercept-url pattern="/user/feedback" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/admin/feedbacklist" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/user/search" access="hasRole('ROLE_USER')"/>
+		
 		<!--access denied page -->
 		<access-denied-handler error-page="/403" />
 		
