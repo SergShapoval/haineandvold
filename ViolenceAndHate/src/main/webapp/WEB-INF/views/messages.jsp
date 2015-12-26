@@ -76,6 +76,25 @@
 	<h2 class="text-center">Личные сообщения</h2>
 <h5 class="text-center">Чтобы начать общение - выберите оппонента в поиске и отправьте ему сообщение</h5>
 
+
+   <!-- tabs left -->
+      <div class="tabbable tabs-left">
+        <ul class="nav nav-tabs">
+        <li class="active"><a href="#start" data-toggle="tab">Инфо</a></li>
+          <li><a href="#a" data-toggle="tab">One</a></li>      
+        </ul>
+        <div class="tab-content">
+        <div class="tab-pane active" id="start">
+        Напишите сообщение через поиск!
+        </div>
+         <div class="tab-pane"  id="a">Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
+         Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.</div>
+        </div>
+      </div>
+      <!-- /tabs -->
+      
+    </div>
+
 </body>
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>
