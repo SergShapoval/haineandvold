@@ -1,13 +1,11 @@
-package com.vandh.app.dao;
-
-import java.util.List;
+package com.vandh.app.service;
 
 import com.vandh.app.models.Dialog;
 
-public interface DialogDao {
+public interface DialogService {
 	public void addDialog(Dialog dialog);
 
 	public void removeDialog(int iddialog);
-	
 	public int findExistingDialog(String username, String reciever); 
 }
+

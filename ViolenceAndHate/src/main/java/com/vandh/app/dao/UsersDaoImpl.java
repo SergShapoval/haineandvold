@@ -89,7 +89,7 @@ public class UsersDaoImpl implements UsersDao {
 	public List<Users> userInfo(String username) {
 		Session session = null;
 		session = sessionFactory.openSession();
-		String query = "select users.username, users.password, users.name, users.enabled, users.surname, users.email, users.gender, users.age, users.weight, users.height, users.sport, users.place from users where users.username LIKE '%s'";
+		String query = "select users.username, users.password, users.name, users.enabled, users.surname, users.email, users.gender, users.age, users.weight, users.height, users.sport, users.place, users.photoa, users.photob from users where users.username LIKE '%s'";
 		List<Users> userInfoList = session.createSQLQuery(String.format(query, username)).addEntity(Users.class).list();
 		session.close();
 		session = null;
@@ -100,7 +100,7 @@ public class UsersDaoImpl implements UsersDao {
 	@Override
 	public List<Users> listUsersSort(String weight, String gender, String place, String ageTo) {
 
-		String query = "select users.username, users.password, users.name, users.enabled, users.surname, users.email, users.gender, users.age, users.weight, users.height, users.sport, users.place from users where users.enabled = true";
+		String query = "select users.username, users.password, users.name, users.enabled, users.surname, users.email, users.gender, users.age, users.weight, users.height, users.sport, users.place, users.photoa, users.photob from users where users.enabled = true";
 		if (weight.isEmpty() == false) {
 			String weightParam = " AND users.weight <= " + weight;
 			query = query.concat(weightParam);

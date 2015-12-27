@@ -62,7 +62,7 @@
 					</security:authorize>
 				</ul>
 
-				<c:url var="logoutUrl" value="j_spring_security_logout" />
+				<c:url var="logoutUrl" value="/j_spring_security_logout" />
 				<form class="navbar-form navbar-right" action="${logoutUrl}"
 					method="post">
 					<button class="btn btn-default" type="submit">Выйти</button>
@@ -75,7 +75,6 @@
 	<img class="img-responsive center-block"  src="<c:url value="/resources/logo/logo.png"/>" />
 	<h2 class="text-center">Личные сообщения</h2>
 <h5 class="text-center">Чтобы начать общение - выберите оппонента в поиске и отправьте ему сообщение</h5>
-
 
    <!-- tabs left -->
       <div class="tabbable tabs-left">

@@ -18,10 +18,10 @@
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
 	type="text/css">
-
+<script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
 </head>
 <body class="bgrUser">
-<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
@@ -71,12 +71,14 @@
 			</div>
 		</div>
 	</nav>
-	
-		<img class="img-responsive center-block"  src="<c:url value="/resources/logo/logo.png"/>" />
+
+	<img class="img-responsive center-block"
+		src="<c:url value="/resources/logo/logo.png"/>" />
 	<h2 class="text-center">Информация о пользователе ${username}</h2>
-	
+
 	<c:forEach items="${userInfo}" var="users">
-		<table class="table table-striped table-bordered table-condensed table-hover">
+		<table
+			class="table table-striped table-bordered table-condensed table-hover">
 			<tr>
 				<th>Ник</th>
 				<td>${users.username}</td>
@@ -119,33 +121,55 @@
 			</tr>
 		</table>
 	</c:forEach>
-	
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-  Написать сообщение
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Написать сообщение пользователю ${username}</h4>
-      </div>
-      <div class="modal-body">
-       <label>Введите сообщение</label>
-        <textarea class="form-control" rows="3" id="textArea"></textarea>
-    
-   
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-        <button type="button" class="btn btn-primary">Отправить</button>
-      </div>
-    </div>
-  </div>
+<div class="textCenter">
+	<button type="button" class="btn btn-primary" data-toggle="modal"
+		data-target="#myModal">Написать сообщение</button>
 </div>
-
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<div class="textCenter">
+					<h4 class="modal-title" id="myModalLabel">Написать сообщение
+						пользователю ${username}</h4>
+						</div>
+				</div>
+				<div class="modal-body">
+					<label class="control-label" for="message">Введите сообщение</label>
+					<form:form modelAttribute="message" method="POST"
+						action="${sendFeedback}" accept-charset="utf-8" ng-app="vandh"
+						ng-controller="validateCtrl" name="messageForm"
+						novalidation="true">
+						<form:textarea path="text" class="form-control" rows="3"
+							id="message" ng-model="message" required="true"></form:textarea>
+							<div style="color: black"
+				ng-show="messageForm.message.$dirty && messageForm.message.$invalid">
+				<span ng-show="messageForm.message.$error.required">Введите
+					сообщение</span>
+			</div>
+							<button class="btn btn-success" type="submit">Отправить</button>
+					</form:form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+					
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		var app = angular.module('vandh', []);
+		app.controller('validateCtrl', function($scope) {
+			$scope.message = '';
+		});
+	</script>
 
 </body>
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"

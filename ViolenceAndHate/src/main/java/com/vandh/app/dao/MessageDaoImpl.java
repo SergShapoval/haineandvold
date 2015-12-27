@@ -4,11 +4,15 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.vandh.app.models.Dialog;
 import com.vandh.app.models.Message;
 
+
+@Repository("messageDao")
 public class MessageDaoImpl implements MessageDao {
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 	

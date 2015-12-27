@@ -24,11 +24,10 @@ public class Message {
 	@Column(name="text", length = 300)
 	private String text;
 	
-	@Column(name="date")
-	private Date date;
+	@Column(name="date", length = 40, nullable=false)
+	private String date;
 	
-	@Column(name="time")
-	private Date time;
+	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "iddialog", nullable = false)
@@ -50,21 +49,14 @@ public class Message {
 		this.text = text;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
-	public Date getTime() {
-		return time;
-	}
-
-	public void setTime(Date time) {
-		this.time = time;
-	}
 
 	public Dialog getDialog() {
 		return dialog;

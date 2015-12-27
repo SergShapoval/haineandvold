@@ -1,6 +1,8 @@
 package com.vandh.app.models;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -32,14 +34,15 @@ public class Dialog {
 
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "dialog")
-	private Set<Message> message = new HashSet<Message>(0);
+	private List<Message> message = new ArrayList<Message>(0);
 	
 	
-	public Set<Message> getMessage() {
+	
+	public List<Message> getMessage() {
 		return message;
 	}
 
-	public void setMessage(Set<Message> message) {
+	public void setMessage(List<Message> message) {
 		this.message = message;
 	}
 
