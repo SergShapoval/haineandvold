@@ -136,7 +136,6 @@ public class UsersDaoImpl implements UsersDao {
 		return usersList;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void restorePassUser(String toAddress, String newPassword) {
 		String query = "UPDATE users SET users.password = '%s' WHERE users.email LIKE '%s'";

@@ -78,11 +78,9 @@
 <h5 class="text-center">Чтобы начать общение - выберите оппонента в поиске и отправьте ему сообщение</h5>
 
    <!-- tabs left -->
-   <c:if test="${!empty listDialog}">
+   <!-- <c:if test="${!empty listDialog}">
       <div class="tabbable tabs-left">
-
         <ul class="nav nav-tabs" id="dialogs">
-       
         </ul>
         
         <div class="tab-content">
@@ -92,10 +90,16 @@
          <div class="tab-pane"  id="a">Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
          Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.</div>
         </div>
-      </div>
-      <!-- /tabs -->
-    
-</c:if>
+      </div> 
+</c:if>-->
+
+<div id="dialogs">
+
+</div>
+<div id="mess">
+
+</div>
+
 </body>
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>
@@ -115,7 +119,24 @@
 		}, 
 		error : function(r){ alert(r); }});
 	}
-	setInterval(getDialogs, 1000);
+	setInterval(getDialogs, 4000);
+	
+</script>
+	<script>
+	function getMessages()
+	{
+	$.ajax({ 
+		type: 'GET',
+		url: '/app/user/mess/${iddialog}', 
+		success: function(r) 
+		{ 
+			$('#mess').html(r);
+			 
+			console.log(r); 
+		}, 
+		error : function(r){ alert(r);}});
+	}
+	setInterval(getMessages, 4000);
 	
 </script>
 </html>

@@ -1,5 +1,7 @@
 package com.vandh.app.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,12 @@ public class MessageServiceImpl implements MessageService {
 	@Transactional
 	public void removeMessage(int idmessage) {
 		this.messageDao.removeMessage(idmessage);
+	}
+
+	@Override
+	@Transactional
+	public List<Message> listMessagesForUser(int iddialog) {
+		return this.messageDao.listMessagesForUser(iddialog);
 	}
 
 }

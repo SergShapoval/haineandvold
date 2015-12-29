@@ -1,5 +1,7 @@
 package com.vandh.app.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.vandh.app.models.Dialog;
 import com.vandh.app.models.Message;
+import com.vandh.app.models.Users;
 
 
 @Repository("messageDao")
@@ -36,5 +39,22 @@ public class MessageDaoImpl implements MessageDao {
 		}
 
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Message> listMessagesForUser(int iddialog) {
+		String query="select message.idmessage, message.iddialog, message.text, message.date from message where message.iddialog=%s";
+		Session session = null;
+		session = sessionFactory.openSession();
+		List<Message> messageList = session.createSQLQuery(String.format(query, iddialog)).addEntity(Message.class).list();
+		session.close();
+		session = null;
+		return messageList;
+
+	}
+	
+	
+	
+	
+	
 
 }
