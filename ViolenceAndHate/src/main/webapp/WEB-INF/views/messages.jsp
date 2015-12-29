@@ -18,7 +18,8 @@
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
 	type="text/css">
-
+<script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
+	type="text/javascript"></script>
 </head>
 <body>
 
@@ -77,13 +78,15 @@
 <h5 class="text-center">Чтобы начать общение - выберите оппонента в поиске и отправьте ему сообщение</h5>
 
    <!-- tabs left -->
+   <c:if test="${!empty listDialog}">
       <div class="tabbable tabs-left">
-        <ul class="nav nav-tabs">
-        <li class="active"><a href="#start" data-toggle="tab">Инфо</a></li>
-          <li><a href="#a" data-toggle="tab">One</a></li>      
+
+        <ul class="nav nav-tabs" id="dialogs">
+       
         </ul>
+        
         <div class="tab-content">
-        <div class="tab-pane active" id="start">
+        <div class="tab-pane" id="dialog">
         Напишите сообщение через поиск!
         </div>
          <div class="tab-pane"  id="a">Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
@@ -91,12 +94,28 @@
         </div>
       </div>
       <!-- /tabs -->
-      
-    </div>
-
+    
+</c:if>
 </body>
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>
 <script src="<c:url value="/resources/bootstrap/bootstrap.js"/>"
 	type="text/javascript"></script>
+	<script>
+	function getDialogs()
+	{
+	$.ajax({ 
+		type: 'GET',
+		url: '/app/user/dialogs', 
+		success: function(r) 
+		{ 
+			$('#dialogs').html(r);
+			 
+			console.log(r); 
+		}, 
+		error : function(r){ alert(r); }});
+	}
+	setInterval(getDialogs, 1000);
+	
+</script>
 </html>

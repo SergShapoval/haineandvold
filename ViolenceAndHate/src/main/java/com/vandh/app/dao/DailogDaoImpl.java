@@ -63,4 +63,17 @@ public class DailogDaoImpl implements DialogDao {
 			return result;
 		}
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Dialog> listDialog(String username) {
+		String query = "select dialog.iddialog, dialog.username, dialog.reciever from dialog where dialog.username LIKE '%s' OR dialog.reciever LIKE '%s'";
+		Session session = null;
+		session = sessionFactory.openSession();
+		List<Dialog> dialogList = session.createSQLQuery(String.format(query, username, username)).addEntity(Dialog.class).list();
+		session.close();
+		session = null;
+		return dialogList;
+	}
+	
 }

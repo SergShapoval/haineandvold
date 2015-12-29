@@ -1,5 +1,6 @@
 package com.vandh.app.controller;
 
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -49,10 +50,22 @@ public class RegistrationController {
 
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public String addUser(@ModelAttribute("users") Users u, @RequestParam(value = "username") String username,
-			@RequestParam(value = "password") String password, @RequestParam(value="email") String mailForConfirmation, BindingResult bindingResult) {
-
-		String usernameHashed=new String(username);
-		byte[]   bytesEncoded = Base64.encode(usernameHashed.getBytes());
+			@RequestParam(value = "password") String password,
+			@RequestParam(value = "email") String mailForConfirmation, @RequestParam(value = "age") String age,
+			@RequestParam(value="sport") String sport,
+			BindingResult bindingResult) {
+		if(sport.contains("<")||sport.contains(">")||sport.contains("$")||username.contains("<")||username.contains(">")||username.contains("$")||password.contains("<")||password.contains(">")||password.contains("$"))
+		{
+			System.out.println("time to script :D");
+			return "registration";	
+		}
+		else
+		{
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		year -= Integer.parseInt(age);
+		System.out.println("MY AGE IS: " + year);
+		String usernameHashed = new String(username);
+		byte[] bytesEncoded = Base64.encode(usernameHashed.getBytes());
 		UserRoleDaoImpl userRoleDaoImpl = new UserRoleDaoImpl();
 		userReg = username;
 		userRoleDaoImpl.setUsername(username);
@@ -66,11 +79,14 @@ public class RegistrationController {
 		userRole.setUser(u);
 		userRoleSet.add(userRole);
 		u.setUserRole(userRoleSet);
+		u.setAge(String.valueOf(year));
 		this.usersService.addUser(u);
 		this.userRoleService.addRole(userRole);
-		//-----------------------SENDING CONFIRMATION EMAIL-------------------------------------------------------
+		// -----------------------SENDING CONFIRMATION
+		// EMAIL-------------------------------------------------------
 		String subject = "Подтверждение учётной записи | Violence and Hate";
-		String message = "Здравствуйте! Вы зарегестрировались на сайте Violence And Hate. Перейдите по ссылке для подтверждения вашей учётной записи: "+"http://localhost:8080/app/confirmation/"+new String(bytesEncoded);
+		String message = "Здравствуйте! Вы зарегестрировались на сайте Violence And Hate. Перейдите по ссылке для подтверждения вашей учётной записи: "
+				+ "http://localhost:8080/app/confirmation/" + new String(bytesEncoded);
 		System.out.println(message);
 		SimpleMailMessage mail = new SimpleMailMessage();
 		mail.setTo(mailForConfirmation);
@@ -79,23 +95,24 @@ public class RegistrationController {
 		// sends the e-mail
 		System.out.println("Sending....");
 		mailSender.send(mail);
-		//------------------------------------------------------------------
-		
+		// ------------------------------------------------------------------
+
 		return "redirect:/login";
+		}
 	}
-	
+
 	@RequestMapping(value = "/confirmation/{username}", method = RequestMethod.GET)
-	public String confirmationPage(Model model, @PathVariable(value="username") String username) {
+	public String confirmationPage(Model model, @PathVariable(value = "username") String username) {
 		model.addAttribute("users", new Users());
 		return "accountConfirmation";
 	}
-	
+
 	@RequestMapping(value = "/confirmation/{username}", method = RequestMethod.POST)
-	public String confirmAccount(@PathVariable(value="username") String username) {
-		byte[] usernameDecoded= Base64.decode(username.getBytes());
+	public String confirmAccount(@PathVariable(value = "username") String username) {
+		byte[] usernameDecoded = Base64.decode(username.getBytes());
 		System.out.println("Decoded value is " + new String(usernameDecoded));
 		this.usersService.confirmUserAccount(new String(usernameDecoded));
 		return "redirect:/login?confirm";
 	}
-	
+
 }

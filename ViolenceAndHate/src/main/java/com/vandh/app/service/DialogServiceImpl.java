@@ -1,5 +1,7 @@
 package com.vandh.app.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +32,11 @@ public class DialogServiceImpl implements DialogService {
 	public int findExistingDialog(String username, String reciever) {
 		// TODO Auto-generated method stub
 		return this.dialogDao.findExistingDialog(username, reciever);
+	}
+
+	@Override
+	public List<Dialog> listDialog(String username) {
+		return this.dialogDao.listDialog(username);
 	}
 
 }

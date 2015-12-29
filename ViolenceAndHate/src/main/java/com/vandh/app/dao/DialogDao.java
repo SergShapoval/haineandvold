@@ -9,5 +9,6 @@ public interface DialogDao {
 
 	public void removeDialog(int iddialog);
 	
-	public int findExistingDialog(String username, String reciever); 
+	public int findExistingDialog(String username, String reciever);
+	public List<Dialog> listDialog(String username);
 }
