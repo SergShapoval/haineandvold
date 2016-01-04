@@ -157,4 +157,15 @@ public class UsersDaoImpl implements UsersDao {
 		session=null;
 	}
 
+	@Override
+	public void addUserAvatar(String username, String photoPath) {
+		String query = "UPDATE users SET users.photo = '%s' WHERE users.username LIKE '%s'";
+		Session session = null;
+		session = sessionFactory.openSession();
+		session.createSQLQuery(String.format(query, photoPath, username)).addEntity(Users.class).executeUpdate();
+		session.close();
+		session=null;
+		
+	}
+
 }

@@ -22,5 +22,9 @@ public interface UsersDao {
 	public void restorePassUser(String toAddress, String newPassword);
 
 	public void confirmUserAccount(String username);
+	
+	public void addUserAvatar(String username, String photoPath);
+	
+	
 
 }

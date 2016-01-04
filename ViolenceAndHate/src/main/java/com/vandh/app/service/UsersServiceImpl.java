@@ -44,24 +44,33 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	@Override
+	@Transactional
 	public List<Users> listUsers() {
-		//
 		return this.userDao.listUsers();
 	}
 
 	@Override
+	@Transactional
 	public List<Users> listUsersSort(String weight, String gender, String place, String ageTo) {
 		return this.userDao.listUsersSort(weight, gender, place, ageTo);
 	}
 
 	@Override
+	@Transactional
 	public void restorePassUser(String toAddress, String newPassword) {
 		this.userDao.restorePassUser(toAddress, newPassword);
 	}
 
 	@Override
+	@Transactional
 	public void confirmUserAccount(String username) {
 	this.userDao.confirmUserAccount(username);
+	}
+
+	@Override
+	@Transactional
+	public void addUserAvatar(String username, String photoPath) {
+		this.userDao.addUserAvatar(username, photoPath);
 	}
 
 }

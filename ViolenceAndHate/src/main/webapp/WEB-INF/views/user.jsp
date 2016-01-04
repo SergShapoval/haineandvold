@@ -87,6 +87,7 @@
 				<th>Рост(см)</th>
 				<th>Спортивные умения</th>
 				<th>Место</th>
+				<th>Фото</th>
 	</tr>
 	
 	<tr>
@@ -108,6 +109,7 @@
 				<td>${users.sport}</td>
 
 				<td>${users.place}</td>
+				<td><img src="<c:url value="${users.photo}"/>"></td>
 					</c:forEach>
 	</tr>
 		</table>
