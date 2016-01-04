@@ -71,7 +71,7 @@ public class UserPageController {
 		    			    	String name=file.getOriginalFilename(); 
 		    	//String name=file.getOriginalFilename(); 
 		    			    	System.out.println(absoluteFilePath);
-		    	File convFile = new File(absoluteFilePath+name); 
+		    	File convFile = new File(absoluteFilePath+"/"+name); 
 		    	System.out.println(convFile.getAbsolutePath());
 		    	file.transferTo(convFile);
 		    	System.out.println("You have uploaded file");
