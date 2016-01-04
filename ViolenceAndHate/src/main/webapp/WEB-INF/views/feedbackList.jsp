@@ -50,7 +50,6 @@
 							class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="/app/user/rules">Правила</a></li>
-							<li><a href="/app/user/contacts">Наши контакты</a></li>
 							<li class="divider"></li>
 							<li><a href="/app/user/feedback">Написать администрации</a></li>
 						</ul></li>
@@ -90,7 +89,7 @@
 			<c:forEach items="${listFeedback}" var="feedback">
 				<tr>
 
-					<td>${feedback.emailforfb}</td>
+					<td><a href="/app/user/search/${feedback.usernameReciever}">${feedback.usernameReciever}</a></td>
 					<td>${feedback.message}</td>
 					<td><a href="<c:url value='/removefeedback/${feedback.idfeed}'/>">Удалить</a></td>
 				</tr>

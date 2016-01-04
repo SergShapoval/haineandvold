@@ -1,5 +1,7 @@
 package com.vandh.app.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +25,8 @@ public class FeedbackController {
 		return "addFeedback";
 	}
 	@RequestMapping(value = "/user/feedback", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	public String addFeedback(@ModelAttribute("feedback") Feedback feedback) {
+	public String addFeedback(@ModelAttribute("feedback") Feedback feedback,Principal principal) {
+		feedback.setUsernameReciever(principal.getName());
 		this.feedbackService.addFeedback(feedback);
 		return "addFeedback";
 	}

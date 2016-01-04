@@ -14,7 +14,7 @@ import com.vandh.app.models.Dialog;
 import com.vandh.app.models.Feedback;
 
 @Repository("dialogDao")
-public class DailogDaoImpl implements DialogDao {
+public class DialogDaoImpl implements DialogDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -64,16 +64,53 @@ public class DailogDaoImpl implements DialogDao {
 		}
 	}
 
+	/*@SuppressWarnings("unchecked")
+	@Override
+	public List<Dialog> listDialogUserSender(String username) {
+		String query = "select dialog.iddialog, dialog.username, dialog.reciever from dialog where dialog.username LIKE '%s'";
+		Session session = null;
+		session = sessionFactory.openSession();
+		List<Dialog> dialogListSender = session.createSQLQuery(String.format(query, username)).addEntity(Dialog.class).list();
+		session.close();
+		session = null;
+		return dialogListSender;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Dialog> listDialogUserReciever(String username) {
+		String query = "select dialog.iddialog, dialog.username, dialog.reciever from dialog where dialog.reciever LIKE '%s'";
+		Session session = null;
+		session = sessionFactory.openSession();
+		List<Dialog> dialogListReciever = session.createSQLQuery(String.format(query, username)).addEntity(Dialog.class).list();
+		session.close();
+		session = null;
+		return dialogListReciever;
+	}*/
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Dialog> listDialog(String username) {
 		String query = "select dialog.iddialog, dialog.username, dialog.reciever from dialog where dialog.username LIKE '%s' OR dialog.reciever LIKE '%s'";
 		Session session = null;
 		session = sessionFactory.openSession();
-		List<Dialog> dialogList = session.createSQLQuery(String.format(query, username, username)).addEntity(Dialog.class).list();
+		List<Dialog> dialogListReciever = session.createSQLQuery(String.format(query, username, username)).addEntity(Dialog.class).list();
 		session.close();
 		session = null;
-		return dialogList;
+		return dialogListReciever;
 	}
+
+	@Override
+	public List<Dialog> listDialogUserSender(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Dialog> listDialogUserReciever(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	
 }

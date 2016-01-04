@@ -35,6 +35,16 @@ public class DialogServiceImpl implements DialogService {
 	}
 
 	@Override
+	public List<Dialog> listDialogUserSender(String username) {
+		return this.dialogDao.listDialogUserSender(username);
+	}
+
+
+	@Override
+	public List<Dialog> listDialogUserReciever(String username) {
+		return this.dialogDao.listDialogUserReciever(username);
+	}
+	@Override
 	public List<Dialog> listDialog(String username) {
 		return this.dialogDao.listDialog(username);
 	}

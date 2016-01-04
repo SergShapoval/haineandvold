@@ -21,7 +21,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 
 import com.vandh.app.dao.UserRoleDaoImpl;
 import com.vandh.app.models.UserRole;
@@ -29,7 +33,6 @@ import com.vandh.app.models.Users;
 import com.vandh.app.service.UserRoleService;
 import com.vandh.app.service.UsersService;
 
-import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 @Controller
 public class RegistrationController {
@@ -42,6 +45,8 @@ public class RegistrationController {
 	@Autowired
 	private JavaMailSender mailSender;
 
+
+	
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public String registrationPage(Model model) {
 		model.addAttribute("users", new Users());
@@ -52,7 +57,7 @@ public class RegistrationController {
 	public String addUser(@ModelAttribute("users") Users u, @RequestParam(value = "username") String username,
 			@RequestParam(value = "password") String password,
 			@RequestParam(value = "email") String mailForConfirmation, @RequestParam(value = "age") String age,
-			@RequestParam(value="sport") String sport,
+			@RequestParam(value="sport") String sport, @RequestParam(value="photo") MultipartFile file,
 			BindingResult bindingResult) {
 		if(sport.contains("<")||sport.contains(">")||sport.contains("$")||username.contains("<")||username.contains(">")||username.contains("$")||password.contains("<")||password.contains(">")||password.contains("$"))
 		{
@@ -61,15 +66,16 @@ public class RegistrationController {
 		}
 		else
 		{
+		//	System.out.println(file.getName());
+			System.out.println(file.getOriginalFilename());
+			//System.out.println(photoUploading(file)); // 
 		int year = Calendar.getInstance().get(Calendar.YEAR);
 		year -= Integer.parseInt(age);
-		System.out.println("MY AGE IS: " + year);
 		String usernameHashed = new String(username);
 		byte[] bytesEncoded = Base64.encode(usernameHashed.getBytes());
 		UserRoleDaoImpl userRoleDaoImpl = new UserRoleDaoImpl();
 		userReg = username;
 		userRoleDaoImpl.setUsername(username);
-		System.out.println(userReg);
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		u.setPassword(encoder.encode(password));
 		// new person, add it
@@ -80,6 +86,7 @@ public class RegistrationController {
 		userRoleSet.add(userRole);
 		u.setUserRole(userRoleSet);
 		u.setAge(String.valueOf(year));
+		u.setPhoto("path");
 		this.usersService.addUser(u);
 		this.userRoleService.addRole(userRole);
 		// -----------------------SENDING CONFIRMATION

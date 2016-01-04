@@ -30,8 +30,8 @@
 			name="myForm" novalidation="true">
 
 			<div class="form-group">
-				<label class="control-label" for="username">Логин</label> <span
-					class="errorMessage">${message}</span>
+			 <div class="alert alert-error">${message}</div>
+				<label class="control-label" for="username">Логин</label>
 				<form:input class="form-control input-sm" path="username" id="username" type="text"
 					name="username" ng-model="username" required="true" />
 				<div style="color: black"
@@ -54,15 +54,16 @@
 			</div>
 
 <div class="textCenter">
-			<button type="submit" class="btn btn-success"
+			<button type="submit" class="btn btn-success btn-sm btn-block"
 				ng-disabled="myForm.username.$dirty && myForm.username.$invalid ||
   myForm.password.$dirty && myForm.password.$invalid">Войти</button></div>
+
 		</form:form>
-	</div>
+</div>
 	<br>
 	<div class="textCenter ">
 	<a href="registration"><button class="btn btn-primary">Регистрация</button></a>
-	<a href="restorepass"><button class="btn btn-danger">Забыли
+	<a href="restorepass"><button class="btn btn-primary">Забыли
 			пароль?</button></a>
 </div>
 

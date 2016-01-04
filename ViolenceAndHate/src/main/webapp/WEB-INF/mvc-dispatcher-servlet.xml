@@ -28,6 +28,7 @@ http://www.springframework.org/schema/context  http://www.springframework.org/sc
 
 	<context:property-placeholder location="classpath:database.properties" />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/avatars/**" location="file:/resources/avatars"/>
 	<mvc:annotation-driven />
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -56,15 +57,12 @@ http://www.springframework.org/schema/context  http://www.springframework.org/sc
 			</props>
 		</property>
 	</bean>
-							<!-- End mail sending properties -->
-	
-	<!--<property name="annotatedClasses"> <list> <value>com.vandh.app.models.Users</value> 
-		<value>com.vandh.app.models.UserRole</value> </list> </property> <property 
-		name="hibernateProperties"> <props> <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop> 
-		<prop key="hibernate.show_sql">${hibernate.show_sql}</prop> <prop key="hibernate.hbm2ddl.auto">update</prop> 
-		</props> </property> </bean> -->
-	<!-- <tx:annotation-driven /> -->
-		
+							
+		<bean id="multipartResolver"
+   class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <property name="maxUploadSize" value="5000000"/>
+</bean>
+ 
     <tx:annotation-driven/>		
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">

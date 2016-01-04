@@ -45,7 +45,6 @@
 							class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="/app/user/rules">Правила</a></li>
-							<li><a href="/app/user/contacts">Наши контакты</a></li>
 							<li class="divider"></li>
 							<li><a href="/app/user/feedback">Написать администрации</a></li>
 						</ul></li>
@@ -74,57 +73,50 @@
 
 	<img class="img-responsive center-block"
 		src="<c:url value="/resources/logo/logo.png"/>" />
-	<h2 class="text-center">Информация о пользователе ${username}</h2>
-
-	<c:forEach items="${userInfo}" var="users">
+	<h4 class="text-center">Чтобы начать диалог с пользователем ${username}, нажмите кнопку "Написать сообщение"</h4>
+	<div class="panel panel-default">
+<div class="panel-heading text-center">Информация о пользователе ${username}</div>
 		<table
 			class="table table-striped table-bordered table-condensed table-hover">
 			<tr>
 				<th>Ник</th>
-				<td>${users.username}</td>
-			</tr>
-			<tr>
 				<th>Имя</th>
-				<td>${users.name}</td>
-			</tr>
-			<tr>
 				<th>Фамилия</th>
-				<td>${users.surname}</td>
-			</tr>
-			<tr>
 				<th>E-mail</th>
-				<td>${users.email}</td>
-			</tr>
-			<tr>
 				<th>Пол</th>
-				<td>${users.gender}</td>
-			</tr>
-			<tr>
-				<th>Возраст</th>
-				<td>${users.gender}</td>
-			</tr>
-			<tr>
-				<th>Вес (кг)</th>
-				<td>${users.weight}</td>
-			</tr>
-			<tr>
+				<th>Вес(кг)</th>
 				<th>Рост(см)</th>
-				<td>${users.height}</td>
-			</tr>
-			<tr>
-				<th>Спортивные достижения</th>
-				<td>${users.sport}</td>
-			</tr>
-			<tr>
+				<th>Спортивные умения</th>
 				<th>Место</th>
+				
+			</tr>
+			<tr>
+	<c:forEach items="${userInfo}" var="users">
+				<td>${users.username}</td>
+				<td>${users.name}</td>
+
+				<td>${users.surname}</td>
+
+				<td>${users.email}</td>
+
+				<td>${users.gender}</td>
+
+
+				<td>${users.weight}</td>
+
+				<td>${users.height}</td>
+
+				<td>${users.sport}</td>
+
 				<td>${users.place}</td>
+				</c:forEach>
 			</tr>
 		</table>
-	</c:forEach>
-<div class="textCenter">
-	<button type="button" class="btn btn-primary" data-toggle="modal"
-		data-target="#myModal">Написать сообщение</button>
-</div>
+	</div>
+	<div class="textCenter">
+		<button type="button" class="btn btn-primary" data-toggle="modal"
+			data-target="#myModal">Написать сообщение</button>
+	</div>
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
@@ -136,30 +128,33 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 					<div class="textCenter">
-					<h4 class="modal-title" id="myModalLabel">Написать сообщение
-						пользователю ${username}</h4>
-						</div>
+						<h4 class="modal-title" id="myModalLabel">Написать сообщение
+							пользователю ${username}</h4>
+					</div>
 				</div>
 				<div class="modal-body">
-					<label class="control-label" for="message">Введите сообщение</label>
+					<label class="control-label" for="message">Введите
+						сообщение</label>
 					<form:form modelAttribute="message" method="POST"
-						action="${sendFeedback}" accept-charset="utf-8" ng-app="vandh"
-						ng-controller="validateCtrl" name="messageForm"
-						novalidation="true">
-						<form:textarea path="text" class="form-control" rows="3"
+						accept-charset="utf-8" ng-app="vandh" ng-controller="validateCtrl"
+						name="messageForm" novalidation="true">
+						<form:textarea path="text" class="form-control" rows="4"
 							id="message" ng-model="message" required="true"></form:textarea>
-							<div style="color: black"
-				ng-show="messageForm.message.$dirty && messageForm.message.$invalid">
-				<span ng-show="messageForm.message.$error.required">Введите
-					сообщение</span>
-			</div>
-							<button class="btn btn-success" type="submit">Отправить</button>
+						<div style="color: black"
+							ng-show="messageForm.message.$dirty && messageForm.message.$invalid">
+							<span ng-show="messageForm.message.$error.required">Введите
+								сообщение</span>
+						</div>
+						<br>
+						<div class="text-center">
+						<button class="btn btn-success" type="submit">Отправить</button>
+						</div>
 					</form:form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-					
-					
+
+
 				</div>
 			</div>
 		</div>

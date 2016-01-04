@@ -53,7 +53,7 @@ public class ChatController {
 		mess.setText(text);
 		mess.setDialog(dialog);
 		mess.setDate(dateFormat.format(date));
-		messageService.addMessage(mess);
+		this.messageService.addMessage(mess);
 
 	}
 
@@ -74,6 +74,7 @@ public class ChatController {
 		return "redirect:/user/messages";
 	}
 
+	
 	
 	
 	

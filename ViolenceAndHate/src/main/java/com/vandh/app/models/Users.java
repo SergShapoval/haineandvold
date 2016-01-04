@@ -57,15 +57,8 @@ public class Users {
 	@Column(name = "place", nullable = false, length = 400)
 	private String place;
 
-	@Column(name = "photoa", nullable = false, length = 100)
-	private String photoa;
-
-	public void setPhotob(String photob) {
-		this.photob = photob;
-	}
-
-	@Column(name = "photob", nullable = false, length = 100)
-	private String photob;
+	@Column(name = "photo", nullable = false, length = 150)
+	private String photo;
 
 	public String getName() {
 		return name;
@@ -179,16 +172,14 @@ public class Users {
 		this.dialog = dialog;
 	}
 
-	public String getPhotoa() {
-		return photoa;
+	public String getPhoto() {
+		return photo;
 	}
 
-	public void setPhotoa(String photoa) {
-		this.photoa = photoa;
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
-	public String getPhotob() {
-		return photob;
-	}
+
 
 }

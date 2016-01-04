@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
-<%@page language="java" session="true" %>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="security"%>
+<%@page language="java" session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +48,6 @@
 							class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="/app/user/rules">Правила</a></li>
-							<li><a href="/app/user/contacts">Наши контакты</a></li>
 							<li class="divider"></li>
 							<li><a href="/app/user/feedback">Написать администрации</a></li>
 						</ul></li>
@@ -73,70 +73,80 @@
 			</div>
 		</div>
 	</nav>
-	<img class="img-responsive center-block"  src="<c:url value="/resources/logo/logo.png"/>" />
+	<img class="img-responsive center-block"
+		src="<c:url value="/resources/logo/logo.png"/>" />
 	<h2 class="text-center">Личные сообщения</h2>
-<h5 class="text-center">Чтобы начать общение - выберите оппонента в поиске и отправьте ему сообщение</h5>
+	<h5 class="text-center">Чтобы начать общение - выберите оппонента
+		в поиске и отправьте ему сообщение</h5>
 
-   <!-- tabs left -->
-   <!-- <c:if test="${!empty listDialog}">
-      <div class="tabbable tabs-left">
-        <ul class="nav nav-tabs" id="dialogs">
-        </ul>
-        
-        <div class="tab-content">
-        <div class="tab-pane" id="dialog">
-        Напишите сообщение через поиск!
-        </div>
-         <div class="tab-pane"  id="a">Lorem ipsum dolor sit amet, charetra varius quam sit amet vulputate. 
-         Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.</div>
-        </div>
-      </div> 
+		<c:if test="${!empty listDialog}">
+	<div class="list-group dialogs">
+		<c:forEach items="${listDialog}" var="dialog">
+			<a href="/app/user/messages/${dialog.iddialog}" class="list-group-item">${dialog.iddialog}</a>
+		</c:forEach>
+	</div>
+</c:if>
+<div  id="mess">
+</div>
+	<!-- <div id="dialogs"></div> -->
+<!-- 	<c:if test="${!empty listDialogUserReciever}">
+	<div class="list-group dialogs">
+		<c:forEach items="${listDialogUserReciever}" var="dialog">
+			<a href="/app/user/messages/${dialog.iddialog}" class="list-group-item">${dialog.username}</a>
+		</c:forEach>
+	</div>
+</c:if> -->
+	<!-- <div id="dialogs"></div> -->
+	<!--<c:if test="${!empty listDialogUserSender}">
+	<div class="list-group dialogs">
+		<c:forEach items="${listDialogUserSender}" var="dialog">
+			<a href="/app/user/messages/${dialog.iddialog}" class="list-group-item">${dialog.user.username}</a>
+		</c:forEach>
+	</div>
 </c:if>-->
 
-<div id="dialogs">
 
-</div>
-<div id="mess">
 
-</div>
+	
+
 
 </body>
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>
 <script src="<c:url value="/resources/bootstrap/bootstrap.js"/>"
 	type="text/javascript"></script>
-	<script>
-	function getDialogs()
-	{
-	$.ajax({ 
-		type: 'GET',
-		url: '/app/user/dialogs', 
-		success: function(r) 
-		{ 
-			$('#dialogs').html(r);
-			 
-			console.log(r); 
-		}, 
-		error : function(r){ alert(r); }});
+<!-- <script>
+	function getDialogs() {
+		$.ajax({
+			type : 'GET',
+			url : '/app/user/dialogs',
+			success : function(r) {
+				$('#dialogs').html(r);
+
+				console.log(r);
+			},
+			error : function(r) {
+				alert(r);
+			}
+		});
 	}
-	setInterval(getDialogs, 4000);
-	
-</script>
-	<script>
-	function getMessages()
-	{
-	$.ajax({ 
-		type: 'GET',
-		url: '/app/user/mess/${iddialog}', 
-		success: function(r) 
-		{ 
-			$('#mess').html(r);
-			 
-			console.log(r); 
-		}, 
-		error : function(r){ alert(r);}});
+	setInterval(getDialogs, 2000);
+</script> -->
+<script>
+	function getMessages() {
+		$.ajax({
+			type : 'GET',
+			url : '/app/user/mess/${iddialog}',
+			success : function(r) {
+				$('#mess').html(r);
+
+				console.log(r);
+			},
+			error : function(r) {
+				alert(r);
+			}
+		});
 	}
-	setInterval(getMessages, 4000);
-	
+	setInterval(getMessages, 2000);
 </script>
 </html>

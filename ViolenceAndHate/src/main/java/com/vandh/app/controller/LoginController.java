@@ -41,10 +41,7 @@ public class LoginController {
 		String message = "";
 		if (error != null) {
 			message = "Неверный логин или пароль";
-		} else if (logout != null)
-		{
-			message = "Ждём вас в следуйщий раз";
-		}
+		} 
 		else if(passupd!=null)
 		{
 			message = "Пароль обновлён";

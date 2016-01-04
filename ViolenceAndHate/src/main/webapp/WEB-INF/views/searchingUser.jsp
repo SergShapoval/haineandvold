@@ -54,7 +54,6 @@ response.setCharacterEncoding("UTF-8");
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Информация<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/app/user/rules">Правила</a></li>
-            <li><a href="/app/user/contacts">Наши контакты</a></li>
             <li class="divider"></li>
             <li><a href="/app/user/feedback">Написать администрации</a></li>
           </ul>
@@ -71,7 +70,7 @@ response.setCharacterEncoding("UTF-8");
         </security:authorize>
       </ul>
     
-    <c:url var="logoutUrl" value="j_spring_security_logout" />
+    <c:url var="logoutUrl" value="/j_spring_security_logout" />
       <form class="navbar-form navbar-right" action="${logoutUrl}" method="post">
 						<button class="btn btn-default" type="submit">Выйти</button>
 						<input type="hidden" name="${_csrf.parameterName}"
@@ -199,7 +198,6 @@ response.setCharacterEncoding("UTF-8");
 				<td>${users.height}</td>
 				<td>${users.sport}</td>
 				<td>${users.place}</td>
-				
 			</tr>
 				</c:forEach>
 		</table>

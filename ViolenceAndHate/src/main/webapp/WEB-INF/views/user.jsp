@@ -44,7 +44,6 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Информация<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/app/user/rules">Правила</a></li>
-            <li><a href="/app/user/contacts">Наши контакты</a></li>
             <li class="divider"></li>
             <li><a href="/app/user/feedback">Написать администрации</a></li>
           </ul>
@@ -73,55 +72,56 @@
 		<img class="img-responsive center-block" src="<c:url value="/resources/logo/logo.png"/>" />
 	
 <br>
-	<c:forEach items="${userInfo}" var="users">
+	
 	<div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">Личная информация</div>
+  <div class="panel-heading text-center">Личная информация</div>
 		<table class="table table-striped table-bordered table-condensed">
-			<tr>
-				<th class="col-md-4">Ник</th>
-				<th class="">${users.username}</th>
-			</tr>
-			<tr>
+				<tr>
+				<th>Ник</th>
 				<th>Имя</th>
-				<td >${users.name}</td>
-			</tr>
-			<tr>
 				<th>Фамилия</th>
-				<td>${users.surname}</td>
-			</tr>
-			<tr>
 				<th>E-mail</th>
-				<td>${users.email}</td>
-			</tr>
-			<tr>
 				<th>Пол</th>
-				<td>${users.gender}</td>
-			</tr>
-			<tr>
-				<th>Возраст</th>
-				<td>${users.gender}</td>
-			</tr>
-			<tr>
-				<th>Вес (кг)</th>
-				<td>${users.weight}</td>
-			</tr>
-			<tr>
+				<th>Вес(кг)</th>
 				<th>Рост(см)</th>
-				<td>${users.height}</td>
-			</tr>
-			<tr>
-				<th>Спортивные достижения</th>
-				<td>${users.sport}</td>
-			</tr>
-			<tr>
+				<th>Спортивные умения</th>
 				<th>Место</th>
+	</tr>
+	
+	<tr>
+	<c:forEach items="${userInfo}" var="users">
+				<td>${users.username}</td>
+				<td>${users.name}</td>
+
+				<td>${users.surname}</td>
+
+				<td>${users.email}</td>
+
+				<td>${users.gender}</td>
+
+
+				<td>${users.weight}</td>
+
+				<td>${users.height}</td>
+
+				<td>${users.sport}</td>
+
 				<td>${users.place}</td>
-			</tr>
+					</c:forEach>
+	</tr>
 		</table>
 		</div>
-	</c:forEach>
-	
+ <form method="POST" action="./user?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
+ 	<div class="form-group text-center">
+       <label class="control-label" for="file">Выберите фото</label>
+       <span class="btn btn-default btn-file">
+        <input type="file" name="file">
+        </span> 
+        <button class="btn btn-primary btn-sm" type="submit" value="Load">Сменить фото</button>
+        </div>
+    </form>
+   
 	<script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>
 	<script src="<c:url value="/resources/bootstrap/bootstrap.js"/>"

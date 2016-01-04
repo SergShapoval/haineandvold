@@ -15,11 +15,19 @@ public class Feedback {
 	@Column(name = "idfeed", unique = true, nullable = false)
 	private Integer idfeed;
 	
-	@Column(name="emailforfb", length = 50)
-	private String emailforfb;
+	@Column(name="usernameReciever", length = 50)
+	private String usernameReciever;
 
 	@Column(name="message", length = 30)
 	private String message;
+
+	public String getUsernameReciever() {
+		return usernameReciever;
+	}
+
+	public void setUsernameReciever(String usernameReciever) {
+		this.usernameReciever = usernameReciever;
+	}
 
 	public Integer getIdfeed() {
 		return idfeed;
@@ -29,13 +37,6 @@ public class Feedback {
 		this.idfeed = idfeed;
 	}
 
-	public String getEmailforfb() {
-		return emailforfb;
-	}
-
-	public void setEmailforfb(String emailforfb) {
-		this.emailforfb = emailforfb;
-	}
 
 	public String getMessage() {
 		return message;

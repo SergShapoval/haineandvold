@@ -52,7 +52,6 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Информация<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/app/user/rules">Правила</a></li>
-            <li><a href="/app/user/contacts">Наши контакты</a></li>
             <li class="divider"></li>
             <li><a href="/app/user/feedback">Написать администрации</a></li>
           </ul>
@@ -83,31 +82,18 @@
 
 
 	<h2 class="text-center">Свяжитесь с нами</h2>
-	<h5 class="text-center">(ответ ожидайте по указанному вами E-mail адрессу)</h5>
+	<h5 class="text-center">(ответ ожидайте по указанному вами при регистрации E-mail адрессу)</h5>
 
 <div class="col-xs-4 centerBlock textCenter">
 		<c:url var="sendFeedback" value="feedback" />
 		<form:form modelAttribute="feedback" method="POST"
 			action="${sendFeedback}" accept-charset="utf-8" ng-app="vandh"
 			ng-controller="validateCtrl" name="fbForm" novalidation="true">
-			
-				<label for="emailforfb">E-mail</label>
-
-				<form:input placeholder="example@site.com" size="30"
-					path="emailforfb" class="form-control" type="email" id="emailforfb"
-					name="emailforfb" ng-model="emailforfb" required="true" />
-				<span style="color: black"
-					ng-show="fbForm.emailforfb.$dirty && fbForm.emailforfb.$invalid">
-					<div ng-show="fbForm.emailforfb.$error.required">Введите
-						e-mail</div>
-					<div ng-show="fbForm.emailforfb.$error.email">Некорректный
-						e-mail</div>
-				</span> <label for="message">Сообщение</label>
+			 <label for="message">Сообщение</label>
 				<form:textarea placeholder="Введите сюда своё сообщение..." class="form-control"
 					path="message" id="message" rows="10" cols="40" />
 		<br>
-	
-					<button type="submit" class="btn btn-primary"
+				<button type="submit" class="btn btn-primary"
 						ng-disabled="fbForm.emailforfb.$dirty && fbForm.emailforfb.$invalid">Отправить</button>
 		
 		</form:form>

@@ -43,7 +43,7 @@
 
 		<c:url var="saveUrl" value="registration" />
 
-		<form:form modelAttribute="users" method="POST" action="${saveUrl}"
+		<form:form enctype="multipart/form-data" modelAttribute="users" method="POST" action="${saveUrl}"
 			class="formular" ng-app="vandh" ng-controller="validateCtrlReg"
 			name="regForm" novalidation="true">
 			<div class="form-group">
@@ -54,7 +54,7 @@
 					required="true" />
 				<span style="color: black"
 					ng-show="regForm.username.$dirty && regForm.username.$invalid">
-					<span ng-show="regForm.username.$error.required">Введите ник</span>
+					<span ng-show="regForm.username.$error.required">Введите логин</span>
 				</span>
 			</div>
 			<div class="form-group">
@@ -375,6 +375,10 @@
 					<form:option value="Червонозаводской"></form:option>
 				</form:select>
 			</div>
+			<div class="form-group">
+				<label class="control-label" for="photo">Место</label>
+				
+				</div>
 			<button class="btn btn-success" type="submit"
 				ng-disabled="
 regForm.username.$dirty && regForm.username.$invalid ||
@@ -388,8 +392,9 @@ regForm.username.$dirty && regForm.username.$invalid ||
 			<form:input path="enabled" type="hidden" value="false" />
 		</form:form>
 	</div>
+	<div id="fixedBlock">
 	<a href="login"><button class="btn btn-warning">Назад</button></a>
-
+</div>
 
 	<script>
 		var app = angular.module('vandh', []);
