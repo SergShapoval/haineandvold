@@ -76,42 +76,56 @@
 	<h4 class="text-center">Чтобы начать диалог с пользователем ${username}, нажмите кнопку "Написать сообщение"</h4>
 	<div class="panel panel-default">
 <div class="panel-heading text-center">Информация о пользователе ${username}</div>
-		<table
-			class="table table-striped table-bordered table-condensed table-hover">
-			<tr>
-				<th>Ник</th>
-				<th>Имя</th>
-				<th>Фамилия</th>
-				<th>E-mail</th>
-				<th>Пол</th>
-				<th>Вес(кг)</th>
-				<th>Рост(см)</th>
-				<th>Спортивные умения</th>
-				<th>Место</th>
+
+<div class="container mainBlock">
+<c:forEach items="${userInfo}" var="users">
+<div class="blockAva col-md-3">
+<img class="fixedSizeImg" src="<c:url value="${users.photo}"/>">
+</div>
+<div class="blockTable col-md-8">
+		<table class="tableSize table table-striped table-bordered table-condensed">
 				
-			</tr>
-			<tr>
-	<c:forEach items="${userInfo}" var="users">
+				<tr>
+				<th>Ник</th>
 				<td>${users.username}</td>
+				</tr>
+				<tr>
+				<th>Имя</th>
 				<td>${users.name}</td>
-
+				</tr>
+				<tr>
+				<th>Фамилия</th>
 				<td>${users.surname}</td>
-
+				</tr>
+				<tr>
+				<th>E-mail</th>
 				<td>${users.email}</td>
-
+				</tr>
+				<tr>
+				<th>Пол</th>
 				<td>${users.gender}</td>
-
-
+				</tr>
+				<tr>
+				<th>Вес(кг)</th>
 				<td>${users.weight}</td>
-
+				</tr>
+				<tr>
+				<th>Рост(см)</th>
 				<td>${users.height}</td>
-
+				</tr>
+				<tr>
+				<th>Спортивные умения</th>
 				<td>${users.sport}</td>
-
+				</tr>
+				<tr>
+				<th>Место</th>
 				<td>${users.place}</td>
-				</c:forEach>
-			</tr>
-		</table>
+				</tr>
+					
+			</table>
+			</div>
+			</c:forEach>
+	</div>	
 	</div>
 	<div class="textCenter">
 		<button type="button" class="btn btn-primary" data-toggle="modal"

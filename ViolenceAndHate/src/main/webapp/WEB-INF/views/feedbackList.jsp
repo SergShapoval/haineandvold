@@ -79,23 +79,24 @@
 		<img class="img-responsive center-block"  src="<c:url value="/resources/logo/logo.png"/>" />
 
 	<h2 class="text-center">Отзывы/Вопросы/Предложения</h2>
+	
 	<c:if test="${!empty listFeedback}">
-
 		<table class="table table-striped table-bordered table-condensed table-hover">
 			<tr>
-				<td><b>E-mail</b></td>
-				<td><b>Message</b></td>
+				<td class="col-md-3"><b>Пользователь</b></td>
+				<td class="col-md-8"><b>Message</b></td>
 			</tr>
 			<c:forEach items="${listFeedback}" var="feedback">
 				<tr>
 
 					<td><a href="/app/user/search/${feedback.usernameReciever}">${feedback.usernameReciever}</a></td>
 					<td>${feedback.message}</td>
-					<td><a href="<c:url value='/removefeedback/${feedback.idfeed}'/>">Удалить</a></td>
+					<td class="col-md-1"><a href="<c:url value='/removefeedback/${feedback.idfeed}'/>">Удалить</a></td>
 				</tr>
 			</c:forEach>
 		</table>
 		</c:if>
+		
 </body>
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>

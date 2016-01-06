@@ -19,6 +19,8 @@
 	rel="stylesheet" type="text/css">
 	<link href="<c:url value="/resources/bootstrap/variables.less.css"/>"
 	rel="stylesheet" type="text/css">
+	<link href="<c:url value="/resources/CSS/styles.css"/>"
+	rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -72,48 +74,60 @@
 		<img class="img-responsive center-block" src="<c:url value="/resources/logo/logo.png"/>" />
 	
 <br>
-	
-	<div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading text-center">Личная информация</div>
-		<table class="table table-striped table-bordered table-condensed">
+<div class="panel panel-default">
+<div class="panel-heading text-center">Ваша информация</div>
+
+<div class="container mainBlock">
+<c:forEach items="${userInfo}" var="users">
+<div class="blockAva col-md-3">
+<img class="fixedSizeImg" src="<c:url value="${users.photo}"/>">
+</div>
+<div class="blockTable col-md-8">
+		<table class="tableSize table table-striped table-bordered table-condensed">
+				
 				<tr>
 				<th>Ник</th>
-				<th>Имя</th>
-				<th>Фамилия</th>
-				<th>E-mail</th>
-				<th>Пол</th>
-				<th>Вес(кг)</th>
-				<th>Рост(см)</th>
-				<th>Спортивные умения</th>
-				<th>Место</th>
-				<th>Фото</th>
-	</tr>
-	
-	<tr>
-	<c:forEach items="${userInfo}" var="users">
 				<td>${users.username}</td>
+				</tr>
+				<tr>
+				<th>Имя</th>
 				<td>${users.name}</td>
-
+				</tr>
+				<tr>
+				<th>Фамилия</th>
 				<td>${users.surname}</td>
-
+				</tr>
+				<tr>
+				<th>E-mail</th>
 				<td>${users.email}</td>
-
+				</tr>
+				<tr>
+				<th>Пол</th>
 				<td>${users.gender}</td>
-
-
+				</tr>
+				<tr>
+				<th>Вес(кг)</th>
 				<td>${users.weight}</td>
-
+				</tr>
+				<tr>
+				<th>Рост(см)</th>
 				<td>${users.height}</td>
-
+				</tr>
+				<tr>
+				<th>Спортивные умения</th>
 				<td>${users.sport}</td>
-
+				</tr>
+				<tr>
+				<th>Место</th>
 				<td>${users.place}</td>
-				<td><img src="<c:url value="${users.photo}"/>"></td>
-					</c:forEach>
-	</tr>
-		</table>
-		</div>
+				</tr>
+					
+			</table>
+			</div>
+			</c:forEach>
+	</div>	
+</div>
+	<div class="blockDownloadAva">
  <form method="POST" action="./user?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
  	<div class="form-group text-center">
        <label class="control-label" for="file">Выберите фото</label>
@@ -123,7 +137,7 @@
         <button class="btn btn-primary btn-sm" type="submit" value="Load">Сменить фото</button>
         </div>
     </form>
-   
+  </div>
 	<script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>
 	<script src="<c:url value="/resources/bootstrap/bootstrap.js"/>"

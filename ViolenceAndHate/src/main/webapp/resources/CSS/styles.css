@@ -65,3 +65,30 @@ textarea {
     cursor: inherit;
     display: block;
 }
+
+
+.fixedSizeImg
+{
+   	border: double black 2px;
+	width:200px;
+	height:300px;
+}
+
+
+.mainBlock
+{
+	
+	padding-left:300px;
+	
+}
+
+.blockTable
+{
+	margin:0;
+	padding:0;	
+}
+.blockAva
+{
+	margin:0;
+	padding:0;
+}
