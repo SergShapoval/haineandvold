@@ -10,5 +10,6 @@ public interface DialogDao {
 	public int findExistingDialog(String username, String reciever);
 	public List<Dialog> listDialogUserSender(String username);
 	public List<Dialog> listDialogUserReciever(String username);
-	public List<Dialog> listDialog(String username);
+	public String usernameDialogWith(int iddialog, String currentUser);
+	
 }

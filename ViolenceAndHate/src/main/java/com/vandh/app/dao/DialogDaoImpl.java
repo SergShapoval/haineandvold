@@ -64,7 +64,7 @@ public class DialogDaoImpl implements DialogDao {
 		}
 	}
 
-	/*@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Dialog> listDialogUserSender(String username) {
 		String query = "select dialog.iddialog, dialog.username, dialog.reciever from dialog where dialog.username LIKE '%s'";
@@ -86,31 +86,26 @@ public class DialogDaoImpl implements DialogDao {
 		session.close();
 		session = null;
 		return dialogListReciever;
-	}*/
+	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Dialog> listDialog(String username) {
-		String query = "select dialog.iddialog, dialog.username, dialog.reciever from dialog where dialog.username LIKE '%s' OR dialog.reciever LIKE '%s'";
-		Session session = null;
-		session = sessionFactory.openSession();
-		List<Dialog> dialogListReciever = session.createSQLQuery(String.format(query, username, username)).addEntity(Dialog.class).list();
-		session.close();
-		session = null;
-		return dialogListReciever;
+public String usernameDialogWith(int iddialog, String currentUser)
+{	String usernameDialogWith;
+	String query="select dialog.iddialog, dialog.username, dialog.reciever from dialog where dialog.iddialog=%s";
+	Session session = null;
+	session = sessionFactory.openSession();
+	List<Dialog> dialog = session.createSQLQuery(String.format(query, iddialog)).addEntity(Dialog.class).list();
+	session.close();
+	session = null;
+	if(dialog.get(0).getUser().getUsername().equals(currentUser))
+	{
+		return usernameDialogWith=dialog.get(0).getReciever();
 	}
+	else
+	return usernameDialogWith=dialog.get(0).getUser().getUsername();
+}
 
-	@Override
-	public List<Dialog> listDialogUserSender(String username) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Dialog> listDialogUserReciever(String username) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 	
 }

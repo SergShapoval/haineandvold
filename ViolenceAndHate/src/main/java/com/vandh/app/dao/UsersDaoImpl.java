@@ -32,6 +32,7 @@ public class UsersDaoImpl implements UsersDao {
 
 	private MailSender mailSender;
 	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
 	public void setMailSender(MailSender mailSender) {
 		this.mailSender = mailSender;
 	}
@@ -62,7 +63,7 @@ public class UsersDaoImpl implements UsersDao {
 			session.delete(u);
 			tx.commit();
 		}
-	
+
 	}
 
 	@Override
@@ -107,13 +108,13 @@ public class UsersDaoImpl implements UsersDao {
 			System.out.println(query);
 		}
 		if (gender.isEmpty() == false) {
-			String genderParam = " AND  users.gender LIKE " +"'"+gender+"'";
+			String genderParam = " AND  users.gender LIKE " + "'" + gender + "'";
 			query = query.concat(genderParam);
 			System.out.println(query);
 		}
 
 		if (place.isEmpty() == false) {
-			String placeParam = " AND users.place LIKE " +"'"+place+"'";
+			String placeParam = " AND users.place LIKE " + "'" + place + "'";
 			query = query.concat(placeParam);
 			System.out.println(query);
 		}
@@ -122,17 +123,16 @@ public class UsersDaoImpl implements UsersDao {
 			query = query.concat(age);
 			System.out.println(query);
 		}
-		System.out.println("FINAL QUERY IS: "+query);
+		System.out.println("FINAL QUERY IS: " + query);
 		Session session = null;
 		session = sessionFactory.openSession();
 		List<Users> usersList = session.createSQLQuery(query).addEntity(Users.class).list();
 		session.close();
 		session = null;
-		for(int i=0;i<usersList.size();i++)
-		{
+		for (int i = 0; i < usersList.size(); i++) {
 			System.out.println(usersList.get(i).getName());
 		}
-		
+
 		return usersList;
 	}
 
@@ -143,7 +143,7 @@ public class UsersDaoImpl implements UsersDao {
 		session = sessionFactory.openSession();
 		session.createSQLQuery(String.format(query, newPassword, toAddress)).addEntity(Users.class).executeUpdate();
 		session.close();
-		session=null;
+		session = null;
 
 	}
 
@@ -154,7 +154,7 @@ public class UsersDaoImpl implements UsersDao {
 		session = sessionFactory.openSession();
 		session.createSQLQuery(String.format(query, username)).addEntity(Users.class).executeUpdate();
 		session.close();
-		session=null;
+		session = null;
 	}
 
 	@Override
@@ -164,8 +164,22 @@ public class UsersDaoImpl implements UsersDao {
 		session = sessionFactory.openSession();
 		session.createSQLQuery(String.format(query, photoPath, username)).addEntity(Users.class).executeUpdate();
 		session.close();
-		session=null;
-		
+		session = null;
+
+	}
+
+	@Override
+	public boolean checkingEmail(String email) {
+		String query = "SELECT users.email FROM users where users.email LIKE '%s'";
+		Session session = null;
+		session = sessionFactory.openSession();
+		String existingEmail = session.createSQLQuery(String.format(query, email)).addEntity(Users.class).toString();
+		session.close();
+		session = null;
+		if (email.equals(existingEmail))
+			return false;
+		else
+			return true;
 	}
 
 }

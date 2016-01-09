@@ -64,13 +64,18 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	@Transactional
 	public void confirmUserAccount(String username) {
-	this.userDao.confirmUserAccount(username);
+		this.userDao.confirmUserAccount(username);
 	}
 
 	@Override
 	@Transactional
 	public void addUserAvatar(String username, String photoPath) {
 		this.userDao.addUserAvatar(username, photoPath);
+	}
+
+	@Override
+	public boolean checkingEmail(String email) {
+		return this.userDao.checkingEmail(email);
 	}
 
 }

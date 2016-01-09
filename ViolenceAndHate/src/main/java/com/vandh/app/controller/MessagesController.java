@@ -49,23 +49,20 @@ public class MessagesController {
 	@RequestMapping(value = "/user/messages", method = RequestMethod.GET)
 	public String messagesPage(Model model, Principal principal) {
 		model.addAttribute("dialog", new Dialog());
-		model.addAttribute("listDialog", dialogService.listDialog(principal.getName()));
+		model.addAttribute("message", new Message());
+		model.addAttribute("listDialogRec", dialogService.listDialogUserReciever(principal.getName()));
+		model.addAttribute("listDialogSend", dialogService.listDialogUserSender(principal.getName()));
 		return "messages";
 	}
 	
-/*	@RequestMapping(value = "/user/dialogs", method = RequestMethod.GET)
-	public String dialogPage(Model model, Principal principal) {
-		model.addAttribute("dialog", new Dialog());
-		model.addAttribute("listDialog", dialogService.listDialog(principal.getName()));
-		return "dialogs";
-	}*/
 
 	@RequestMapping(value = "/user/messages/{iddialog}", method = RequestMethod.GET)
 	public String messagesList(@PathVariable(value = "iddialog") int iddialog, Model model, Principal principal) {
 		model.addAttribute("message", new Message());
 		model.addAttribute("listMessagesForUser", messageService.listMessagesForUser(iddialog));
+		model.addAttribute("userDialogWith", dialogService.usernameDialogWith(iddialog, principal.getName()));
 		System.out.println("ID dialog is: " + iddialog);
-		return "messages";
+		return "messagesWithUser";
 	}
 
 	@RequestMapping(value = "/user/mess/{iddialog}", method = RequestMethod.GET)
@@ -76,6 +73,14 @@ public class MessagesController {
 		return "mess";
 	}
 
-	
+
+	@RequestMapping(value = "/user/messages/history/{username}", method = RequestMethod.GET)
+	public String fullMessageList(@PathVariable(value="username") String username, Model model, Principal principal){ 
+		model.addAttribute("message", new Message());
+		model.addAttribute("fullMessageList", messageService.messageHistory(username, principal.getName()));
+		model.addAttribute("usernameHistoryWith", username);
+	return "fullMessageList";	
+	}
+
 
 }

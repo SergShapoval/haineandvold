@@ -21,6 +21,8 @@
 	type="text/css">
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>
+	<script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
+
 </head>
 <body>
 
@@ -75,41 +77,38 @@
 	</nav>
 	<img class="img-responsive center-block"
 		src="<c:url value="/resources/logo/logo.png"/>" />
-	<h2 class="text-center">Личные сообщения</h2>
-	<h5 class="text-center">Чтобы начать общение - выберите оппонента
-		в поиске и отправьте ему сообщение</h5>
+	<h2 class="text-center">Диалоги</h2>
+<!-- <div id="dialogs"></div> -->
+<table class="table table-striped table-bordered table-condensed table-hover">
+<tr>
+<th>Пользователи с которыми вы вели диалог</th>
+</tr>
+<tr>
+	<c:if test="${!empty listDialogRec}">
+		<c:forEach items="${listDialogRec}" var="dialog">
+	<td><a href="/app/user/messages/${dialog.iddialog}" class="">${dialog.user.username}</a></td>
+		<td><a href="/app/user/messages/history/${dialog.user.username}">История переписки</a></td>
+		</c:forEach>
+		</c:if>
+	<c:if test="${!empty listDialogSend}">
+		<c:forEach items="${listDialogSend}" var="dialog">
+		<tr>
+			<td><a href="/app/user/messages/${dialog.iddialog}" class="">${dialog.reciever}</a></td>
+			<td><a href="/app/user/messages/history/${dialog.reciever}">История переписки</a></td>
+			</tr>
+		</c:forEach>
+		</c:if>
+		</tr>
+</table>
 
-		<c:if test="${!empty listDialog}">
-	<div class="list-group dialogs">
-		<c:forEach items="${listDialog}" var="dialog">
-			<a href="/app/user/messages/${dialog.iddialog}" class="list-group-item">${dialog.iddialog}</a>
-		</c:forEach>
-	</div>
-</c:if>
-<div  id="mess">
-</div>
-	<!-- <div id="dialogs"></div> -->
-<!-- 	<c:if test="${!empty listDialogUserReciever}">
-	<div class="list-group dialogs">
-		<c:forEach items="${listDialogUserReciever}" var="dialog">
-			<a href="/app/user/messages/${dialog.iddialog}" class="list-group-item">${dialog.username}</a>
-		</c:forEach>
-	</div>
-</c:if> -->
-	<!-- <div id="dialogs"></div> -->
-	<!--<c:if test="${!empty listDialogUserSender}">
-	<div class="list-group dialogs">
-		<c:forEach items="${listDialogUserSender}" var="dialog">
-			<a href="/app/user/messages/${dialog.iddialog}" class="list-group-item">${dialog.user.username}</a>
-		</c:forEach>
-	</div>
-</c:if>-->
+
+
+
+
 
 
 
 	
-
-
 </body>
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>
@@ -132,21 +131,6 @@
 	}
 	setInterval(getDialogs, 2000);
 </script> -->
-<script>
-	function getMessages() {
-		$.ajax({
-			type : 'GET',
-			url : '/app/user/mess/${iddialog}',
-			success : function(r) {
-				$('#mess').html(r);
 
-				console.log(r);
-			},
-			error : function(r) {
-				alert(r);
-			}
-		});
-	}
-	setInterval(getMessages, 2000);
-</script>
+
 </html>

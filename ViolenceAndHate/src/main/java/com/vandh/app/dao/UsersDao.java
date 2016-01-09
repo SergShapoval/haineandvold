@@ -25,6 +25,7 @@ public interface UsersDao {
 	
 	public void addUserAvatar(String username, String photoPath);
 	
+	public boolean checkingEmail (String email);
 	
 
 }

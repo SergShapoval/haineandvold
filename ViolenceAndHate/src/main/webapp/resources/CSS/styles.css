@@ -3,92 +3,112 @@
 	margin-left: auto;
 	margin-right: auto;
 }
-.textCenter
+.floatCenter
 {
-	text-align:center;
+	
+	align:center;
 }
 
-.dialogs
-{
-width:20%; 
-float:left;
+.dialogs {
+	width: 20%;
+	float: left;
 }
 
-.tableSize
-{
-	width:80%;
-}
-.colDateSize
-{
-	width:25%;
-}
-.tableFont
-{
-	overflow:auto;
-	font-size:70%;
+.tableSize {
+	width: 80%;
 }
 
+.colDateSize {
+	width: 25%;
+}
 
-#fixedBlock
-{
-text-align:right;
-margin: 0px;
-z-index: 2;
-position: fixed;
-top: 160px;
-right: 320px;
-width: 38px;
-height: 166px;
+.tableFont {
+	overflow: auto;
+	font-size: 70%;
+}
+
+#fixedBlock {
+	text-align: right;
+	margin: 0px;
+	z-index: 2;
+	position: fixed;
+	top: 160px;
+	right: 320px;
+	width: 38px;
+	height: 166px;
 }
 
 textarea {
-   resize: none;
+	resize: none;
 }
 
 .btn-file {
-    position: relative;
-    overflow: hidden;
+	position: relative;
+	overflow: hidden;
 }
+
 .btn-file input[type=file] {
-	
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+	display: block;
 }
 
-
-.fixedSizeImg
-{
-   	border: double black 2px;
-	width:200px;
-	height:300px;
+.fixedSizeImg {
+	border: double black 2px;
+	width: 200px;
+	height: 300px;
 }
 
-
-.mainBlock
-{
-	
-	padding-left:300px;
-	
+.mainBlock {
+	padding-left: 300px;
 }
 
-.blockTable
-{
-	margin:0;
-	padding:0;	
+.blockTable {
+	margin: 0;
+	padding: 0;
 }
-.blockAva
+
+.blockAva {
+	margin: 0;
+	padding: 0;
+}
+
+.scrollTableUsers {
+	height: 450px;
+	overflow-y: scroll;
+}
+
+.scrollTableSearch {
+	height: 400px;
+	overflow-y: scroll;
+}
+.scrollTableFeedback {
+	height: 400px;
+	overflow-y: scroll;
+}
+
+.scrollTableMessages {
+	height: 370px;
+	overflow-y: scroll;
+}
+
+.fixedTable
 {
-	margin:0;
-	padding:0;
+word-break: break-all;
+}
+
+.tableFullHistorySize
+{
+	height:500px;
+	overflow-y:scroll;
 }

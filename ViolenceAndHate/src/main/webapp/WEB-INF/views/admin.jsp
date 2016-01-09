@@ -83,7 +83,7 @@
 		<img class="img-responsive center-block"  src="<c:url value="/resources/logo/logo.png"/>" />
 	<h2 class="text-center">Панель администратора</h2>
 
-
+<div class="scrollTableUsers">
 
 	<c:if test="${!empty listUsers}">
 		<table class="table table-striped table-bordered table-condensed table-hover">
@@ -118,7 +118,7 @@
 			</c:forEach>
 		</table>
 	</c:if>
-
+</div>
 </body>
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>

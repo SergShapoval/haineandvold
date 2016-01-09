@@ -2,14 +2,18 @@
 	pageEncoding="utf-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="security"%>
-<%@page language="java" session="true"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+	response.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Пользователь ${username}</title>
+<title>Сообщения</title>
 <link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/bootstrap/bootswatch.less.css"/>"
@@ -18,9 +22,10 @@
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
 	type="text/css">
-<script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
+	<script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
 </head>
 <body>
+
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -70,89 +75,25 @@
 			</div>
 		</div>
 	</nav>
+<h3 class="text-center">Диалог с ${userDialogWith}</h3>
+<table class="table table-striped table-bordered table-condensed table-hover">
+<tr>
+			<th class="text-center">Сообщение</th>
+			<th class="text-center colDateSize">Дата/Время</th>
 
-	<img class="img-responsive center-block"
-		src="<c:url value="/resources/logo/logo.png"/>" />
-	<h4 class="text-center">Чтобы начать диалог с пользователем ${username}, нажмите кнопку "Написать сообщение"</h4>
-	<div class="panel panel-default">
-<div class="panel-heading text-center">Информация о пользователе ${username}</div>
+		</tr>
+		</table>
+<div class="scrollTableMessages" id="mess">
 
-<div class="container mainBlock">
-<c:forEach items="${userInfo}" var="users">
-<div class="blockAva col-md-3">
-<img class="fixedSizeImg" src="<c:url value="${users.photo}"/>">
 </div>
-<div class="blockTable col-md-8">
-		<table class="tableSize table table-striped table-bordered table-condensed">
-				
-				<tr>
-				<th>Ник</th>
-				<td>${users.username}</td>
-				</tr>
-				<tr>
-				<th>Имя</th>
-				<td>${users.name}</td>
-				</tr>
-				<tr>
-				<th>Фамилия</th>
-				<td>${users.surname}</td>
-				</tr>
-				<tr>
-				<th>E-mail</th>
-				<td>${users.email}</td>
-				</tr>
-				<tr>
-				<th>Пол</th>
-				<td>${users.gender}</td>
-				</tr>
-				<tr>
-				<th>Вес(кг)</th>
-				<td>${users.weight}</td>
-				</tr>
-				<tr>
-				<th>Рост(см)</th>
-				<td>${users.height}</td>
-				</tr>
-				<tr>
-				<th>Спортивные умения</th>
-				<td>${users.sport}</td>
-				</tr>
-				<tr>
-				<th>Место</th>
-				<td>${users.place}</td>
-				</tr>
-					
-			</table>
-			</div>
-			</c:forEach>
-	</div>	
-	</div>
-	<div class="text-center">
-		<button type="button" class="btn btn-primary" data-toggle="modal"
-			data-target="#myModal">Написать сообщение</button>
-	</div>
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<div class="text-center">
-						<h4 class="modal-title" id="myModalLabel">Написать сообщение
-							пользователю ${username}</h4>
-					</div>
-				</div>
-				<div class="modal-body">
-					<label class="control-label" for="message">Введите
-						сообщение</label>
-					<form:form modelAttribute="message" method="POST"
+
+
+
+<form:form method="POST" modelAttribute="message"
 						accept-charset="utf-8" ng-app="vandh" ng-controller="validateCtrl"
 						name="messageForm" novalidation="true">
-						<form:textarea path="text" class="form-control" rows="4"
+
+<form:textarea path="text" class="form-control" rows="1" 
 							id="message" ng-model="message" required="true"></form:textarea>
 						<div style="color: black"
 							ng-show="messageForm.message.$dirty && messageForm.message.$invalid">
@@ -163,26 +104,35 @@
 						<div class="text-center">
 						<button class="btn btn-success" type="submit">Отправить</button>
 						</div>
-					</form:form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
 
+</form:form>
 
-				</div>
-			</div>
-		</div>
-	</div>
-	<script>
+<script>
 		var app = angular.module('vandh', []);
 		app.controller('validateCtrl', function($scope) {
 			$scope.message = '';
 		});
 	</script>
-
 </body>
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>
 <script src="<c:url value="/resources/bootstrap/bootstrap.js"/>"
 	type="text/javascript"></script>
+<script>
+	function getMessages() {
+		$.ajax({
+			type : 'GET',
+			url : '/app/user/mess/${iddialog}',
+			success : function(r) {
+				$('#mess').html(r);
+				document.getElementById("mess").scrollTop = 9999;
+				console.log(r);
+			},
+			error : function(r) {
+				alert(r);
+			}
+		});
+	}
+	setInterval(getMessages, 2000);
+</script>
 </html>

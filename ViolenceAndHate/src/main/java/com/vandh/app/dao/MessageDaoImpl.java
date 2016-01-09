@@ -52,7 +52,30 @@ public class MessageDaoImpl implements MessageDao {
 
 	}
 	
-	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Message> lastMessageFromDialog(int iddialog) {
+		String query="SELECT * FROM message where iddialog=%s ORDER BY idmessage DESC LIMIT 1 ";
+		Session session = null;
+		session = sessionFactory.openSession();
+		List<Message> lastMessageList = session.createSQLQuery(String.format(query, iddialog)).addEntity(Message.class).list();
+		session.close();
+		session = null;
+		return lastMessageList;
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Message> messageHistory(String usernameReciever, String usernameSender) {
+		String query="SELECT message.iddialog, message.idmessage, message.text, message.date FROM message, dialog where dialog.username LIKE '%s' and dialog.reciever LIKE '%s' OR dialog.username LIKE '%s' and dialog.reciever LIKE '%s' ";
+		Session session = null;
+		session = sessionFactory.openSession();
+		List<Message> fullMessageHistory = session.createSQLQuery(String.format(query, usernameSender, usernameReciever, usernameReciever, usernameSender)).addEntity(Message.class).list();
+		session.close();
+		session = null;
+		return fullMessageHistory;
+	}
 	
 	
 	

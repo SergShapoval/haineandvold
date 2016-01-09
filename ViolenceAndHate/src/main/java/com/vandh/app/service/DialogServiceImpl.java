@@ -29,24 +29,31 @@ public class DialogServiceImpl implements DialogService {
 	}
 ;
 	@Override
+	 @Transactional
 	public int findExistingDialog(String username, String reciever) {
 		// TODO Auto-generated method stub
 		return this.dialogDao.findExistingDialog(username, reciever);
 	}
 
 	@Override
+	 @Transactional
 	public List<Dialog> listDialogUserSender(String username) {
 		return this.dialogDao.listDialogUserSender(username);
 	}
 
 
 	@Override
+	 @Transactional
 	public List<Dialog> listDialogUserReciever(String username) {
 		return this.dialogDao.listDialogUserReciever(username);
 	}
+
+
 	@Override
-	public List<Dialog> listDialog(String username) {
-		return this.dialogDao.listDialog(username);
+	@Transactional
+	public String usernameDialogWith(int iddialog, String currentUser) {
+
+		return this.dialogDao.usernameDialogWith(iddialog, currentUser);
 	}
 
 }

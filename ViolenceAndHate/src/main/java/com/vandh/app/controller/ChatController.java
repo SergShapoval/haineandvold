@@ -75,6 +75,14 @@ public class ChatController {
 	}
 
 	
+	@RequestMapping(value = "/user/messages/{iddialog}", method = RequestMethod.POST)
+	public String messages(@ModelAttribute("message") Message message, @RequestParam(value = "text") String text,
+			@PathVariable(value = "iddialog") int iddialog, Model model, Principal principal){ 
+		sendMessage(iddialog, text);
+		System.out.println("message sent!");
+	return "messagesWithUser";	
+	}
+	
 	
 	
 	

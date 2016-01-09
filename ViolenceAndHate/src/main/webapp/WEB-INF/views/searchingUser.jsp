@@ -89,7 +89,7 @@ response.setCharacterEncoding("UTF-8");
 	
 	
  
- <div class="container textCenter">
+ <div class="container text-center">
 		<form:form class="form-inline centerBlock"  modelAttribute="users" method="POST" action="${getSearch}" accept-charset="utf-8">
 
 <div class="form-group">
@@ -173,7 +173,7 @@ response.setCharacterEncoding("UTF-8");
 	
 </div>
 <br>
-<div>
+<div class="scrollTableSearch">
 <c:if test="${!empty listUsersSort}">
 
 	

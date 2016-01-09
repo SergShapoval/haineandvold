@@ -1,23 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="security"%>
-<%@ page session="false"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-	response.setCharacterEncoding("UTF-8");
-%>
+<%@page language="java" session="true"%>
 <!DOCTYPE html>
-<fmt:requestEncoding value="utf-8" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Написать отзыв | Violence and Hate</title>
-
+<title>История Переписки</title>
 <link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/bootstrap/bootswatch.less.css"/>"
@@ -26,11 +18,13 @@
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
 	type="text/css">
-<script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
+<script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
+	type="text/javascript"></script>
+	<script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
 
 </head>
 <body>
-	<nav class="navbar navbar-default">
+<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
@@ -69,7 +63,7 @@
 					</security:authorize>
 				</ul>
 
-				<c:url var="logoutUrl" value="j_spring_security_logout" />
+				<c:url var="logoutUrl" value="/j_spring_security_logout" />
 				<form class="navbar-form navbar-right" action="${logoutUrl}"
 					method="post">
 					<button class="btn btn-default" type="submit">Выйти</button>
@@ -80,43 +74,23 @@
 		</div>
 	</nav>
 
-	<img class="img-responsive center-block"
-		src="<c:url value="/resources/logo/logo.png"/>" />
+<h3 class="text-center">История переписки с пользователем ${usernameHistoryWith} </h3>
+<div class="tableFullHistorySize">
+<c:if test="${!empty fullMessageList}">
+	<table
+		class="fixedTable table table-striped table-hover tableFont header-fixed" >
+		
+		<c:forEach items="${fullMessageList}" var="message">
+			<tr>
+				<td>${message.text}</td>
+				<td class="text-center colDateSize">${message.date}</td>
+			<tr>
+		</c:forEach>
 
-
-	<h2 class="text-center">Свяжитесь с нами</h2>
-	<h5 class="text-center">(ответ ожидайте по указанному вами при
-		регистрации E-mail адрессу)</h5>
-<br>
-	<div class="col-xs-4 centerBlock textCenter">
-		<c:url var="sendFeedback" value="feedback" />
-		<form:form modelAttribute="feedback" method="POST"
-			action="${sendFeedback}" accept-charset="utf-8" ng-app="vandh"
-			ng-controller="validateCtrl" name="fbForm" novalidation="true">
-
-			<label for="message">Сообщение</label>
-			<form:textarea placeholder="Введите сюда своё сообщение..."
-				class="form-control" ng-model="message" path="message" id="message"
-				rows="10" cols="40" type="text" required="true" />
-			<div style="color: black"
-				ng-show="fbForm.message.$dirty && fbForm.message.$invalid">
-				<span ng-show="fbForm.message.$error.required">Введите
-					сообщение</span>
-			</div>
-			<br>
-			<div class="text-center">
-			<button  type="submit" class="btn btn-primary"
-				ng-disabled="fbForm.message.$dirty && fbForm.message.$invalid">Отправить</button>
-</div>
-		</form:form>
+	</table>
+	</c:if>
 	</div>
-	<script>
-		var app = angular.module('vandh', []);
-		app.controller('validateCtrl', function($scope) {
-			$scope.message = '';
-		});
-	</script>
-
+	
 </body>
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>
