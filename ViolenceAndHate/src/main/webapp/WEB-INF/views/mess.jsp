@@ -7,18 +7,19 @@
 <%@page language="java" session="true"%>
 
 <c:if test="${!empty listMessagesForUser}">
+ 
 	<table
-		class="fixedTable table table-striped table-hover tableFont header-fixed " id="messTable">
-		
+		class="fixedTable table table-striped table-hover tableFont table-fixed-header" id="messTable">
+	
+	
 		<c:forEach items="${listMessagesForUser}" var="message">
 			<tr>
-				<td>${message.text}</td>
+				<td> ${message.text}</td>
 				<td class="text-center colDateSize">${message.date}</td>
 			<tr>
 		</c:forEach>
 
 	</table>
-
 </c:if>
 
 

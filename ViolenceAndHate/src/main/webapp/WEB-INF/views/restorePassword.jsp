@@ -30,7 +30,7 @@
 	<h2 class="text-center">Для восстановления пароля, введите свой E-mail</h2>
 	<h5 class="text-center">(e-mail должен быть зарегистрирован на сайте)</h5>
 	<br>
-<div class="col-xs-4 centerBlock textCenter">
+<div class="col-xs-4 centerBlock text-center">
 		<form:form method="POST" modelAttribute="users" action="restorepass"
 			ng-app="vandh" ng-controller="validateCtrlRestorePass" name="restorePassForm"
 			novalidation="true">

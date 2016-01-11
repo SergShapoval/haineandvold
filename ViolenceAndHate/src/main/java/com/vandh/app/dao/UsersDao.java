@@ -11,8 +11,6 @@ public interface UsersDao {
 
 	public void removeUser(String username);
 
-	public void updateUser(Users user);
-
 	public List<Users> userInfo(String username);
 
 	public List<Users> listUsers();
@@ -22,10 +20,13 @@ public interface UsersDao {
 	public void restorePassUser(String toAddress, String newPassword);
 
 	public void confirmUserAccount(String username);
-	
+
 	public void addUserAvatar(String username, String photoPath);
-	
-	public boolean checkingEmail (String email);
-	
+
+	public boolean checkingEmail(String email);
+
+	public void updateUserInfo(String age, String height, String weight, String sport, String place, String username);
+
+	public void updateUserAccount(String email, String password, String username);
 
 }

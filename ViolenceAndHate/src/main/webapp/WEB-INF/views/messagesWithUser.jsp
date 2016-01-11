@@ -22,6 +22,8 @@
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
 	type="text/css">
+	<link href="<c:url value="/resources/CSS/tableMessFixedHeader.css"/>" rel="stylesheet"
+	type="text/css">
 	<script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
 </head>
 <body>
@@ -75,14 +77,14 @@
 			</div>
 		</div>
 	</nav>
-<h3 class="text-center">Диалог с ${userDialogWith}</h3>
-<table class="table table-striped table-bordered table-condensed table-hover">
-<tr>
-			<th class="text-center">Сообщение</th>
-			<th class="text-center colDateSize">Дата/Время</th>
 
-		</tr>
-		</table>
+<br>
+<span>
+<span class="col-md-8 text-left">Сообщение</span>
+<span class="col-md-4 text-center">Дата</span>
+</span>
+<br>
+
 <div class="scrollTableMessages" id="mess">
 
 </div>
@@ -127,6 +129,7 @@
 				$('#mess').html(r);
 				document.getElementById("mess").scrollTop = 9999;
 				console.log(r);
+				
 			},
 			error : function(r) {
 				alert(r);

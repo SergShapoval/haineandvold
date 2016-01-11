@@ -1,23 +1,19 @@
-<%@page language="java" contentType="text/html;charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<?xml version="1.0" encoding="UTF-8"?>
-<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page session="false"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="security"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
 %>
 <!DOCTYPE html>
-<fmt:requestEncoding value="utf-8" />
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fi">
+<html>
 <head>
-<title>Registration Page</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Обновить информацию</title>
 <link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/bootstrap/bootswatch.less.css"/>"
@@ -26,150 +22,120 @@
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
 	type="text/css">
+<link href="<c:url value="/resources/CSS/tableMessFixedHeader.css"/>"
+	rel="stylesheet" type="text/css">
 <script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
 </head>
-<body class="bgrReg">
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Violence and Hate</a>
+			</div>
 
-	<img class="img-responsive center-block"
-		src="<c:url value="/resources/logo/logo.png"/>" />
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
 
-	<h2 class="text-center">Регистрация</h2>
-	<h5 class="text-center">(все поля обязательны к заполнению)</h5>
+					<li><a href="/app/user">Профиль</a></li>
+					<li><a href="/app/user/messages">Сообщения</a></li>
+					<li><a href="/app/user/search">Поиск оппонента</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false">Информация<span
+							class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/app/user/rules">Правила</a></li>
+							<li class="divider"></li>
+							<li><a href="/app/user/feedback">Написать администрации</a></li>
+						</ul></li>
+					<security:authorize ifAnyGranted="ROLE_ADMIN">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-expanded="false">Администрирование<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="/app/admin">Админка/Список пользователей</a></li>
+								<li><a href="/app/admin/feedbacklist">Отзывы/Вопросы/Предложения</a></li>
 
+							</ul></li>
+					</security:authorize>
+				</ul>
 
+				<c:url var="logoutUrl" value="/j_spring_security_logout" />
+				<form class="navbar-form navbar-right" action="${logoutUrl}"
+					method="post">
+					<button class="btn btn-default" type="submit">Выйти</button>
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+				</form>
+			</div>
+		</div>
+	</nav>
 
-
+	<h2 class="text-center">Обновить личную информацию</h2>
 	<div class="col-xs-4 centerBlock text-center">
 
-		<c:url var="saveUrl" value="registration" />
+		<form:form method="POST" modelAttribute="users" accept-charset="utf-8"
+			name="updateForm" action="/app/user/updateinfo">
+			<div class="form-group">
+				<label class="control-label">Возраст</label>
+				<form:select class="form-control input-sm" path="age">
+					<form:option value=""></form:option>
+					<form:option value="19"></form:option>
+					<form:option value="20"></form:option>
+					<form:option value="21"></form:option>
+					<form:option value="22"></form:option>
+					<form:option value="23"></form:option>
+					<form:option value="24"></form:option>
+					<form:option value="25"></form:option>
+					<form:option value="26"></form:option>
+					<form:option value="27"></form:option>
+					<form:option value="28"></form:option>
+					<form:option value="29"></form:option>
+					<form:option value="30"></form:option>
+					<form:option value="31"></form:option>
+					<form:option value="32"></form:option>
+					<form:option value="33"></form:option>
+					<form:option value="34"></form:option>
+					<form:option value="35"></form:option>
+					<form:option value="36"></form:option>
+					<form:option value="37"></form:option>
+					<form:option value="38"></form:option>
+					<form:option value="39"></form:option>
+					<form:option value="40"></form:option>
+					<form:option value="41"></form:option>
+					<form:option value="42"></form:option>
+					<form:option value="43"></form:option>
+					<form:option value="44"></form:option>
+					<form:option value="45"></form:option>
+					<form:option value="46"></form:option>
+					<form:option value="47"></form:option>
+					<form:option value="48"></form:option>
+					<form:option value="49"></form:option>
+					<form:option value="50"></form:option>
+					<form:option value="51"></form:option>
+					<form:option value="52"></form:option>
+					<form:option value="53"></form:option>
+					<form:option value="54"></form:option>
+					<form:option value="55"></form:option>
+					<form:option value="56"></form:option>
+					<form:option value="57"></form:option>
+					<form:option value="58"></form:option>
+					<form:option value="59"></form:option>
+					<form:option value="60"></form:option>
 
-		<form:form modelAttribute="users" method="POST" action="${saveUrl}"
-			class="formular" ng-app="vandh" ng-controller="validateCtrlReg"
-			name="regForm" novalidation="true">
-			<div class="form-group">
-				<label class="control-label">Логин</label>
-
-				<form:input path="username" class="form-control input-sm"
-					type="text" id="username" name="username" ng-model="username"
-					required="true" />
-				<span style="color: black"
-					ng-show="regForm.username.$dirty && regForm.username.$invalid">
-					<span ng-show="regForm.username.$error.required">Введите логин</span>
-				</span>
-			</div>
-			<div class="form-group">
-				<label class="control-label">Пароль</label>
-				<form:input path="password" class="form-control input-sm"
-					type="password" id="password" name="password" ng-model="password"
-					required="true" />
-
-				<span style="color: black"
-					ng-show="regForm.password.$dirty && regForm.password.$invalid">
-					<span ng-show="regForm.password.$error.required">Введите
-						пароль</span>
-				</span>
-			</div>
-			<div class="form-group">
-				<label class="control-label">Имя</label>
-				<form:input path="name" class="form-control input-sm" type="text"
-					id="name" name="name" ng-model="name" required="true" />
-				<span style="color: black"
-					ng-show="regForm.name.$dirty && regForm.name.$invalid"> <span
-					ng-show="regForm.name.$error.required">Введите имя</span></span>
-			</div>
-			<div class="form-group">
-				<label class="control-label">Фамилия</label>
-				<form:input path="surname" class="form-control input-sm" type="text"
-					id="surname" name="surname" ng-model="surname" required="true" />
-				<span style="color: black"
-					ng-show="regForm.surname.$dirty && regForm.surname.$invalid">
-					<span ng-show="regForm.surname.$error.required">Введите
-						фамилию</span>
-				</span>
-			</div>
-			<div class="form-group">
-				<label class="control-label">E-mail</label>
-				<form:input class="form-control input-sm" path="email" type="email"
-					id="email" name="email" ng-model="email" required="true" />
-				<span style="color: black"
-					ng-show="regForm.email.$dirty && regForm.email.$invalid"> <span
-					ng-show="regForm.email.$error.required">Введите e-mail</span> <span
-					ng-show="regForm.email.$error.email">Некорректный e-mail</span>
-				</span>
-			</div>
-			<div class="form-group">
-				<label class="control-label">Пол</label>
-				<form:select class="form-control input-sm" path="gender">
-					<form:option value="Мужской"></form:option>
-					<form:option value="Женский"></form:option>
 				</form:select>
 			</div>
 			<div class="form-group">
-				<label class="control-label" for="age">Год рождения</label>
-				<form:select class="form-control input-sm" path="age" id="age"
-					name="age" ng-model="age" required="true">
-					<form:option value="1998"></form:option>
-					<form:option value="1997"></form:option>
-					<form:option value="1996"></form:option>
-					<form:option value="1995"></form:option>
-					<form:option value="1994"></form:option>
-					<form:option value="1993"></form:option>
-					<form:option value="1992"></form:option>
-					<form:option value="1991"></form:option>
-					<form:option value="1990"></form:option>
-					<form:option value="1989"></form:option>
-					<form:option value="1988"></form:option>
-					<form:option value="1987"></form:option>
-					<form:option value="1986"></form:option>
-					<form:option value="1985"></form:option>
-					<form:option value="1984"></form:option>
-					<form:option value="1983"></form:option>
-					<form:option value="1982"></form:option>
-					<form:option value="1981"></form:option>
-					<form:option value="1980"></form:option>
-					<form:option value="1979"></form:option>
-					<form:option value="1978"></form:option>
-					<form:option value="1977"></form:option>
-					<form:option value="1976"></form:option>
-					<form:option value="1977"></form:option>
-					<form:option value="1976"></form:option>
-					<form:option value="1975"></form:option>
-					<form:option value="1974"></form:option>
-					<form:option value="1973"></form:option>
-					<form:option value="1972"></form:option>
-					<form:option value="1971"></form:option>
-					<form:option value="1970"></form:option>
-					<form:option value="1969"></form:option>
-					<form:option value="1968"></form:option>
-					<form:option value="1967"></form:option>
-					<form:option value="1966"></form:option>
-					<form:option value="1965"></form:option>
-					<form:option value="1964"></form:option>
-					<form:option value="1963"></form:option>
-					<form:option value="1962"></form:option>
-					<form:option value="1961"></form:option>
-					<form:option value="1960"></form:option>
-					<form:option value="1959"></form:option>
-					<form:option value="1958"></form:option>
-					<form:option value="1957"></form:option>
-					<form:option value="1956"></form:option>
-					<form:option value="1955"></form:option>
-					<form:option value="1954"></form:option>
-					<form:option value="1953"></form:option>
-					<form:option value="1952"></form:option>
-					<form:option value="1951"></form:option>
-					<form:option value="1950"></form:option>
-					</form:select>
-				<span style="color: black"
-					ng-show="regForm.age.$dirty && regForm.age.$invalid"> <span
-					ng-show="regForm.age.$error.required">Год рождения</span>
-				</span>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label" for="height">Рост</label>
+				<label class="control-label">Рост</label>
 				<form:select path="height" class="form-control input-sm"
-					type="number" id="height" name="height" ng-model="height" required="true">
+					type="number" name="height">
+					<form:option value=""></form:option>
 					<form:option value="125"></form:option>
 					<form:option value="126"></form:option>
 					<form:option value="127"></form:option>
@@ -255,17 +221,13 @@
 					<form:option value="208"></form:option>
 					<form:option value="209"></form:option>
 					<form:option value="210"></form:option>
-					</form:select>
-				<span style="color: black"
-					ng-show="regForm.height.$dirty && regForm.height.$invalid">
-					<span ng-show="regForm.height.$error.required">Введите рост</span>
-				</span>
+				</form:select>
 			</div>
 			<div class="form-group">
 				<label class="control-label">Вес</label>
-				<form:select path="weight" type="number" id="weight"
-					class="form-control input-sm" name="weight" ng-model="weight"
-					required="true">
+				<form:select path="weight" type="number"
+					class="form-control input-sm" name="weight">
+					<form:option value=""></form:option>
 					<form:option value="45"></form:option>
 					<form:option value="46"></form:option>
 					<form:option value="47"></form:option>
@@ -342,27 +304,18 @@
 					<form:option value="118"></form:option>
 					<form:option value="119"></form:option>
 					<form:option value="120"></form:option>
-					</form:select>
-				<span style="color: black"
-					ng-show="regForm.weight.$dirty && regForm.weight.$invalid">
-					<span ng-show="regForm.weight.$error.required">Введите вес</span>
-				</span>
+				</form:select>
 			</div>
 			<div class="form-group">
-				<label class="control-label" for="sport">Спортивные навыки</label>
+				<label class="control-label">Спортивные навыки</label>
 				<form:input class="form-control input-sm" path="sport" type="text"
-					id="sport" name="sport" ng-model="sport" required="true" />
-
-				<span style="color: black"
-					ng-show="regForm.sport.$dirty && regForm.sport.$invalid"> <span
-					ng-show="regForm.sport.$error.required">Введите спортивные
-						навыки</span>
-				</span>
+					name="sport" />
 			</div>
 			<div class="form-group">
-				<label class="control-label" for="place">Место</label>
-				<form:select id="place" name="place" class="form-control input-sm"
+			<label class="control-label">Место</label>
+			<form:select name="place" class="form-control input-sm"
 					path="place">
+					<form:option value=""></form:option>
 					<form:option value="Дзержинский"></form:option>
 					<form:option value="Киевский"></form:option>
 					<form:option value="Комминтерновский"></form:option>
@@ -375,40 +328,24 @@
 					<form:option value="Червонозаводской"></form:option>
 				</form:select>
 			</div>
-			<div class="form-group">
-				
-				
-				</div>
-			<button class="btn btn-success" type="submit"
-				ng-disabled="
-regForm.username.$dirty && regForm.username.$invalid ||
-  regForm.password.$dirty && regForm.password.$invalid ||
-  regForm.name.$dirty && regForm.name.$invalid ||
-  regForm.surname.$dirty && regForm.surname.$invalid ||
-  regForm.email.$dirty && regForm.email.$invalid ||
-  regForm.sport.$dirty && regForm.sport.$invalid">Регистрация</button>
-
-
-			<form:input path="enabled" type="hidden" value="false" />
-			<form:input path="photo" type="hidden" value="No photo" />
+			<button type="submit" class="btn btn-success">Обновить</button>
 		</form:form>
 	</div>
-	<div id="fixedBlock">
-	<a href="login"><button class="btn btn-warning">Назад</button></a>
-</div>
 
-	<script>
-		var app = angular.module('vandh', []);
-		app.controller('validateCtrlReg', function($scope) {
-			$scope.username = '';
-			$scope.password = '';
-			$scope.name = '';
-			$scope.surname = '';
-			$scope.email = '';
-			$scope.sport = '';
-		});
-	</script>
+
+
+
+
+
+
+
+
+
 
 
 </body>
+<script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
+	type="text/javascript"></script>
+<script src="<c:url value="/resources/bootstrap/bootstrap.js"/>"
+	type="text/javascript"></script>
 </html>

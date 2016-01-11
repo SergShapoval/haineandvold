@@ -45,7 +45,7 @@ public class RegistrationController {
 	public String addUser(@ModelAttribute("users") Users u, @RequestParam(value = "username") String username,
 			@RequestParam(value = "password") String password,
 			@RequestParam(value = "email") String mailForConfirmation, @RequestParam(value = "age") String age,
-			@RequestParam(value = "sport") String sport, @RequestParam(value = "photo") MultipartFile file,
+			@RequestParam(value = "sport") String sport,
 			BindingResult bindingResult) {
 		if (sport.contains("<") || sport.contains(">") || sport.contains("$") || username.contains("<")
 				|| username.contains(">") || username.contains("$") || password.contains("<") || password.contains(">")
@@ -53,11 +53,11 @@ public class RegistrationController {
 			System.out.println("time to script :D");
 			return "redirect:/registration";
 		} 
-			if (this.usersService.checkingEmail(mailForConfirmation) != true) {
-				return "redirect:/registration?emailexists";
-			} 
+		else{
+			if(this.usersService.checkingEmail(mailForConfirmation)!=true)
+			{
+			
 				// System.out.println(file.getName());
-				System.out.println(file.getOriginalFilename());
 				// System.out.println(photoUploading(file)); //
 				int year = Calendar.getInstance().get(Calendar.YEAR);
 				year -= Integer.parseInt(age);
@@ -76,7 +76,6 @@ public class RegistrationController {
 				userRoleSet.add(userRole);
 				u.setUserRole(userRoleSet);
 				u.setAge(String.valueOf(year));
-				u.setPhoto("path");
 				this.usersService.addUser(u);
 				this.userRoleService.addRole(userRole);
 				// -----------------------SENDING CONFIRMATION
@@ -95,7 +94,13 @@ public class RegistrationController {
 				// ------------------------------------------------------------------
 
 				return "redirect:/login";
-			
+			}
+			else
+			{
+				return "redirect:/registration?errorMail";
+				
+			}
+		}
 		}
 	
 	

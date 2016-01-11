@@ -82,18 +82,16 @@ response.setCharacterEncoding("UTF-8");
 
 		<img class="img-responsive center-block" src="<c:url value="/resources/logo/logo.png"/>" />
 
+<h5 class="text-center">${noparams}</h5>
 
-	<h2 class="text-center">Подбор оппонента</h2>
 
-	<c:url var="getSearch" value="search" />
-	
-	
- 
+	<c:url var="getSearch" value="search" />	
+<br> 
  <div class="container text-center">
 		<form:form class="form-inline centerBlock"  modelAttribute="users" method="POST" action="${getSearch}" accept-charset="utf-8">
 
 <div class="form-group">
-				<label for="weight">Вес(до):</label>
+				<label class="control-label" for="weight">Вес(до):</label>
 				<form:select multiple="" class="form-control input-sm" path="weight" name="weight">
 					<form:option value=""></form:option>
 					<form:option value="40"></form:option>
@@ -109,7 +107,7 @@ response.setCharacterEncoding("UTF-8");
 		</div>
 		
 		<div class="form-group">
-				<label for="gender">Пол:</label>
+				<label class="control-label" for="gender">Пол:</label>
 				<form:select  multiple="" class="form-control input-sm" name="gender" path="gender">
 					<form:option value=""></form:option>
 					<form:option value="Мужской"></form:option>
@@ -117,8 +115,10 @@ response.setCharacterEncoding("UTF-8");
 				</form:select>
 			</div>
 				<div class="form-group">
-				<label for="place">Место:</label>
-				<form:select multiple="" class="form-control input-small" name="place" path="place">
+				
+				<label class="control-label" for="place">Место:</label>
+				
+				<form:select  class="form-control input-small" name="place" path="place">
 					<form:option value=""></form:option>
 					<form:option value="Дзержинский"></form:option>
 					<form:option value="Киевский"></form:option>
@@ -134,7 +134,9 @@ response.setCharacterEncoding("UTF-8");
 			</div>
 			
 			<div class="form-group">
-			<label for="age">Возрост(до):</label>
+			
+			<label class="control-label" for="age">Возраст(до):</label>
+			
 				<form:select multiple="" class="form-control input-small" name="age" path="age">
 					<form:option value=""></form:option>
 					<form:option value="19"></form:option>
@@ -167,7 +169,9 @@ response.setCharacterEncoding("UTF-8");
 				</form:select>
 </div>
 
+
 			<button class="btn btn-success" type="submit">Искать</button>
+			
 
 		</form:form>
 	

@@ -6,8 +6,6 @@ import com.vandh.app.models.Users;
 public interface UsersService {
 	public void addUser(Users user);
 
-	public void updateUser(Users user);
-
 	public void removeUser(String username);
 
 	public List<Users> userInfo(String username);
@@ -23,4 +21,8 @@ public interface UsersService {
 	public void addUserAvatar(String username, String photoPath);
 
 	public boolean checkingEmail(String email);
+	
+	public void updateUserInfo(String age, String height, String weight, String sport, String place, String username);
+	
+	public void updateUserAccount(String email, String password, String username);
 }

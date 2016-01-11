@@ -23,12 +23,6 @@ public class UsersServiceImpl implements UsersService {
 
 	}
 
-	@Override
-	@Transactional
-	public void updateUser(Users user) {
-		this.userDao.updateUser(user);
-
-	}
 
 	@Override
 	@Transactional
@@ -74,8 +68,24 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	@Override
+	@Transactional
 	public boolean checkingEmail(String email) {
 		return this.userDao.checkingEmail(email);
+	}
+
+	@Override
+	@Transactional
+	public void updateUserInfo(String age, String height, String weight, String sport, String place, String username) {
+		this.userDao.updateUserInfo(age, height, weight, sport, place, username);
+		
+	}
+
+
+	@Override
+	@Transactional
+	public void updateUserAccount(String email, String password, String username) {
+		this.userDao.updateUserAccount(email, password, username);
+		
 	}
 
 }

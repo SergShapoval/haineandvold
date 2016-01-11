@@ -29,7 +29,6 @@ public class UsersDaoImpl implements UsersDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
 	private MailSender mailSender;
 	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -66,18 +65,12 @@ public class UsersDaoImpl implements UsersDao {
 
 	}
 
-	@Override
-	public void updateUser(Users user) {
-
-	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Users> listUsers() {
 		Session session = null;
-
 		session = sessionFactory.openSession();
-		// Session session = this.sessionFactory.getCurrentSession();
 		List<Users> usersList = session.createSQLQuery("select*from users").addEntity(Users.class).list();
 		session.close();
 		session = null;
@@ -170,16 +163,93 @@ public class UsersDaoImpl implements UsersDao {
 
 	@Override
 	public boolean checkingEmail(String email) {
-		String query = "SELECT users.email FROM users where users.email LIKE '%s'";
+		String query = "SELECT*FROM users where users.email LIKE '%s'";
+
+		List<Users> listUsersWithEmail;
 		Session session = null;
 		session = sessionFactory.openSession();
-		String existingEmail = session.createSQLQuery(String.format(query, email)).addEntity(Users.class).toString();
+		listUsersWithEmail = session.createSQLQuery(String.format(query, email)).addEntity(Users.class).list();
 		session.close();
 		session = null;
-		if (email.equals(existingEmail))
+		try {
+			String existingEmail = listUsersWithEmail.get(0).getEmail();
+			if (existingEmail.equals(email)) {
+				System.out.println("EMAIL EXISTS! TRUE");
+				return true;
+			}
+		} catch (IndexOutOfBoundsException exception) {
+			System.out.println("EMAIL DOESN'T EXISTS");
 			return false;
-		else
-			return true;
+		}
+		return true;
+	}
+
+	@Override
+	public void updateUserInfo(String age, String height, String weight, String sport, String place, String username) {
+		String query = "UPDATE users SET users.enabled=1";
+		if(age.isEmpty()==false)
+		{
+			String ageUpdate=", users.age="+"'"+age+"'";
+			query=query.concat(ageUpdate);
+			System.out.println("QUERY IS: "+query);
+		}
+		if(height.isEmpty()==false)
+		{
+			String hightUpdate=", users.height="+"'"+height+"'";
+			query=query.concat(hightUpdate);
+			System.out.println("QUERY IS: "+query);
+		}
+		if(weight.isEmpty()==false)
+		{
+			String weightUpdate=", users.weight= "+"'"+weight+"'";
+			query=query.concat(weightUpdate);
+			System.out.println("QUERY IS: "+query);
+		}
+		if(sport.isEmpty()==false)
+		{
+			String sportUpdate=", users.sport="+"'"+sport+"'";
+			query=query.concat(sportUpdate);
+			System.out.println("QUERY IS: "+query);
+		}
+		if(place.isEmpty()==false)
+		{
+			String placeUpdate=", users.place="+"'"+place+"'";
+			query=query.concat(placeUpdate);
+			System.out.println("QUERY IS: "+query);
+		}
+		
+		query.concat(" WHERE users.username LIKE "+"'"+username+"'");
+		System.out.println("FULL QUERY: "+query);
+		Session session = null;
+		session = sessionFactory.openSession();
+		session.createSQLQuery(query).addEntity(Users.class).executeUpdate();
+		session.close();
+		session = null;
+		
+	}
+
+	@Override
+	public void updateUserAccount(String email, String password, String username) {
+		String query = "UPDATE users SET users.enabled=1";
+		if(email.isEmpty()==false)
+		{
+			String emailUpdate = ", users.email="+"'"+email+"'";
+			query=query.concat(emailUpdate);
+			System.out.println(query);
+		}
+		if(password.isEmpty()==false)
+		{
+			String passwordUpdate=", users.password="+"'"+encoder.encode(password)+"'";
+			query=query.concat(passwordUpdate);
+			System.out.println(query);
+		}
+		query=query.concat(" WHERE users.username LIKE "+"'"+username+"'");
+		System.out.println("FULL QUERY: "+query);
+		Session session = null;
+		session = sessionFactory.openSession();
+		session.createSQLQuery(query).addEntity(Users.class).executeUpdate();
+		session.close();
+		session = null;
 	}
 
 }
