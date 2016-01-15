@@ -1,7 +1,5 @@
 package com.vandh.app.models;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,8 +25,9 @@ public class Message {
 	@Column(name="date", length = 40, nullable=false)
 	private String date;
 	
-	
-	
+	@Column(name="messender", length = 50)
+	private String messender;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "iddialog", nullable = false)
 	private Dialog dialog;
@@ -65,7 +64,14 @@ public class Message {
 	public void setDialog(Dialog dialog) {
 		this.dialog = dialog;
 	}
+	
+	public String getMessender() {
+		return messender;
+	}
 
+	public void setMessender(String messender) {
+		this.messender = messender;
+	}
 	
 
 }

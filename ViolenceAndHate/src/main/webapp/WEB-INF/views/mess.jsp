@@ -14,6 +14,7 @@
 	
 		<c:forEach items="${listMessagesForUser}" var="message">
 			<tr>
+				<td>${message.messender}</td>
 				<td> ${message.text}</td>
 				<td class="text-center colDateSize">${message.date}</td>
 			<tr>

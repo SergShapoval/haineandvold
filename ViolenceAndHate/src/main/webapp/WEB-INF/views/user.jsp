@@ -5,13 +5,14 @@
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="security"%>
 <%@page language="java" session="true"%>
-
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
 %>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Профиль | Violence and Hate</title>
 <link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
 	rel="stylesheet" type="text/css">
@@ -40,41 +41,48 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 
-					<li><a href="/app/user">Профиль</a></li>
-					<li><a href="/app/user/messages">Сообщения</a></li>
-					<li><a href="/app/user/search">Поиск оппонента</a></li>
+					<li><a href="/app/user" ><spring:message code="label.menuprofile"/></a></li>
+					<li><a href="/app/user/messages"><spring:message code="label.menumessages"/></a></li>
+					<li><a href="/app/user/search"><spring:message code="label.menusearch"/></a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Информация<span
+						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuinformation"/><span
 							class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="/app/user/rules">Правила</a></li>
+							<li><a href="/app/user/rules"><spring:message code="label.menurules"/></a></li>
 							<li class="divider"></li>
-							<li><a href="/app/user/feedback">Написать администрации</a></li>
+							<li><a href="/app/user/feedback"><spring:message code="label.menusendfeedback"/></a></li>
 						</ul></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Настройки<span
+						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menusettings"/><span
 							class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="/app/user/updateinfo">Настройки личной информации</a></li>
-							<li><a href="/app/user/updateaccount">Настройки аккаунта</a></li>
-								<li class="divider"></li>
+							<li><a href="/app/user/updateinfo"><spring:message code="label.menusettinginfo"/></a></li>
+							<li><a href="/app/user/updateaccount"><spring:message code="label.menusettingaccount"/></a></li>
+							
 						</ul></li>
 					<security:authorize ifAnyGranted="ROLE_ADMIN">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-expanded="false">Администрирование<span
+							data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuadministration"/><span
 								class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/app/admin">Админка/Список пользователей</a></li>
-								<li><a href="/app/admin/feedbacklist">Отзывы/Вопросы/Предложения</a></li>
+								<li><a href="/app/admin"><spring:message code="label.menuadminpanel"/></a></li>
+								<li><a href="/app/admin/feedbacklist"><spring:message code="label.menufeedbacks"/></a></li>
 
-							</ul></li>
+							</ul>
+							</li>
 					</security:authorize>
+					<li>
+					<a href="?locale=ru"><img src="<c:url value="/resources/languageicons/rus.png"/>" alt="Russian Language" title="Сменить язык интерфейса на русский"></a>
+					</li>
+					<li>
+					<a href="?locale=en"><img src="<c:url value="/resources/languageicons/usa.png"/>" alt="USA Language" title="Change interface language to american"></a>
+					</li>
 				</ul>
 
 				<c:url var="logoutUrl" value="/j_spring_security_logout" />
 				<form class="navbar-form navbar-right" action="${logoutUrl}"
 					method="post">
-					<button class="btn btn-default" type="submit">Выйти</button>
+					<button class="btn btn-default" type="submit"><spring:message code="label.logoutbutton"/></button>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 				</form>
@@ -96,43 +104,43 @@
 		<table class="tableSize table table-striped table-bordered table-condensed">
 				
 				<tr>
-				<th>Ник</th>
+				<th><spring:message code="label.login" /></th>
 				<td>${users.username}</td>
 				</tr>
 				<tr>
-				<th>Имя</th>
+				<th><spring:message code="label.name" /></th>
 				<td>${users.name}</td>
 				</tr>
 				<tr>
-				<th>Фамилия</th>
+				<th><spring:message code="label.surname" /></th>
 				<td>${users.surname}</td>
 				</tr>
 				<tr>
-				<th>E-mail</th>
+				<th><spring:message code="label.email" /></th>
 				<td>${users.email}</td>
 				</tr>
 				<tr>
-				<th>Возраст</th>
+				<th><spring:message code="label.age" /></th>
 				<td>${users.age}</td>
 				</tr>
 				<tr>
-				<th>Пол</th>
+				<th><spring:message code="label.gender" /></th>
 				<td>${users.gender}</td>
 				</tr>
 				<tr>
-				<th>Вес(кг)</th>
+				<th><spring:message code="label.weight" /></th>
 				<td>${users.weight}</td>
 				</tr>
 				<tr>
-				<th>Рост(см)</th>
+				<th><spring:message code="label.height" /></th>
 				<td>${users.height}</td>
 				</tr>
 				<tr>
-				<th>Спортивные умения</th>
+				<th><spring:message code="label.sport" /></th>
 				<td>${users.sport}</td>
 				</tr>
 				<tr>
-				<th>Место</th>
+				<th><spring:message code="label.place" /></th>
 				<td>${users.place}</td>
 				</tr>
 					
@@ -144,11 +152,11 @@
 	<div class="blockDownloadAva">
  <form method="POST" action="./user?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
  	<div class="form-group text-center">
-       <label class="control-label" for="file">Выберите фото</label>
+       <label class="control-label" for="file"><spring:message code="label.choosephoto" /></label>
        <span class="btn btn-default btn-file">
-        <input type="file" name="file">
+        <input type="file" name="file" accept="image/*">
         </span> 
-        <button class="btn btn-primary btn-sm" type="submit" value="Load">Сменить фото</button>
+        <button class="btn btn-primary btn-sm" type="submit" value="Load"><spring:message code="label.changephoto" /></button>
         </div>
     </form>
   </div>

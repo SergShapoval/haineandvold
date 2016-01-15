@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="security"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
@@ -27,6 +28,7 @@
 <script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
 </head>
 <body>
+	
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -43,33 +45,48 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 
-					<li><a href="/app/user">Профиль</a></li>
-					<li><a href="/app/user/messages">Сообщения</a></li>
-					<li><a href="/app/user/search">Поиск оппонента</a></li>
+					<li><a href="/app/user" ><spring:message code="label.menuprofile"/></a></li>
+					<li><a href="/app/user/messages"><spring:message code="label.menumessages"/></a></li>
+					<li><a href="/app/user/search"><spring:message code="label.menusearch"/></a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Информация<span
+						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuinformation"/><span
 							class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="/app/user/rules">Правила</a></li>
+							<li><a href="/app/user/rules"><spring:message code="label.menurules"/></a></li>
 							<li class="divider"></li>
-							<li><a href="/app/user/feedback">Написать администрации</a></li>
+							<li><a href="/app/user/feedback"><spring:message code="label.menusendfeedback"/></a></li>
+						</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menusettings"/><span
+							class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/app/user/updateinfo"><spring:message code="label.menusettinginfo"/></a></li>
+							<li><a href="/app/user/updateaccount"><spring:message code="label.menusettingaccount"/></a></li>
+							
 						</ul></li>
 					<security:authorize ifAnyGranted="ROLE_ADMIN">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-expanded="false">Администрирование<span
+							data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuadministration"/><span
 								class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/app/admin">Админка/Список пользователей</a></li>
-								<li><a href="/app/admin/feedbacklist">Отзывы/Вопросы/Предложения</a></li>
+								<li><a href="/app/admin"><spring:message code="label.menuadminpanel"/></a></li>
+								<li><a href="/app/admin/feedbacklist"><spring:message code="label.menufeedbacks"/></a></li>
 
-							</ul></li>
+							</ul>
+							</li>
 					</security:authorize>
+					<li>
+					<a href="?locale=ru"><img src="<c:url value="/resources/languageicons/rus.png"/>" alt="Russian Language" title="Сменить язык интерфейса на русский"></a>
+					</li>
+					<li>
+					<a href="?locale=en"><img src="<c:url value="/resources/languageicons/usa.png"/>" alt="USA Language" title="Change interface language to american"></a>
+					</li>
 				</ul>
 
 				<c:url var="logoutUrl" value="/j_spring_security_logout" />
 				<form class="navbar-form navbar-right" action="${logoutUrl}"
 					method="post">
-					<button class="btn btn-default" type="submit">Выйти</button>
+					<button class="btn btn-default" type="submit"><spring:message code="label.logoutbutton"/></button>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 				</form>
@@ -77,13 +94,16 @@
 		</div>
 	</nav>
 
-	<h2 class="text-center">Обновить личную информацию</h2>
+	<h2 class="text-center">
+		<spring:message code="label.updateuserinfo" />
+	</h2>
 	<div class="col-xs-4 centerBlock text-center">
 
 		<form:form method="POST" modelAttribute="users" accept-charset="utf-8"
 			name="updateForm" action="/app/user/updateinfo">
 			<div class="form-group">
-				<label class="control-label">Возраст</label>
+				<label class="control-label"><spring:message
+						code="label.age" /></label>
 				<form:select class="form-control input-sm" path="age">
 					<form:option value=""></form:option>
 					<form:option value="19"></form:option>
@@ -132,7 +152,8 @@
 				</form:select>
 			</div>
 			<div class="form-group">
-				<label class="control-label">Рост</label>
+				<label class="control-label"><spring:message
+						code="label.height" /></label>
 				<form:select path="height" class="form-control input-sm"
 					type="number" name="height">
 					<form:option value=""></form:option>
@@ -224,7 +245,8 @@
 				</form:select>
 			</div>
 			<div class="form-group">
-				<label class="control-label">Вес</label>
+				<label class="control-label"><spring:message
+						code="label.weight" /></label>
 				<form:select path="weight" type="number"
 					class="form-control input-sm" name="weight">
 					<form:option value=""></form:option>
@@ -307,14 +329,15 @@
 				</form:select>
 			</div>
 			<div class="form-group">
-				<label class="control-label">Спортивные навыки</label>
+				<label class="control-label"><spring:message
+						code="label.sport" /></label>
 				<form:input class="form-control input-sm" path="sport" type="text"
 					name="sport" />
 			</div>
 			<div class="form-group">
-			<label class="control-label">Место</label>
-			<form:select name="place" class="form-control input-sm"
-					path="place">
+				<label class="control-label"><spring:message
+						code="label.place" /></label>
+				<form:select name="place" class="form-control input-sm" path="place">
 					<form:option value=""></form:option>
 					<form:option value="Дзержинский"></form:option>
 					<form:option value="Киевский"></form:option>
@@ -328,21 +351,11 @@
 					<form:option value="Червонозаводской"></form:option>
 				</form:select>
 			</div>
-			<button type="submit" class="btn btn-success">Обновить</button>
+			<button type="submit" class="btn btn-success">
+				<spring:message code="label.updatebutton" />
+			</button>
 		</form:form>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>

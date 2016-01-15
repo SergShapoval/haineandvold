@@ -32,7 +32,7 @@
 	<div id="centerConfirmButton">
 	<form:form method="POST" modelAttribute="users" action="/app/confirmation/${username}"
 		name="confirmPassForm">
-	<button class="slide_from_left" type="submit">Подтвердить!</button>
+	<button class="slide_from_left" type="submit"><spring:message code="label.confirm"/></button>
 	</form:form>
 	</div>
 </body>

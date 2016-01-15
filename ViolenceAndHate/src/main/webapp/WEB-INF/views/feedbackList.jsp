@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="security"%>
+	<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
@@ -26,7 +27,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-default">
+		<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
@@ -42,56 +43,75 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 
-					<li><a href="/app/user">Профиль</a></li>
-					<li><a href="/app/user/messages">Сообщения</a></li>
-					<li><a href="/app/user/search">Поиск оппонента</a></li>
+					<li><a href="/app/user" ><spring:message code="label.menuprofile"/></a></li>
+					<li><a href="/app/user/messages"><spring:message code="label.menumessages"/></a></li>
+					<li><a href="/app/user/search"><spring:message code="label.menusearch"/></a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Информация<span
+						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuinformation"/><span
 							class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="/app/user/rules">Правила</a></li>
+							<li><a href="/app/user/rules"><spring:message code="label.menurules"/></a></li>
 							<li class="divider"></li>
-							<li><a href="/app/user/feedback">Написать администрации</a></li>
+							<li><a href="/app/user/feedback"><spring:message code="label.menusendfeedback"/></a></li>
+						</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menusettings"/><span
+							class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/app/user/updateinfo"><spring:message code="label.menusettinginfo"/></a></li>
+							<li><a href="/app/user/updateaccount"><spring:message code="label.menusettingaccount"/></a></li>
+							
 						</ul></li>
 					<security:authorize ifAnyGranted="ROLE_ADMIN">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-expanded="false">Администрирование<span
+							data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuadministration"/><span
 								class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/app/admin">Админка/Список пользователей</a></li>
-								<li><a href="/app/admin/feedbacklist">Отзывы/Вопросы/Предложения</a></li>
+								<li><a href="/app/admin"><spring:message code="label.menuadminpanel"/></a></li>
+								<li><a href="/app/admin/feedbacklist"><spring:message code="label.menufeedbacks"/></a></li>
 
-							</ul></li>
+							</ul>
+							</li>
 					</security:authorize>
+					<li>
+					<a href="?locale=ru"><img src="<c:url value="/resources/languageicons/rus.png"/>" alt="Russian Language" title="Сменить язык интерфейса на русский"></a>
+					</li>
+					<li>
+					<a href="?locale=en"><img src="<c:url value="/resources/languageicons/usa.png"/>" alt="USA Language" title="Change interface language to american"></a>
+					</li>
 				</ul>
 
 				<c:url var="logoutUrl" value="/j_spring_security_logout" />
 				<form class="navbar-form navbar-right" action="${logoutUrl}"
 					method="post">
-					<button class="btn btn-default" type="submit">Выйти</button>
+					<button class="btn btn-default" type="submit"><spring:message code="label.logoutbutton"/></button>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 				</form>
 			</div>
 		</div>
 	</nav>
-	
+
 		<img class="img-responsive center-block"  src="<c:url value="/resources/logo/logo.png"/>" />
 
-	<h2 class="text-center">Отзывы/Вопросы/Предложения</h2>
+	<h2 class="text-center"><spring:message
+                                code="label.menufeedbacks" /></h2>
 	<div class="scrollTableFeedback">
 	<c:if test="${!empty listFeedback}">
 		<table class="table table-striped table-bordered table-condensed table-hover">
 			<tr>
-				<td class="col-md-3"><b>Пользователь</b></td>
-				<td class="col-md-8"><b>Message</b></td>
+				<td class="col-md-3"><spring:message
+                                code="label.login"/></td>
+				<td class="col-md-8"><spring:message
+                                code="label.message"/></td>
 			</tr>
 			<c:forEach items="${listFeedback}" var="feedback">
 				<tr>
 
 					<td><a href="/app/user/search/${feedback.usernameReciever}">${feedback.usernameReciever}</a></td>
 					<td>${feedback.message}</td>
-					<td class="col-md-1"><a href="<c:url value='/removefeedback/${feedback.idfeed}'/>">Удалить</a></td>
+					<td class="col-md-1"><a href="<c:url value='/removefeedback/${feedback.idfeed}'/>"><spring:message
+                                code="label.deletebutton"/></a></td>
 				</tr>
 			</c:forEach>
 		</table>

@@ -17,6 +17,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Панель администратора | Violence and Hate</title>
 <link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
 	rel="stylesheet" type="text/css">
@@ -46,58 +47,83 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 
-					<li><a href="/app/user">Профиль</a></li>
-					<li><a href="/app/user/messages">Сообщения</a></li>
-					<li><a href="/app/user/search">Поиск оппонента</a></li>
+					<li><a href="/app/user" ><spring:message code="label.menuprofile"/></a></li>
+					<li><a href="/app/user/messages"><spring:message code="label.menumessages"/></a></li>
+					<li><a href="/app/user/search"><spring:message code="label.menusearch"/></a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Информация<span
+						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuinformation"/><span
 							class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="/app/user/rules">Правила</a></li>
+							<li><a href="/app/user/rules"><spring:message code="label.menurules"/></a></li>
 							<li class="divider"></li>
-							<li><a href="/app/user/feedback">Написать администрации</a></li>
+							<li><a href="/app/user/feedback"><spring:message code="label.menusendfeedback"/></a></li>
+						</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menusettings"/><span
+							class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/app/user/updateinfo"><spring:message code="label.menusettinginfo"/></a></li>
+							<li><a href="/app/user/updateaccount"><spring:message code="label.menusettingaccount"/></a></li>
+							
 						</ul></li>
 					<security:authorize ifAnyGranted="ROLE_ADMIN">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-expanded="false">Администрирование<span
+							data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuadministration"/><span
 								class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/app/admin">Админка/Список пользователей</a></li>
-								<li><a href="/app/admin/feedbacklist">Отзывы/Вопросы/Предложения</a></li>
+								<li><a href="/app/admin"><spring:message code="label.menuadminpanel"/></a></li>
+								<li><a href="/app/admin/feedbacklist"><spring:message code="label.menufeedbacks"/></a></li>
 
-							</ul></li>
+							</ul>
+							</li>
 					</security:authorize>
+					<li>
+					<a href="?locale=ru"><img src="<c:url value="/resources/languageicons/rus.png"/>" alt="Russian Language" title="Сменить язык интерфейса на русский"></a>
+					</li>
+					<li>
+					<a href="?locale=en"><img src="<c:url value="/resources/languageicons/usa.png"/>" alt="USA Language" title="Change interface language to american"></a>
+					</li>
 				</ul>
 
-				<c:url var="logoutUrl" value="j_spring_security_logout" />
+				<c:url var="logoutUrl" value="/j_spring_security_logout" />
 				<form class="navbar-form navbar-right" action="${logoutUrl}"
 					method="post">
-					<button class="btn btn-default" type="submit">Выйти</button>
+					<button class="btn btn-default" type="submit"><spring:message code="label.logoutbutton"/></button>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 				</form>
 			</div>
 		</div>
 	</nav>
-	
+
 		<img class="img-responsive center-block"  src="<c:url value="/resources/logo/logo.png"/>" />
-	<h2 class="text-center">Панель администратора</h2>
+	<h2 class="text-center"><spring:message code="label.menuadministration"/></h2>
 
 <div class="scrollTableUsers">
 
 	<c:if test="${!empty listUsers}">
 		<table class="table table-striped table-bordered table-condensed table-hover">
 			<tr>
-				<th>Никнейм</th>
-				<th>Имя</th>
-				<th>Фамилия</th>
-				<th>Email</th>
-				<th>Пол</th>
-				<th>Возраст</th>
-				<th>Вес</th>
-				<th>Рост</th>
-				<th >Спортивные навыки</th>
-				<th>Место</th>
+				<th><spring:message
+                                code="label.login" /></th>
+				<th><spring:message
+                                code="label.name" /></th>
+				<th><spring:message
+                                code="label.surname" /></th>
+				<th><spring:message
+                                code="label.email" /></th>
+				<th><spring:message
+                                code="label.gender" /></th>
+				<th><spring:message
+                                code="label.age" /></th>
+				<th><spring:message
+                                code="label.weight" /></th>
+				<th><spring:message
+                                code="label.height" /></th>
+				<th><spring:message
+                                code="label.sport" /></th>
+				<th><spring:message
+                                code="label.place" /></th>
 			</tr>
 			<c:forEach items="${listUsers}" var="users">
 				<tr>
@@ -113,7 +139,8 @@
 					<td>${users.place}</td>
 					<td><a
 						onClick="return window.confirm('Вы действительно хотите удалить пользователя?')"
-						href="<c:url value='/remove/${users.username}'/>">Удалить</a></td>
+						href="<c:url value='/remove/${users.username}'/>"><spring:message
+                                code="label.deletebutton" /></a></td>
 				</tr>
 			</c:forEach>
 		</table>

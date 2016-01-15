@@ -36,10 +36,12 @@ public class MessageServiceImpl implements MessageService {
 		return this.messageDao.listMessagesForUser(iddialog);
 	}
 
+
 	@Override
-	public List<Message> messageHistory(String usernameReciever, String usernameSender) {
-		// TODO Auto-generated method stub
-		return this.messageDao.messageHistory(usernameReciever, usernameSender);
+	@Transactional
+	public int countOfMessages(int iddialog) {
+		return this.messageDao.countOfMessages(iddialog);
 	}
+
 
 }

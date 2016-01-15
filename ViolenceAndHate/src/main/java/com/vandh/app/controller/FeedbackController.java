@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vandh.app.models.Feedback;
@@ -19,16 +20,35 @@ public class FeedbackController {
 
 	@Autowired
 	private FeedbackService feedbackService;
+	
+	public boolean checkingFeedbackMessage(String message)
+	{
+		if(message.contains("script") || message.contains("<") || message.contains(">") || message.contains("$"))
+		{
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	
+	
 	@RequestMapping(value = "/user/feedback", method = RequestMethod.GET)
 	public String addFeedbackPage(Model model) {
 		model.addAttribute("feedback", new Feedback());
 		return "addFeedback";
 	}
 	@RequestMapping(value = "/user/feedback", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	public String addFeedback(@ModelAttribute("feedback") Feedback feedback,Principal principal) {
+	public String addFeedback(@ModelAttribute("feedback") Feedback feedback,Principal principal,
+			@RequestParam(value="message") String message) {
+		if(checkingFeedbackMessage(message)!=true){
 		feedback.setUsernameReciever(principal.getName());
 		this.feedbackService.addFeedback(feedback);
-		return "addFeedback";
+		return "addFeedback";}
+		else
+		{
+			return "redirect:/user/feedback";
+		}
 	}
 	@RequestMapping("/removefeedback/{idfeed}")
 	public String removeFeedback(@PathVariable("idfeed") int idfeed) {

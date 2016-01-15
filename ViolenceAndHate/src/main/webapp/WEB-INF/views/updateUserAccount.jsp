@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="security"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
@@ -27,6 +28,7 @@
 </head>
 <body>
 
+	
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -43,61 +45,69 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 
-					<li><a href="/app/user">Профиль</a></li>
-					<li><a href="/app/user/messages">Сообщения</a></li>
-					<li><a href="/app/user/search">Поиск оппонента</a></li>
+					<li><a href="/app/user" ><spring:message code="label.menuprofile"/></a></li>
+					<li><a href="/app/user/messages"><spring:message code="label.menumessages"/></a></li>
+					<li><a href="/app/user/search"><spring:message code="label.menusearch"/></a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Информация<span
+						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuinformation"/><span
 							class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="/app/user/rules">Правила</a></li>
+							<li><a href="/app/user/rules"><spring:message code="label.menurules"/></a></li>
 							<li class="divider"></li>
-							<li><a href="/app/user/feedback">Написать администрации</a></li>
+							<li><a href="/app/user/feedback"><spring:message code="label.menusendfeedback"/></a></li>
 						</ul></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Настройки<span
+						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menusettings"/><span
 							class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="/app/user/updateinfo">Настройки личной информации</a></li>
-							<li><a href="/app/user/updateaccount">Настройки аккаунта</a></li>
-								<li class="divider"></li>
+							<li><a href="/app/user/updateinfo"><spring:message code="label.menusettinginfo"/></a></li>
+							<li><a href="/app/user/updateaccount"><spring:message code="label.menusettingaccount"/></a></li>
+							
 						</ul></li>
 					<security:authorize ifAnyGranted="ROLE_ADMIN">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-expanded="false">Администрирование<span
+							data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuadministration"/><span
 								class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/app/admin">Админка/Список пользователей</a></li>
-								<li><a href="/app/admin/feedbacklist">Отзывы/Вопросы/Предложения</a></li>
+								<li><a href="/app/admin"><spring:message code="label.menuadminpanel"/></a></li>
+								<li><a href="/app/admin/feedbacklist"><spring:message code="label.menufeedbacks"/></a></li>
 
-							</ul></li>
+							</ul>
+							</li>
 					</security:authorize>
+					<li>
+					<a href="?locale=ru"><img src="<c:url value="/resources/languageicons/rus.png"/>" alt="Russian Language" title="Сменить язык интерфейса на русский"></a>
+					</li>
+					<li>
+					<a href="?locale=en"><img src="<c:url value="/resources/languageicons/usa.png"/>" alt="USA Language" title="Change interface language to american"></a>
+					</li>
 				</ul>
 
 				<c:url var="logoutUrl" value="/j_spring_security_logout" />
 				<form class="navbar-form navbar-right" action="${logoutUrl}"
 					method="post">
-					<button class="btn btn-default" type="submit">Выйти</button>
+					<button class="btn btn-default" type="submit"><spring:message code="label.logoutbutton"/></button>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 				</form>
 			</div>
 		</div>
 	</nav>
-<h2 class="text-center">Обновить информацию аккаунта</h2>
+
+<h2 class="text-center"><spring:message code="label.updateaccountinfo" /></h2>
 <div class="col-xs-4 centerBlock text-center">
 <form:form modelAttribute="users" method="POST"
 			action="/app/user/updateaccount" accept-charset="utf-8"	name="updateAccountForm" >
 <div class="form-group">
-				<label class="control-label">E-mail</label>
+				<label class="control-label"><spring:message code="label.email" /></label>
 				<form:input class="form-control input-sm" path="email" name="email" type="email" placeholder="example@mail.com"/>			
 	</div>
 			<div class="form-group">
 			
-			<label class="control-label">Пароль</label>
+			<label class="control-label"><spring:message code="label.password" /></label>
 			<form:input class="form-control input-sm" path="password" type="password" name="password"/>
 </div>
-	<button type="submit" class="btn btn-success">Обновить</button>
+	<button type="submit" class="btn btn-success"><spring:message code="label.updatebutton" /></button>
 			</form:form>
 </div>
 

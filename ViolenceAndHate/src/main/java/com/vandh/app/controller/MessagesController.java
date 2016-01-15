@@ -31,21 +31,6 @@ public class MessagesController {
 	@Autowired
 	private MessageService messageService;
 
-	public void sendMessage(int iddialog, String text) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		// get current date time with Date()
-		Date date = new Date();
-		System.out.println(dateFormat.format(date));
-		Dialog dialog = new Dialog();
-		dialog.setIddialog(iddialog);
-		Message mess = new Message();
-		mess.setText(text);
-		mess.setDialog(dialog);
-		mess.setDate(dateFormat.format(date));
-		this.messageService.addMessage(mess);
-
-	}
-
 	@RequestMapping(value = "/user/messages", method = RequestMethod.GET)
 	public String messagesPage(Model model, Principal principal) {
 		model.addAttribute("dialog", new Dialog());
@@ -72,15 +57,12 @@ public class MessagesController {
 		System.out.println("ID dialog is: " + iddialog);
 		return "mess";
 	}
-
-
-	@RequestMapping(value = "/user/messages/history/{username}", method = RequestMethod.GET)
-	public String fullMessageList(@PathVariable(value="username") String username, Model model, Principal principal){ 
+	@RequestMapping(value = "/user/countofmess/{iddialog}", method = RequestMethod.GET) //Using ajax method
+	public String countOfMessPage(@PathVariable(value = "iddialog") int iddialog, Model model) {
 		model.addAttribute("message", new Message());
-		model.addAttribute("fullMessageList", messageService.messageHistory(username, principal.getName()));
-		model.addAttribute("usernameHistoryWith", username);
-	return "fullMessageList";	
+		model.addAttribute("countOfMessages", messageService.countOfMessages(iddialog));
+		System.out.println("ID dialog is: " + iddialog);
+		return "countOfMessages";
 	}
-
 
 }

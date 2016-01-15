@@ -218,7 +218,7 @@ public class UsersDaoImpl implements UsersDao {
 			System.out.println("QUERY IS: "+query);
 		}
 		
-		query.concat(" WHERE users.username LIKE "+"'"+username+"'");
+		query=query.concat(" WHERE users.username LIKE "+"'"+username+"'");
 		System.out.println("FULL QUERY: "+query);
 		Session session = null;
 		session = sessionFactory.openSession();

@@ -42,7 +42,7 @@ public class ChatController {
 		this.dialogService.addDialog(dialog);
 	}
 
-	public void sendMessage(int iddialog, String text) {
+	public void sendMessage(int iddialog, String text, String messender) {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		// get current date time with Date()
 		Date date = new Date();
@@ -53,10 +53,22 @@ public class ChatController {
 		mess.setText(text);
 		mess.setDialog(dialog);
 		mess.setDate(dateFormat.format(date));
+		mess.setMessender(messender);
 		this.messageService.addMessage(mess);
 
 	}
 
+	public boolean checkingMessage(String text)
+	{
+		if(text.contains("<")||text.contains(">")||text.contains("script")||text.contains("$"))
+		{
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	
 	@RequestMapping(value = "/user/search/{username}", method = RequestMethod.POST)
 	public String addMessage(@ModelAttribute("message") Message message, @RequestParam(value = "text") String text,
 			@PathVariable(value = "username") String username, Model model, Principal principal) {
@@ -66,28 +78,34 @@ public class ChatController {
 		if (dialogid == 0) {
 			createDialog(principal.getName(), username);
 			idCreateddialog = dialogService.findExistingDialog(principal.getName(), username);
-			sendMessage(idCreateddialog, text);
+			sendMessage(idCreateddialog, text, principal.getName());
 		} else {
-			sendMessage(dialogid, text);
+			if(checkingMessage(text)!=false){
+			sendMessage(dialogid, text, principal.getName());
+			return "redirect:/user/messages";}
+			else
+			{
+				return "redirect:/user/messages";		
+			}
+			
 		}
-		System.out.println("POST METHOD " + username);
 		return "redirect:/user/messages";
+		
 	}
 
-	
 	@RequestMapping(value = "/user/messages/{iddialog}", method = RequestMethod.POST)
 	public String messages(@ModelAttribute("message") Message message, @RequestParam(value = "text") String text,
-			@PathVariable(value = "iddialog") int iddialog, Model model, Principal principal){ 
-		sendMessage(iddialog, text);
+			@PathVariable(value = "iddialog") int iddialog, Model model, Principal principal) {
+		if(checkingMessage(text)!=true)
+		{
+		sendMessage(iddialog, text, principal.getName());
 		System.out.println("message sent!");
-	return "messagesWithUser";	
+		return "messagesWithUser";
+		}
+		else
+		{
+			return "redirect:/user/messages";
+		}
 	}
-	
-	
-	
-	
 
-	
-	
-	
 }

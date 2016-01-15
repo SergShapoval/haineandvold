@@ -35,6 +35,19 @@ public class RegistrationController {
 	@Autowired
 	private JavaMailSender mailSender;
 
+	public boolean secureReg(String username, String password, String mailForConfirmation,String sport)
+	{
+		if (sport.contains("<") || sport.contains(">") || sport.contains("$") || username.contains("<")
+				|| username.contains(">") || username.contains("$") || password.contains("<") || password.contains(">")
+				|| password.contains("$")) {
+			System.out.println("time to script :D");
+			return true;
+			}
+		else
+			return false;
+	}
+	
+	
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public String registrationPage(Model model) {
 		model.addAttribute("users", new Users());
@@ -47,12 +60,10 @@ public class RegistrationController {
 			@RequestParam(value = "email") String mailForConfirmation, @RequestParam(value = "age") String age,
 			@RequestParam(value = "sport") String sport,
 			BindingResult bindingResult) {
-		if (sport.contains("<") || sport.contains(">") || sport.contains("$") || username.contains("<")
-				|| username.contains(">") || username.contains("$") || password.contains("<") || password.contains(">")
-				|| password.contains("$")) {
-			System.out.println("time to script :D");
+		if(secureReg(username, password, mailForConfirmation, sport)!=false)
+		{
 			return "redirect:/registration";
-		} 
+		}
 		else{
 			if(this.usersService.checkingEmail(mailForConfirmation)!=true)
 			{

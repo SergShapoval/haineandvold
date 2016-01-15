@@ -29,24 +29,23 @@
 	<img class="img-responsive center-block"
 		src="<c:url value="/resources/logo/logo.png"/>" />
 
-	<h2 class="text-center">Введите новый пароль</h2>
+	<h2 class="text-center"><spring:message code="label.enternewpass" /></h2>
 
-	<div class="col-xs-4 centerBlock textCenter">
+	<div class="col-xs-4 centerBlock text-center">
 		<form:form method="POST" modelAttribute="users"
 			action="/app/updatepassword/${mail}" ng-app="vandh"
 			ng-controller="validateCtrlUpdatePass" name="updatePassForm"
 			novalidation="true">
 				<div class="form-group">
-			<label class="control-label" for="password">Новый пароль</label>
+			<label class="control-label" for="password"><spring:message code="label.newpass" /></label>
 			<form:input class="form-control input-sm" path="password" type="password" id="password" name="password" ng-model="password"
 				required="true" />
 			<div style="color: black"
 				ng-show="updatePassForm.password.$dirty && updatePassForm.password.$invalid">
-				<span ng-show="updatePassForm.password.$error.required">Введите
-					новый пароль</span>
+				<span ng-show="updatePassForm.password.$error.required"><spring:message code="label.enternewpass" /></span>
 			</div>
 </div>
-			<button class="btn btn-success" type="submit">Обновить пароль</button>
+			<button class="btn btn-success" type="submit"><spring:message code="label.updatepassbutton" /></button>
 		
 		</form:form>
 	</div>

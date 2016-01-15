@@ -19,51 +19,59 @@
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/bootstrap/variables.less.css"/>"
 	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/CSS/styles.css"/>"
-	rel="stylesheet" type="text/css">
+<link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
+	type="text/css">
 <script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
 </head>
 <body>
 
-		<img class="img-responsive center-block" src="<c:url value="/resources/logo/logo.png"/>" />
+	<img class="img-responsive center-block"
+		src="<c:url value="/resources/logo/logo.png"/>" />
 
-	<h2 class="text-center">Для восстановления пароля, введите свой E-mail</h2>
-	<h5 class="text-center">(e-mail должен быть зарегистрирован на сайте)</h5>
+	<h2 class="text-center">
+		<spring:message code="label.passconfirmphrase" />
+	</h2>
+	<h5 class="text-center">
+		<spring:message code="label.passconfirmphrase1" />
+	</h5>
 	<br>
-<div class="col-xs-4 centerBlock text-center">
+	<div class="col-xs-4 centerBlock text-center">
 		<form:form method="POST" modelAttribute="users" action="restorepass"
-			ng-app="vandh" ng-controller="validateCtrlRestorePass" name="restorePassForm"
-			novalidation="true">
+			ng-app="vandh" ng-controller="validateCtrlRestorePass"
+			name="restorePassForm" novalidation="true">
 			<div class="form-group">
-				<label class="control-label" for="email">E-mail</label>
-			 <form:input placeholder="email@example.com" path="email" class="form-control input-sm"
-								type="email" id="email" name="email" ng-model="email"
-									required="true" /> 
-					
-					<div style="color: black"
-							ng-show="restorePassForm.email.$dirty && restorePassForm.email.$invalid">
-								<span ng-show="restorePassForm.email.$error.required">Введите
-									e-mail</span> <span ng-show="restorePassForm.email.$error.email">Некорректный
-									e-mail</span>
-						</div>
-						<br>
-				<button class="btn btn-success" type="submit" ng-disabled="restorePassForm.email.$dirty && restorePassForm.email.$invalid">Получить
-							пароль</button>
+				<label class="control-label" for="email"><spring:message
+						code="label.email" /></label>
+				<form:input placeholder="email@example.com" path="email"
+					class="form-control input-sm" type="email" id="email" name="email"
+					ng-model="email" required="true" />
+
+				<div style="color: black"
+					ng-show="restorePassForm.email.$dirty && restorePassForm.email.$invalid">
+					<span ng-show="restorePassForm.email.$error.required"><spring:message
+							code="label.enteremail" /></span> <span
+						ng-show="restorePassForm.email.$error.email"><spring:message
+							code="label.entercorrectemail" /></span>
+				</div>
+				<br>
+				<button class="btn btn-success" type="submit"
+					ng-disabled="restorePassForm.email.$dirty && restorePassForm.email.$invalid">Получить
+					пароль</button>
 			</div>
 		</form:form>
-</div>
-<br>
-	<div class="text-center">
-		<a href="login"><button class="btn btn-warning">Назад</button></a>
 	</div>
-	
+	<br>
+	<div class="text-center">
+		<a href="login"><button class="btn btn-warning"><spring:message code="label.back" /></button></a>
+	</div>
+
 	<script>
 		var app = angular.module('vandh', []);
 		app.controller('validateCtrlRestorePass', function($scope) {
 			$scope.email = '';
 		});
 	</script>
-	
+
 </body>
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>

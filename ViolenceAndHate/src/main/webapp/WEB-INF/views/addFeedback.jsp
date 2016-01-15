@@ -30,7 +30,7 @@
 
 </head>
 <body>
-	<nav class="navbar navbar-default">
+		<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
@@ -46,33 +46,48 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 
-					<li><a href="/app/user">Профиль</a></li>
-					<li><a href="/app/user/messages">Сообщения</a></li>
-					<li><a href="/app/user/search">Поиск оппонента</a></li>
+					<li><a href="/app/user" ><spring:message code="label.menuprofile"/></a></li>
+					<li><a href="/app/user/messages"><spring:message code="label.menumessages"/></a></li>
+					<li><a href="/app/user/search"><spring:message code="label.menusearch"/></a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Информация<span
+						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuinformation"/><span
 							class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="/app/user/rules">Правила</a></li>
+							<li><a href="/app/user/rules"><spring:message code="label.menurules"/></a></li>
 							<li class="divider"></li>
-							<li><a href="/app/user/feedback">Написать администрации</a></li>
+							<li><a href="/app/user/feedback"><spring:message code="label.menusendfeedback"/></a></li>
+						</ul></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menusettings"/><span
+							class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/app/user/updateinfo"><spring:message code="label.menusettinginfo"/></a></li>
+							<li><a href="/app/user/updateaccount"><spring:message code="label.menusettingaccount"/></a></li>
+							
 						</ul></li>
 					<security:authorize ifAnyGranted="ROLE_ADMIN">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-expanded="false">Администрирование<span
+							data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuadministration"/><span
 								class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/app/admin">Админка/Список пользователей</a></li>
-								<li><a href="/app/admin/feedbacklist">Отзывы/Вопросы/Предложения</a></li>
+								<li><a href="/app/admin"><spring:message code="label.menuadminpanel"/></a></li>
+								<li><a href="/app/admin/feedbacklist"><spring:message code="label.menufeedbacks"/></a></li>
 
-							</ul></li>
+							</ul>
+							</li>
 					</security:authorize>
+					<li>
+					<a href="?locale=ru"><img src="<c:url value="/resources/languageicons/rus.png"/>" alt="Russian Language" title="Сменить язык интерфейса на русский"></a>
+					</li>
+					<li>
+					<a href="?locale=en"><img src="<c:url value="/resources/languageicons/usa.png"/>" alt="USA Language" title="Change interface language to american"></a>
+					</li>
 				</ul>
 
-				<c:url var="logoutUrl" value="j_spring_security_logout" />
+				<c:url var="logoutUrl" value="/j_spring_security_logout" />
 				<form class="navbar-form navbar-right" action="${logoutUrl}"
 					method="post">
-					<button class="btn btn-default" type="submit">Выйти</button>
+					<button class="btn btn-default" type="submit"><spring:message code="label.logoutbutton"/></button>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 				</form>
@@ -80,34 +95,40 @@
 		</div>
 	</nav>
 
+
 	<img class="img-responsive center-block"
 		src="<c:url value="/resources/logo/logo.png"/>" />
 
 
-	<h2 class="text-center">Свяжитесь с нами</h2>
-	<h5 class="text-center">(ответ ожидайте по указанному вами при
-		регистрации E-mail адрессу)</h5>
-<br>
-	<div class="col-xs-4 centerBlock textCenter">
+	<h2 class="text-center">
+		<spring:message code="label.contactwithus" />
+	</h2>
+	<h5 class="text-center"><spring:message
+                                code="label.responseforfeedback"/>)</h5>
+	<br>
+	<div class="col-xs-4 centerBlock text-center">
 		<c:url var="sendFeedback" value="feedback" />
 		<form:form modelAttribute="feedback" method="POST"
 			action="${sendFeedback}" accept-charset="utf-8" ng-app="vandh"
 			ng-controller="validateCtrl" name="fbForm" novalidation="true">
 
-			<label for="message">Сообщение</label>
+			<label for="message"><spring:message
+                                code="label.message" /></label>
 			<form:textarea placeholder="Введите сюда своё сообщение..."
 				class="form-control" ng-model="message" path="message" id="message"
 				rows="10" cols="40" type="text" required="true" />
 			<div style="color: black"
 				ng-show="fbForm.message.$dirty && fbForm.message.$invalid">
-				<span ng-show="fbForm.message.$error.required">Введите
-					сообщение</span>
+				<span ng-show="fbForm.message.$error.required"><spring:message
+                                code="label.entermessage" />
+					</span>
 			</div>
 			<br>
 			<div class="text-center">
-			<button  type="submit" class="btn btn-primary"
-				ng-disabled="fbForm.message.$dirty && fbForm.message.$invalid">Отправить</button>
-</div>
+				<button type="submit" class="btn btn-primary"
+					ng-disabled="fbForm.message.$dirty && fbForm.message.$invalid"><spring:message
+                                code="label.sendfeedback" /></button>
+			</div>
 		</form:form>
 	</div>
 	<script>
