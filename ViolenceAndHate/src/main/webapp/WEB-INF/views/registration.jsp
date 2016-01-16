@@ -15,7 +15,7 @@
 <fmt:requestEncoding value="utf-8" />
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fi">
 <head>
-<title>Registration Page</title>
+<title>Регистрация | Haine and Vold</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
 <link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
 	rel="stylesheet" type="text/css">
@@ -24,10 +24,22 @@
 	type="text/css">
 <script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
 </head>
-<body class="bgrReg">
+<style>
+@font-face {
+	font-family: Runic; /* Имя шрифта */
+	src: url(/app/resources/font/runic.ttf); /* Путь к файлу со шрифтом */
+}
 
-	<img class="img-responsive center-block"
-		src="<c:url value="/resources/logo/logo.png"/>" />
+h1 {
+
+	font-family: Runic;
+	text-align: center;
+	font-size: 500%;
+
+}
+</style>
+<body>
+<h1>Haine and Vold</h1>
 
 	<h2 class="text-center"><spring:message
                                 code="label.regbutton" /></h2>

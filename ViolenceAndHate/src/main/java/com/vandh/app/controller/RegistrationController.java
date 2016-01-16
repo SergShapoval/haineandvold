@@ -87,6 +87,7 @@ public class RegistrationController {
 				userRoleSet.add(userRole);
 				u.setUserRole(userRoleSet);
 				u.setAge(String.valueOf(year));
+				u.setPhoto("/resources/avatars/noava.jpg");
 				this.usersService.addUser(u);
 				this.userRoleService.addRole(userRole);
 				// -----------------------SENDING CONFIRMATION

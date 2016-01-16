@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,7 +36,9 @@ public class LoginController {
 			@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout,
 			@RequestParam(value="passupd", required = false) String passupd,
-			@RequestParam(value="confirm", required=false) String confirm
+			@RequestParam(value="confirm", required=false) String confirm,
+			@RequestParam(value="emailnotexists", required=false) String emailnotexists,
+			@RequestParam(value="passsend", required=false) String passsend
 			)
 	{
 		String message = "";
@@ -49,6 +52,14 @@ public class LoginController {
 		else if(confirm!=null)
 		{
 			message = "Аккаунт подтверждён";
+		}
+		else if(emailnotexists!=null)
+		{
+			message="E-mail не существует";
+		}
+		else if(passsend!=null)
+		{
+			message="Проверьте свой e-mail";
 		}
 			
 		return new ModelAndView("login", "message", message);

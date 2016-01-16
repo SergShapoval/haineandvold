@@ -31,6 +31,7 @@ public class RestorePasswordController {
 	@Autowired
 	private JavaMailSender mailSender;
 	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	
 	@RequestMapping(value = "/restorepass", method = RequestMethod.GET)
 	public String restorePassPage(Model model) {
 		model.addAttribute("users", new Users());
@@ -40,6 +41,8 @@ public class RestorePasswordController {
 	@RequestMapping(value = "/restorepass", method = RequestMethod.POST)
 	public String sendEmail(Model m, @RequestParam(value = "email") String email) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException {
 		System.out.println("ПОЧТА: "+email);
+		if(this.usersService.checkingEmail(email)!=false)
+		{
 		byte[]   bytesEncoded = Base64.encode(email.getBytes());
 		System.out.println("ecncoded value is " + new String(bytesEncoded ));
 		
@@ -53,7 +56,12 @@ public class RestorePasswordController {
 		// sends the e-mail
 		System.out.println("Sending....");
 		mailSender.send(mail);
-		return "redirect:/restorepass";
+		return "redirect:/login?passsend";
+		}
+		else
+		{
+			return "redirect:/login?emailnotexists";
+		}
 	}
 	
 

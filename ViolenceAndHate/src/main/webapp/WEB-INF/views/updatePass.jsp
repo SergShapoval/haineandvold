@@ -12,22 +12,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Восстановление пароля | Violence and Hate</title>
+<title>Восстановление пароля | Haine and Vold</title>
 <link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
-	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/bootstrap/bootswatch.less.css"/>"
-	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/bootstrap/variables.less.css"/>"
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
 	type="text/css">
 
 <script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
 </head>
-<body>
+<style>
+@font-face {
+    font-family: Runic; /* Имя шрифта */
+    src: url(/app/resources/font/runic.ttf); /* Путь к файлу со шрифтом */
+   }
+h1 {
+    font-family: Runic;
+    text-align:center;
+    font-size:500%;
+   }
 
-	<img class="img-responsive center-block"
-		src="<c:url value="/resources/logo/logo.png"/>" />
+</style>
+<body>
+<h1>Haine and Vold</h1>
 
 	<h2 class="text-center"><spring:message code="label.enternewpass" /></h2>
 

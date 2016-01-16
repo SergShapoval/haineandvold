@@ -118,4 +118,24 @@ word-break: break-all;
 	width:200px;
 }
 
+.noparamserror
+{
+	color:red;
+}
 
+
+.rusLogo
+{
+	float:right;
+	margin:0;
+	padding:10px;
+	
+	
+}
+
+.fixedImgAnotherUser
+{
+		border: double black 2px;
+	width: 200px;
+	height: 290px;
+}
