@@ -14,6 +14,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Профиль | Haine and Vold</title>
+<link rel="shortcut icon" href="<c:url value="/resources/faviicon/iconHV.ico"/>" type="image/x-icon">
 <link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
 	rel="stylesheet" type="text/css">
 	<link href="<c:url value="/resources/CSS/styles.css"/>"
@@ -113,7 +114,7 @@ h1 {
 <div class="blockAva col-md-3">
 <img class="fixedSizeImg" src="<c:url value="${users.photo}"/>">
 </div>
-<div class="blockTable col-md-8">
+<div class="blockTable col-md-6">
 		<table class="tableSize table table-striped table-bordered table-condensed">
 				
 				<tr>
@@ -162,17 +163,8 @@ h1 {
 			</c:forEach>
 	</div>	
 
-	<div class="blockDownloadAva">
- <form method="POST" action="./user?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
- 	<div class="form-group text-center">
-       <label class="control-label" for="file"><spring:message code="label.choosephoto" /></label>
-       <span class="btn btn-default btn-file">
-        <input type="file" name="file" accept="image/*">
-        </span> 
-        <button class="btn btn-primary btn-sm" type="submit" value="Load"><spring:message code="label.changephoto" /></button>
-        </div>
-    </form>
-  </div>
+
+
 	<script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>
 	<script src="<c:url value="/resources/bootstrap/bootstrap.js"/>"

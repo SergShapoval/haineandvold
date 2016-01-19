@@ -15,6 +15,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Обновить информацию | Haine and Vold</title>
+<link rel="shortcut icon" href="<c:url value="/resources/faviicon/iconHV.ico"/>" type="image/x-icon">
 <link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
@@ -104,11 +105,17 @@ h1 {
 	</nav>
 
 	<h1>Haine and Vold</h1>
-	<h4 class="text-center">
-		<spring:message code="label.updateuserinfo" />
-	</h4>
+	
 	<div class="col-xs-4 centerBlock text-center">
-
+ <form method="POST" action="?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
+ 	<div class="form-group text-center">
+       <label class="control-label" for="file"><spring:message code="label.choosephoto" /></label>
+       <span class="btn btn-default btn-file">
+        <input type="file" name="file" accept="image/*">
+        </span> 
+        <button class="btn btn-primary btn-sm" type="submit" value="Load"><spring:message code="label.changephoto" /></button>
+        </div>
+    </form>
 		<form:form method="POST" modelAttribute="users" accept-charset="utf-8"
 			name="updateForm" action="/app/user/updateinfo">
 			<div class="form-group">
@@ -365,6 +372,8 @@ h1 {
 				<spring:message code="label.updatebutton" />
 			</button>
 		</form:form>
+		
+
 	</div>
 </body>
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"

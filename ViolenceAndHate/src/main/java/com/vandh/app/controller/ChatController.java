@@ -6,6 +6,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,6 @@ public class ChatController {
 
 	@Autowired
 	private MessageService messageService;
-
 	public void createDialog(String sender, String reciever) {
 		Users user = new Users();
 		user.setUsername(sender);
@@ -54,6 +54,7 @@ public class ChatController {
 		mess.setDialog(dialog);
 		mess.setDate(dateFormat.format(date));
 		mess.setMessender(messender);
+	
 		this.messageService.addMessage(mess);
 
 	}

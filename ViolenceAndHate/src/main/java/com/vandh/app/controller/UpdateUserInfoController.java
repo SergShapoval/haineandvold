@@ -26,7 +26,7 @@ public class UpdateUserInfoController {
 		return "updateUserInfo";
 	}
 
-	@RequestMapping(value = "/user/updateinfo", method = RequestMethod.POST)
+	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public String updateInfo(@ModelAttribute(value = "users") Users user, Principal principal,
 			@RequestParam(value = "age") String age, @RequestParam(value = "height") String height,
 			@RequestParam(value = "weight") String weight, @RequestParam(value = "sport") String sport,
@@ -40,7 +40,7 @@ public class UpdateUserInfoController {
 		else
 		{
 			this.usersService.updateUserInfo(age, height, weight, sport, place, principal.getName());
-			return "redirect:/user";
+			return "user";
 		}
 		
 	}

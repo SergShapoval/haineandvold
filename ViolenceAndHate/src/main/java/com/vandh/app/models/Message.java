@@ -15,9 +15,9 @@ import javax.persistence.Table;
 public class Message {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idmessage", unique = true, nullable = false)
-	private Integer idmessage;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "idmessage", unique = true, nullable = false, length=40)
+	private Long idmessage;
 
 	@Column(name="text", length = 300)
 	private String text;
@@ -32,11 +32,11 @@ public class Message {
 	@JoinColumn(name = "iddialog", nullable = false)
 	private Dialog dialog;
 	
-	public Integer getIdmessage() {
+	public Long getIdmessage() {
 		return idmessage;
 	}
 
-	public void setIdmessage(Integer idmessage) {
+	public void setIdmessage(Long idmessage) {
 		this.idmessage = idmessage;
 	}
 

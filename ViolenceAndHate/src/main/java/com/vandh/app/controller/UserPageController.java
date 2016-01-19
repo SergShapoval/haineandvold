@@ -45,7 +45,7 @@ public class UserPageController {
 	@Autowired
 	ServletContext context;
 
-	@RequestMapping(value = "/user", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/updateinfo", method = RequestMethod.POST)
 	public String postAvatar(@RequestParam("file") MultipartFile file, Principal principal) {
 		if (file.isEmpty()) {
 			return "redirect:/user";
@@ -71,7 +71,7 @@ public class UserPageController {
 				return "redirect:/user";
 			}
 		}
-		return "user";
+		return " redirect:/user";
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)

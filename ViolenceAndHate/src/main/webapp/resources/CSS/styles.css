@@ -84,7 +84,7 @@ textarea {
 }
 
 .scrollTableUsers {
-	height: 450px;
+	height: 400px;
 	overflow-y: scroll;
 }
 
@@ -98,7 +98,7 @@ textarea {
 }
 
 .scrollTableMessages {
-	height: 370px;
+	height: 300px;
 	overflow-y: scroll;
 }
 
@@ -135,7 +135,19 @@ word-break: break-all;
 
 .fixedImgAnotherUser
 {
-		border: double black 2px;
+	border: double black 2px;
 	width: 200px;
 	height: 290px;
+}
+
+.sizeTableDialog
+{
+	width:330px;
+}
+
+.marginbuttons
+{
+margin-top:2px;
+margin-bottom:2px;
+
 }

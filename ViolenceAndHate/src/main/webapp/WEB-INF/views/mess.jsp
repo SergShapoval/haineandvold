@@ -14,7 +14,7 @@
 	
 		<c:forEach items="${listMessagesForUser}" var="message">
 			<tr>
-				<td><a href="/app/user/search/${message.messender}">${message.messender}</a></td>
+				<td class="text-center col-xs-1"><b><a href="/app/user/search/${message.messender}">${message.messender}</a></b></td>
 				<td> ${message.text}</td>
 				<td class="text-center colDateSize">${message.date}</td>
 			<tr>

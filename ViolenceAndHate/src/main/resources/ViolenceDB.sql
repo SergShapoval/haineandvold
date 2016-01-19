@@ -42,7 +42,7 @@ foreign key (`username`) references users(`username`)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8; 
 
 create table message(
-`idmessage` int not null auto_increment,
+`idmessage` BIGINT not null auto_increment,
 `text` varchar(300) character set utf8 NOT NULL,
 `date` varchar(40) NOT NULL,
 `iddialog` int NOT NULL,

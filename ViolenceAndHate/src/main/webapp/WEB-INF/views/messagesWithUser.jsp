@@ -15,6 +15,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Сообщения | Haine and Vold</title>
+<link rel="shortcut icon" href="<c:url value="/resources/faviicon/iconHV.ico"/>" type="image/x-icon">
 <link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
@@ -108,20 +109,10 @@ h1 {
 	<h1>Haine and Vold</h1>
 
 
-
 <br>
-<span>
-<span class="col-md-8 text-left"><spring:message
-                                code="label.message" /></span>
-<span class="col-md-4 text-center"><spring:message
-                                code="label.date"/></span>
-</span>
-<br>
-
 <div class="scrollTableMessages" id="mess">
 
 </div>
-
 
 
 <form:form method="POST" modelAttribute="message"

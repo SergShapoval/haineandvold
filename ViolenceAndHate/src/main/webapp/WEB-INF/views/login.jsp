@@ -12,11 +12,10 @@
 <html>
 <head>
 <title>Войти в систему | Haine and Vold</title>
+ <link rel="shortcut icon" href="<c:url value="/resources/faviicon/iconHV.ico"/>" type="image/x-icon">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
 	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
-	type="text/css">
 <link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
 	type="text/css">
 <script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
@@ -81,9 +80,7 @@ h1 {
 					<span ng-show="myForm.password.$error.required"><label><spring:message
 								code="label.enterpassword" /></label></span>
 				</div>
-
 			</div>
-
 			<div class="text-center">
 				<button type="submit" class="btn btn-success btn-sm btn-block"
 					ng-disabled="myForm.username.$dirty && myForm.username.$invalid ||
@@ -94,12 +91,11 @@ h1 {
 
 		</form:form>
 	</div>
-	<br>
 	<div class="text-center centerBlock loginForm">
 		<a href="registration"><button
-				class="btn btn-primary btn-sm btn-block">
+				class="btn btn-primary btn-sm btn-block marginbuttons">
 				<spring:message code="label.regbutton" />
-			</button></a> <br>
+			</button></a>
 		<a href="restorepass"><button
 				class="btn btn-primary btn-sm btn-block">
 				<spring:message code="label.restorepassbutton" />

@@ -1,6 +1,5 @@
 package com.vandh.app.controller;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -25,13 +24,12 @@ import com.vandh.app.models.Users;
 import com.vandh.app.service.UsersService;
 @Controller
 public class RestorePasswordController {
-
 	@Autowired
 	UsersService usersService;
 	@Autowired
 	private JavaMailSender mailSender;
 	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-	
+
 	@RequestMapping(value = "/restorepass", method = RequestMethod.GET)
 	public String restorePassPage(Model model) {
 		model.addAttribute("users", new Users());

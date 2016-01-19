@@ -10,8 +10,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <title>Cообщения | Haine and Vold</title>
+<link rel="shortcut icon" href="<c:url value="/resources/faviicon/iconHV.ico"/>" type="image/x-icon">
 <link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
@@ -102,12 +102,10 @@ h1 {
 			</div>
 		</div>
 	</nav>
-
 	<h1>Haine and Vold</h1>
-
-
 	<h2 class="text-center"><spring:message code="label.dialogs" /></h2>
 <!-- <div id="dialogs"></div> -->
+<div class="text-center sizeTableDialog centerBlock">
 <table class="table table-striped table-bordered table-condensed table-hover">
 <tr>
 <th><spring:message code="label.dialogswithusers" /></th>
@@ -127,15 +125,7 @@ h1 {
 		</c:if>
 		</tr>
 </table>
-
-
-
-
-
-
-
-
-	
+</div>
 </body>
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>
