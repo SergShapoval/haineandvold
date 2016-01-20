@@ -15,7 +15,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Обновить информацию | Haine and Vold</title>
-<link rel="shortcut icon" href="<c:url value="/resources/faviicon/iconHV.ico"/>" type="image/x-icon">
+<link rel="shortcut icon"
+	href="<c:url value="/resources/faviicon/iconHV.ico"/>"
+	type="image/x-icon">
 <link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
@@ -24,15 +26,15 @@
 </head>
 <style>
 @font-face {
-    font-family: Runic; /* Имя шрифта */
-    src: url(/app/resources/font/runic.ttf); /* Путь к файлу со шрифтом */
-   }
-h1 {
-    font-family: Runic;
-    text-align:center;
-    font-size:500%;
-   }
+	font-family: Runic; /* Имя шрифта */
+	src: url(/app/resources/font/runic.ttf); /* Путь к файлу со шрифтом */
+}
 
+h1 {
+	font-family: Runic;
+	text-align: center;
+	font-size: 500%;
+}
 </style>
 <body>
 	<nav class="navbar navbar-default">
@@ -52,51 +54,59 @@ h1 {
 				<ul class="nav navbar-nav">
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuprofile"/><span
-							class="caret"></span></a>
+						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message
+								code="label.menuprofile" /><span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-						<li><a href="/app/user"><spring:message code="label.menuprofile"/></a></li>
-							<li><a href="/app/user/updateinfo"><spring:message code="label.menusettinginfo"/></a></li>
-							<li><a href="/app/user/updateaccount"><spring:message code="label.menusettingaccount"/></a></li>
-							
-						</ul>
-						</li>
-					<li><a href="/app/user/messages"><spring:message code="label.menumessages"/></a></li>
-					<li><a href="/app/user/search"><spring:message code="label.menusearch"/></a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuinformation"/><span
-							class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="/app/user/rules"><spring:message code="label.menurules"/></a></li>
-							<li class="divider"></li>
-							<li><a href="/app/user/feedback"><spring:message code="label.menusendfeedback"/></a></li>
+							<li><a href="/app/user"><spring:message
+										code="label.menuprofile" /></a></li>
+							<li><a href="/app/user/updateinfo"><spring:message
+										code="label.menusettinginfo" /></a></li>
 						</ul></li>
-						
+					<li><a href="/app/user/messages"><spring:message
+								code="label.menumessages" /></a></li>
+					<li><a href="/app/user/search"><spring:message
+								code="label.menusearch" /></a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message
+								code="label.menuinformation" /><span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/app/user/rules"><spring:message
+										code="label.menurules" /></a></li>
+							<li class="divider"></li>
+							<li><a href="/app/user/feedback"><spring:message
+										code="label.menusendfeedback" /></a></li>
+						</ul></li>
+
 					<security:authorize ifAnyGranted="ROLE_ADMIN">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuadministration"/><span
-								class="caret"></span></a>
+							data-toggle="dropdown" role="button" aria-expanded="false"><spring:message
+									code="label.menuadministration" /><span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="/app/admin"><spring:message code="label.menuadminpanel"/></a></li>
-								<li><a href="/app/admin/feedbacklist"><spring:message code="label.menufeedbacks"/></a></li>
+								<li><a href="/app/admin"><spring:message
+											code="label.menuadminpanel" /></a></li>
+								<li><a href="/app/admin/feedbacklist"><spring:message
+											code="label.menufeedbacks" /></a></li>
 
-							</ul>
-							</li>
+							</ul></li>
 					</security:authorize>
-					
+
 				</ul>
- <ul class="nav navbar-nav navbar-right">
-      <li>
-					<a href="?locale=ru"><img src="<c:url value="/resources/languageicons/rus.png"/>" alt="Russian Language" title="Сменить язык интерфейса на русский"></a>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="?locale=ru"><img
+							src="<c:url value="/resources/languageicons/rus.png"/>"
+							alt="Russian Language" title="Сменить язык интерфейса на русский"></a>
 					</li>
-					<li>
-					<a href="?locale=en"><img src="<c:url value="/resources/languageicons/usa.png"/>" alt="USA Language" title="Change interface language to american"></a>
+					<li><a href="?locale=en"><img
+							src="<c:url value="/resources/languageicons/usa.png"/>"
+							alt="USA Language" title="Change interface language to american"></a>
 					</li>
-      </ul>
+				</ul>
 				<c:url var="logoutUrl" value="/j_spring_security_logout" />
 				<form class="navbar-form navbar-right" action="${logoutUrl}"
 					method="post">
-					<button class="btn btn-default" type="submit"><spring:message code="label.logoutbutton"/></button>
+					<button class="btn btn-default" type="submit">
+						<spring:message code="label.logoutbutton" />
+					</button>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 				</form>
@@ -105,19 +115,35 @@ h1 {
 	</nav>
 
 	<h1>Haine and Vold</h1>
-	
+
 	<div class="col-xs-4 centerBlock text-center">
- <form method="POST" action="?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
- 	<div class="form-group text-center">
-       <label class="control-label" for="file"><spring:message code="label.choosephoto" /></label>
-       <span class="btn btn-default btn-file">
-        <input type="file" name="file" accept="image/*">
-        </span> 
-        <button class="btn btn-primary btn-sm" type="submit" value="Load"><spring:message code="label.changephoto" /></button>
-        </div>
-    </form>
+		<form method="POST" action="?${_csrf.parameterName}=${_csrf.token}"
+			enctype="multipart/form-data">
+			<div class="form-group text-center">
+				<label class="control-label" for="file"><spring:message
+						code="label.choosephoto" /></label> <span
+					class="btn btn-default btn-file"> <input type="file"
+					name="file" accept="image/*">
+				</span>
+				<button class="btn btn-primary btn-sm" type="submit" value="Load">
+					<spring:message code="label.changephoto" />
+				</button>
+			</div>
+		</form>
 		<form:form method="POST" modelAttribute="users" accept-charset="utf-8"
-			name="updateForm" action="/app/user/updateinfo">
+			name="updateForm" action="/app/user">
+			<div class="form-group">
+				<label class="control-label"><spring:message
+						code="label.email" /></label>
+				<form:input class="form-control input-sm" path="email" type="email"
+					name="email" />
+			</div>
+			<div class="form-group">
+				<label class="control-label"><spring:message
+						code="label.password" /></label>
+				<form:input class="form-control input-sm" path="password"
+					type="password" name="password" />
+			</div>
 			<div class="form-group">
 				<label class="control-label"><spring:message
 						code="label.age" /></label>
@@ -372,7 +398,7 @@ h1 {
 				<spring:message code="label.updatebutton" />
 			</button>
 		</form:form>
-		
+
 
 	</div>
 </body>

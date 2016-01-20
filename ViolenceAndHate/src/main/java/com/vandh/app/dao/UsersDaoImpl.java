@@ -92,7 +92,7 @@ public class UsersDaoImpl implements UsersDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Users> listUsersSort(String weight, String gender, String place, String ageTo) {
+	public List<Users> listUsersSort(String weight, String gender, String place, String ageTo, String currentUser) {
 
 		String query = "select users.username, users.password, users.name, users.enabled, users.surname, users.email, users.gender, users.age, users.weight, users.height, users.sport, users.place, users.photo from users where users.enabled = true";
 		if (weight.isEmpty() == false) {
@@ -116,6 +116,8 @@ public class UsersDaoImpl implements UsersDao {
 			query = query.concat(age);
 			System.out.println(query);
 		}
+		String withoutUser=" AND users.username NOT LIKE "+"'"+currentUser+"'";
+		query=query.concat(withoutUser);
 		System.out.println("FINAL QUERY IS: " + query);
 		Session session = null;
 		session = sessionFactory.openSession();
@@ -185,8 +187,20 @@ public class UsersDaoImpl implements UsersDao {
 	}
 
 	@Override
-	public void updateUserInfo(String age, String height, String weight, String sport, String place, String username) {
+	public void updateUserInfo(String email, String password, String age, String height, String weight, String sport, String place, String username) {
 		String query = "UPDATE users SET users.enabled=1";
+		if(email.isEmpty()==false)
+		{
+			String emailUpdate = ", users.email="+"'"+email+"'";
+			query=query.concat(emailUpdate);
+			System.out.println(query);
+		}
+		if(password.isEmpty()==false)
+		{
+			String passwordUpdate=", users.password="+"'"+encoder.encode(password)+"'";
+			query=query.concat(passwordUpdate);
+			System.out.println(query);
+		}
 		if(age.isEmpty()==false)
 		{
 			String ageUpdate=", users.age="+"'"+age+"'";
@@ -226,30 +240,6 @@ public class UsersDaoImpl implements UsersDao {
 		session.close();
 		session = null;
 		
-	}
-
-	@Override
-	public void updateUserAccount(String email, String password, String username) {
-		String query = "UPDATE users SET users.enabled=1";
-		if(email.isEmpty()==false)
-		{
-			String emailUpdate = ", users.email="+"'"+email+"'";
-			query=query.concat(emailUpdate);
-			System.out.println(query);
-		}
-		if(password.isEmpty()==false)
-		{
-			String passwordUpdate=", users.password="+"'"+encoder.encode(password)+"'";
-			query=query.concat(passwordUpdate);
-			System.out.println(query);
-		}
-		query=query.concat(" WHERE users.username LIKE "+"'"+username+"'");
-		System.out.println("FULL QUERY: "+query);
-		Session session = null;
-		session = sessionFactory.openSession();
-		session.createSQLQuery(query).addEntity(Users.class).executeUpdate();
-		session.close();
-		session = null;
 	}
 
 }

@@ -12,7 +12,7 @@ public interface UsersService {
 
 	public List<Users> listUsers();
 
-	public List<Users> listUsersSort(String weight, String gender, String place, String ageTo);
+	public List<Users> listUsersSort(String weight, String gender, String place, String ageTo, String currentUser);
 
 	public void restorePassUser(String toAddress, String newPassword);
 
@@ -22,7 +22,5 @@ public interface UsersService {
 
 	public boolean checkingEmail(String email);
 	
-	public void updateUserInfo(String age, String height, String weight, String sport, String place, String username);
-	
-	public void updateUserAccount(String email, String password, String username);
+	public void updateUserInfo(String email, String password, String age, String height, String weight, String sport, String place, String username);
 }

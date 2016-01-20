@@ -1,5 +1,7 @@
 package com.vandh.app.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,8 +36,7 @@ public class SearchController {
 			@RequestParam(value="gender") String gender,
 			@RequestParam(value="place") String place,
 			@RequestParam(value="age") String age,
-		
-			Model model)
+			Model model, Principal principal)
 	{
 		if(weight.equals("") && gender.equals("") && place.equals("") && age.equals(""))
 		{
@@ -46,7 +47,7 @@ return "searchingUser";
 
 		else{
 	model.addAttribute("users", new Users());
-		model.addAttribute("listUsersSort", usersService.listUsersSort(weight, gender, place, age));
+		model.addAttribute("listUsersSort", usersService.listUsersSort(weight, gender, place, age, principal.getName()));
 		return "searchingUser";
 		}}
 	

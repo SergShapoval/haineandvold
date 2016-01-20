@@ -65,8 +65,6 @@ h1 {
 						<ul class="dropdown-menu" role="menu">
 						<li><a href="/app/user"><spring:message code="label.menuprofile"/></a></li>
 							<li><a href="/app/user/updateinfo"><spring:message code="label.menusettinginfo"/></a></li>
-							<li><a href="/app/user/updateaccount"><spring:message code="label.menusettingaccount"/></a></li>
-							
 						</ul>
 						</li>
 					<li><a href="/app/user/messages"><spring:message code="label.menumessages"/></a></li>
@@ -144,7 +142,7 @@ h1 {
 			</tr>
 			<c:forEach items="${listUsers}" var="users">
 				<tr>
-					<td>${users.username}</td>
+					<td><a href="/app/user/search/${users.username}">${users.username}</a></td>
 					<td>${users.name}</td>
 					<td>${users.surname}</td>
 					<td>${users.email}</td>

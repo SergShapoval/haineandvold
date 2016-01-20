@@ -45,8 +45,8 @@ public class UsersServiceImpl implements UsersService {
 
 	@Override
 	@Transactional
-	public List<Users> listUsersSort(String weight, String gender, String place, String ageTo) {
-		return this.userDao.listUsersSort(weight, gender, place, ageTo);
+	public List<Users> listUsersSort(String weight, String gender, String place, String ageTo, String currentUser) {
+		return this.userDao.listUsersSort(weight, gender, place, ageTo, currentUser);
 	}
 
 	@Override
@@ -75,16 +75,8 @@ public class UsersServiceImpl implements UsersService {
 
 	@Override
 	@Transactional
-	public void updateUserInfo(String age, String height, String weight, String sport, String place, String username) {
-		this.userDao.updateUserInfo(age, height, weight, sport, place, username);
-		
-	}
-
-
-	@Override
-	@Transactional
-	public void updateUserAccount(String email, String password, String username) {
-		this.userDao.updateUserAccount(email, password, username);
+	public void updateUserInfo(String email, String password,String age, String height, String weight, String sport, String place, String username) {
+		this.userDao.updateUserInfo(email, password,age, height, weight, sport, place, username);
 		
 	}
 

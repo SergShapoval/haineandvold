@@ -64,8 +64,6 @@ h1 {
 						<ul class="dropdown-menu" role="menu">
 						<li><a href="/app/user"><spring:message code="label.menuprofile"/></a></li>
 							<li><a href="/app/user/updateinfo"><spring:message code="label.menusettinginfo"/></a></li>
-							<li><a href="/app/user/updateaccount"><spring:message code="label.menusettingaccount"/></a></li>
-							
 						</ul>
 						</li>
 					<li><a href="/app/user/messages"><spring:message code="label.menumessages"/></a></li>
@@ -117,8 +115,6 @@ h1 {
 	<h2 class="text-center">
 		<spring:message code="label.contactwithus" />
 	</h2>
-	<h5 class="text-center"><spring:message
-                                code="label.responseforfeedback"/></h5>
 	<br>
 	<div class="col-xs-4 centerBlock text-center">
 		<c:url var="sendFeedback" value="feedback" />
