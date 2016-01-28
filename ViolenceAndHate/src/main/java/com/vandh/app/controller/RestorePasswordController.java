@@ -42,9 +42,7 @@ public class RestorePasswordController {
 		if(this.usersService.checkingEmail(email)!=false)
 		{
 		byte[]   bytesEncoded = Base64.encode(email.getBytes());
-		System.out.println("ecncoded value is " + new String(bytesEncoded ));
-		
-		String subject = "Восстановление пароля | Violence and Hate";
+		String subject = "Восстановление пароля | Haine and Vold";
 		String message = "Здравствуйте! Вы запросили восстановление пароля. Перейдите по ссылке: "+"http://localhost:8080/app/updatepassword/"+new String(bytesEncoded);
 		System.out.println(message);
 		SimpleMailMessage mail = new SimpleMailMessage();
@@ -52,7 +50,6 @@ public class RestorePasswordController {
 		mail.setSubject(subject);
 		mail.setText(message);
 		// sends the e-mail
-		System.out.println("Sending....");
 		mailSender.send(mail);
 		return "redirect:/login?passsend";
 		}
@@ -67,13 +64,9 @@ public class RestorePasswordController {
 	
 	@RequestMapping(value = "/updatepassword/{mail}", method = RequestMethod.POST)
 	public String updatePass(@PathVariable(value="mail") String mail, @RequestParam(value="password") String newPassword)  {
-		System.out.println("ЗАШИФРОВАНАЯ ПОЧТА: "+mail);
-		System.out.println("ВВЕДЁНЫЙ ПАРОЛЬ: "+newPassword);
 		byte[] valueDecoded= Base64.decode(mail.getBytes());
-		System.out.println("Decoded value is " + new String(valueDecoded));
 		String toAddress= new String(valueDecoded);
 		this.usersService.restorePassUser(toAddress, encoder.encode(newPassword));
-		System.out.println("PASSWORD CHANGED!!!!!");
 		return "redirect:/login?passupd";
 	}
 	

@@ -92,8 +92,8 @@ public class RegistrationController {
 				this.userRoleService.addRole(userRole);
 				// -----------------------SENDING CONFIRMATION
 				// EMAIL-------------------------------------------------------
-				String subject = "Подтверждение учётной записи | Violence and Hate";
-				String message = "Здравствуйте! Вы зарегестрировались на сайте Violence And Hate. Перейдите по ссылке для подтверждения вашей учётной записи: "
+				String subject = "Подтверждение учётной записи | Haine and Vold";
+				String message = "Здравствуйте! Вы зарегестрировались на сайте Haine and Vold. Перейдите по ссылке для подтверждения вашей учётной записи: "
 						+ "http://localhost:8080/app/confirmation/" + new String(bytesEncoded);
 				System.out.println(message);
 				SimpleMailMessage mail = new SimpleMailMessage();
