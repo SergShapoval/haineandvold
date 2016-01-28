@@ -9,4 +9,5 @@ public interface MessageDao {
 	public void removeMessage(int idmessage);
 	public List<Message> listMessagesForUser (int iddialog);
 	public int countOfMessages(int iddialog);
+	
 }

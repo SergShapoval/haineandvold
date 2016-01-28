@@ -21,21 +21,10 @@
 
 <script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
 </head>
-<style>
-@font-face {
-    font-family: Runic; /* Имя шрифта */
-    src: url(/app/resources/font/runic.ttf); /* Путь к файлу со шрифтом */
-   }
-h1 {
-    font-family: Runic;
-    text-align:center;
-    font-size:500%;
-   }
-
-</style>
 <body>
-<h1>Haine and Vold</h1>
-
+<div class="container">
+		<img class="img-responsive logo" src="/app/resources/logo.jpg">
+	</div>
 	<h2 class="text-center"><spring:message code="label.enternewpass" /></h2>
 
 	<div class="col-xs-4 centerBlock text-center">

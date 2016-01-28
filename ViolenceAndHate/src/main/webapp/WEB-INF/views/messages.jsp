@@ -21,18 +21,6 @@
 	<script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
 
 </head>
-<style>
-@font-face {
-    font-family: Runic; /* Имя шрифта */
-    src: url(/app/resources/font/runic.ttf); /* Путь к файлу со шрифтом */
-   }
-h1 {
-    font-family: Runic;
-    text-align:center;
-    font-size:500%;
-   }
-
-</style>
 <body>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -58,7 +46,7 @@ h1 {
 							<li><a href="/app/user/updateinfo"><spring:message code="label.menusettinginfo"/></a></li>
 						</ul>
 						</li>
-					<li><a href="/app/user/messages"><spring:message code="label.menumessages"/></a></li>
+					<li><a href="/app/user/messages"><spring:message code="label.menumessages"/>(${allUserMess})</a></li>
 					<li><a href="/app/user/search"><spring:message code="label.menusearch"/></a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuinformation"/><span
@@ -75,8 +63,9 @@ h1 {
 								class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="/app/admin"><spring:message code="label.menuadminpanel"/></a></li>
-								<li><a href="/app/admin/feedbacklist"><spring:message code="label.menufeedbacks"/></a></li>
-
+								<li><a href="/app/admin/feedbacklist"><spring:message code="label.menufeedbacks"/>(${countOfFeedbacks})</a></li>
+<li><a href="/app/admin/newusers"><spring:message
+											code="label.newusers" />(${countOfNewUsers})</a></li>
 							</ul>
 							</li>
 					</security:authorize>
@@ -100,52 +89,31 @@ h1 {
 			</div>
 		</div>
 	</nav>
-	<h1>Haine and Vold</h1>
+<div class="container">
+	<img class="img-responsive logo" src="/app/resources/logo.jpg">
+</div>
 	<h2 class="text-center"><spring:message code="label.dialogs" /></h2>
 <!-- <div id="dialogs"></div> -->
-<div class="text-center sizeTableDialog centerBlock">
-<table class="table table-striped table-bordered table-condensed table-hover">
-<tr>
-<th><spring:message code="label.dialogswithusers" /></th>
-</tr>
-<tr>
-	<c:if test="${!empty listDialogRec}">
-		<c:forEach items="${listDialogRec}" var="dialog">
-	<td><a href="/app/user/messages/${dialog.iddialog}" class="">${dialog.user.username}</a></td>
-		</c:forEach>
-		</c:if>
-	<c:if test="${!empty listDialogSend}">
+
+<div class="centerBlock dialogs">
+<h5 class="text-center">Диалоги</h5>
+<ul class="list-group text-center">
+  <c:if test="${!empty listDialogSend}">
 		<c:forEach items="${listDialogSend}" var="dialog">
-		<tr>
-			<td><a href="/app/user/messages/${dialog.iddialog}" class="">${dialog.reciever}</a></td>
-			</tr>
+		<li class="list-group-item dialogli"><a href="/app/user/messages/${dialog.iddialog}" class="aDialogs">${dialog.reciever} (${dialog.unrmesssender})</a></li>
 		</c:forEach>
 		</c:if>
-		</tr>
-</table>
+		<c:if test="${!empty listDialogRec}">
+		<c:forEach items="${listDialogRec}" var="dialog">
+	<li class="list-group-item dialogli"><a href="/app/user/messages/${dialog.iddialog}" class="aDialogs">${dialog.user.username} (${dialog.unrmessreciever})</a></li>
+		</c:forEach>
+		</c:if>
+</ul>
 </div>
+
 </body>
 <script src="<c:url value="/resources/Jquery/jquery-2.1.4.min.js"/>"
 	type="text/javascript"></script>
 <script src="<c:url value="/resources/bootstrap/bootstrap.js"/>"
 	type="text/javascript"></script>
-<!-- <script>
-	function getDialogs() {
-		$.ajax({
-			type : 'GET',
-			url : '/app/user/dialogs',
-			success : function(r) {
-				$('#dialogs').html(r);
-
-				console.log(r);
-			},
-			error : function(r) {
-				alert(r);
-			}
-		});
-	}
-	setInterval(getDialogs, 2000);
-</script> -->
-
-
 </html>

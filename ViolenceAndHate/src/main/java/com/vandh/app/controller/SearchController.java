@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.vandh.app.models.Users;
+import com.vandh.app.service.DialogService;
+import com.vandh.app.service.FeedbackService;
 import com.vandh.app.service.UsersService;
 
 //Controller for searching and sotring users
@@ -23,10 +25,17 @@ public class SearchController {
 
 	@Autowired
 	private UsersService usersService;
-
+	@Autowired
+	private FeedbackService feedbackService;
+	@Autowired
+	private DialogService dialogService;
+	
 	@RequestMapping(value = "/user/search", method = RequestMethod.GET)
-	public String searchPage(Model model) {
+	public String searchPage(Model model, Principal principal) {
 		model.addAttribute("users", new Users());
+		model.addAttribute("countOfFeedbacks", this.feedbackService.checkUnreadFedbacks().size());
+		model.addAttribute("countOfNewUsers", this.usersService.countOfNewUsers());
+		model.addAttribute("allUserMess", this.dialogService.allNewMessForUser(principal.getName()));
 		return "searchingUser";
 	}
 

@@ -16,20 +16,11 @@
 <link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
 	type="text/css">
 </head>
-<style>
-@font-face {
-    font-family: Runic; /* Имя шрифта */
-    src: url(/app/resources/font/runic.ttf); /* Путь к файлу со шрифтом */
-   }
-h1 {
-    font-family: Runic;
-    text-align:center;
-    font-size:500%;
-   }
-
-</style>
 <body>
-<h1>Haine and Vold</h1>
+<div class="container">
+	<!-- <h1>Haine and Vold</h1> -->
+	<img class="img-responsive logo" src="resources/logo.jpg">
+</div>
 	<h2 class="text-center">
 		<spring:message code="label.accessdenied"/> : <span style="color: black;">${username}</span>
 	</h2>

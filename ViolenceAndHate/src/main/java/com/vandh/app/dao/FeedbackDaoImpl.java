@@ -47,4 +47,24 @@ public class FeedbackDaoImpl implements FeedbackDao {
 		return feedbackList;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Feedback> checkUnreadFedbacks() {
+		Session session = null;
+		session = sessionFactory.openSession();
+		List<Feedback> unreadedFeedbackList = session.createSQLQuery("select*from feedback where checkfb=false").addEntity(Feedback.class).list();
+		session.close();
+		session = null;
+		return unreadedFeedbackList;
+	}
+
+	@Override
+	public void updateReadFeedbacks() {
+		Session session = null;
+		session = sessionFactory.openSession();
+		session.createSQLQuery("update feedback set checkfb=1 where checkfb=0").addEntity(Feedback.class).executeUpdate();
+		session.close();
+		session = null;
+	}
+
 }

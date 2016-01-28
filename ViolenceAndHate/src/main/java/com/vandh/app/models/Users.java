@@ -60,6 +60,17 @@ public class Users {
 	@Column(name = "photo", nullable = false, length = 150)
 	private String photo;
 
+	@Column(name = "checkusr")
+	private boolean checkusr;
+	
+	public boolean isCheckusr() {
+		return checkusr;
+	}
+
+	public void setCheckusr(boolean checkusr) {
+		this.checkusr = checkusr;
+	}
+
 	public String getName() {
 		return name;
 	}

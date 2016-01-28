@@ -21,6 +21,17 @@ public class Feedback {
 	@Column(name="message", length = 30)
 	private String message;
 
+	@Column(name="checkfb", nullable=false)
+	private boolean checkfb;
+	
+	public boolean isCheckfb() {
+		return checkfb;
+	}
+
+	public void setCheckfb(boolean checkfb) {
+		this.checkfb = checkfb;
+	}
+
 	public String getUsernameReciever() {
 		return usernameReciever;
 	}

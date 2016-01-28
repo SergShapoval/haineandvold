@@ -11,7 +11,7 @@ import com.vandh.app.models.Dialog;
 
 @Service("dialogService")
 public class DialogServiceImpl implements DialogService {
-	
+
 	@Autowired
 	private DialogDao dialogDao;
 
@@ -26,34 +26,51 @@ public class DialogServiceImpl implements DialogService {
 	@Transactional
 	public void removeDialog(int iddialog) {
 		this.dialogDao.removeDialog(iddialog);
-	}
-;
+	};
+
 	@Override
-	 @Transactional
+	@Transactional
 	public int findExistingDialog(String username, String reciever) {
 		// TODO Auto-generated method stub
 		return this.dialogDao.findExistingDialog(username, reciever);
 	}
 
 	@Override
-	 @Transactional
+	@Transactional
 	public List<Dialog> listDialogUserSender(String username) {
 		return this.dialogDao.listDialogUserSender(username);
 	}
 
-
 	@Override
-	 @Transactional
+	@Transactional
 	public List<Dialog> listDialogUserReciever(String username) {
 		return this.dialogDao.listDialogUserReciever(username);
 	}
-
 
 	@Override
 	@Transactional
 	public String usernameDialogWith(int iddialog, String currentUser) {
 
 		return this.dialogDao.usernameDialogWith(iddialog, currentUser);
+	}
+
+	@Override
+	@Transactional
+	public void updateUnreadMessInfo(int iddialog, String username) {
+		this.dialogDao.updateUnreadMessInfo(iddialog, username);
+
+	}
+
+	@Override
+	@Transactional
+	public void readMess(int iddialog, String username) {
+		this.dialogDao.readMess(iddialog, username);
+
+	}
+
+	@Override
+	public int allNewMessForUser(String username) {
+		return this.dialogDao.allNewMessForUser(username);
 	}
 
 }

@@ -20,27 +20,10 @@
 <link rel="shortcut icon" href="<c:url value="/resources/faviicon/iconHV.ico"/>" type="image/x-icon">
 <link href="<c:url value="/resources/bootstrap/bootstrap.css"/>"
 	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/bootstrap/bootswatch.less.css"/>"
-	rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/bootstrap/variables.less.css"/>"
-	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
 	type="text/css">
 <script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
-
 </head>
-<style>
-@font-face {
-    font-family: Runic; /* Имя шрифта */
-    src: url(/app/resources/font/runic.ttf); /* Путь к файлу со шрифтом */
-   }
-h1 {
-    font-family: Runic;
-    text-align:center;
-    font-size:500%;
-   }
-
-</style>
 <body>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -66,7 +49,7 @@ h1 {
 							<li><a href="/app/user/updateinfo"><spring:message code="label.menusettinginfo"/></a></li>
 						</ul>
 						</li>
-					<li><a href="/app/user/messages"><spring:message code="label.menumessages"/></a></li>
+					<li><a href="/app/user/messages"><spring:message code="label.menumessages"/>(${allUserMess})</a></li>
 					<li><a href="/app/user/search"><spring:message code="label.menusearch"/></a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuinformation"/><span
@@ -83,8 +66,8 @@ h1 {
 								class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="/app/admin"><spring:message code="label.menuadminpanel"/></a></li>
-								<li><a href="/app/admin/feedbacklist"><spring:message code="label.menufeedbacks"/></a></li>
-
+								<li><a href="/app/admin/feedbacklist"><spring:message code="label.menufeedbacks"/>(${countOfFeedbacks})</a></li>
+	<li><a href="/app/admin/newusers"><spring:message code="label.newusers" />(${countOfNewUsers})</a></li>
 							</ul>
 							</li>
 					</security:authorize>
@@ -108,10 +91,9 @@ h1 {
 			</div>
 		</div>
 	</nav>
-
-	<h1>Haine and Vold</h1>
-
-
+<div class="container">
+	<img class="img-responsive logo" src="/app/resources/logo.jpg">
+</div>
 	<h2 class="text-center">
 		<spring:message code="label.contactwithus" />
 	</h2>
@@ -133,12 +115,14 @@ h1 {
                                 code="label.entermessage" />
 					</span>
 			</div>
+			<form:input path="checkfb" type="hidden" value="0"/>
 			<br>
 			<div class="text-center">
 				<button type="submit" class="btn btn-primary"
 					ng-disabled="fbForm.message.$dirty && fbForm.message.$invalid"><spring:message
                                 code="label.sendfeedback" /></button>
 			</div>
+			
 		</form:form>
 	</div>
 	<script>

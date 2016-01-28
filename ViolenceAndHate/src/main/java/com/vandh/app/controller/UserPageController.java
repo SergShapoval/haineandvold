@@ -31,9 +31,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.vandh.app.models.Feedback;
 import com.vandh.app.models.Message;
 
 import com.vandh.app.models.Users;
+import com.vandh.app.service.DialogService;
+import com.vandh.app.service.FeedbackService;
 import com.vandh.app.service.UsersService;
 
 @Controller
@@ -42,6 +46,10 @@ public class UserPageController {
 
 	@Autowired
 	private UsersService usersService;
+	@Autowired
+	private FeedbackService feedbackService;
+	@Autowired
+	private DialogService dialogService;
 	@Autowired
 	ServletContext context;
 
@@ -79,6 +87,9 @@ public class UserPageController {
 		String username = principal.getName();
 		model.addAttribute("users", new Users());
 		model.addAttribute("userInfo", this.usersService.userInfo(username));
+		model.addAttribute("countOfFeedbacks", this.feedbackService.checkUnreadFedbacks().size());
+		model.addAttribute("countOfNewUsers", this.usersService.countOfNewUsers());
+		model.addAttribute("allUserMess", this.dialogService.allNewMessForUser(principal.getName()));
 		return "user";
 	}
 

@@ -12,6 +12,7 @@ CREATE TABLE `users` (
 `sport` varchar(50) CHARACTER SET utf8 NOT NUlL,
 `place` varchar(400) CHARACTER SET utf8 NOT NULL,
 `photo` varchar(100) NOT NULL,
+`checkusr` boolean,
 PRIMARY KEY (`username`) 
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8; 
 
@@ -47,6 +48,7 @@ create table message(
 `date` varchar(40) NOT NULL,
 `iddialog` int NOT NULL,
 `messender` varchar(50),
+`checkms` boolean,
 primary key (`idmessage`),
 foreign key (`iddialog`) references dialog(`iddialog`)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8; 

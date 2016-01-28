@@ -21,20 +21,7 @@
 	rel="stylesheet" type="text/css">
 <link href="<c:url value="/resources/CSS/styles.css"/>" rel="stylesheet"
 	type="text/css">
-
 </head>
-<style>
-@font-face {
-	font-family: Runic; /* Имя шрифта */
-	src: url(resources/font/runic.ttf); /* Путь к файлу со шрифтом */
-}
-
-h1 {
-	font-family: Runic;
-	text-align: center;
-	font-size: 500%;
-}
-</style>
 <body>
 
 	<nav class="navbar navbar-default">
@@ -63,7 +50,7 @@ h1 {
 										code="label.menusettinginfo" /></a></li>
 						</ul></li>
 					<li><a href="/app/user/messages"><spring:message
-								code="label.menumessages" /></a></li>
+								code="label.menumessages" /> (${allUserMess})</a></li>
 					<li><a href="/app/user/search"><spring:message
 								code="label.menusearch" /></a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -85,8 +72,9 @@ h1 {
 								<li><a href="/app/admin"><spring:message
 											code="label.menuadminpanel" /></a></li>
 								<li><a href="/app/admin/feedbacklist"><spring:message
-											code="label.menufeedbacks" /></a></li>
-
+											code="label.menufeedbacks" />(${countOfFeedbacks})</a></li>
+							<li><a href="/app/admin/newusers"><spring:message
+											code="label.newusers" />(${countOfNewUsers})</a></li>
 							</ul></li>
 					</security:authorize>
 
@@ -113,11 +101,10 @@ h1 {
 			</div>
 		</div>
 	</nav>
-
-	<h1>Haine and Vold</h1>
-
+<div class="container">
+	<img class="img-responsive logo" src="resources/logo.jpg">
+</div>
 	<br>
-
 	<br>
 	<div class="container mainBlock">
 		<c:forEach items="${userInfo}" var="users">

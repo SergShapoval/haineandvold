@@ -35,9 +35,30 @@ public class Dialog {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "dialog")
 	private List<Message> message = new ArrayList<Message>(0);
+
+	@Column(name="unrmesssender")
+	private int unrmesssender;
+	
+	@Column(name="unrmessreciever")
+	private int unrmessreciever;
 	
 	
-	
+	public int getUnrmesssender() {
+		return unrmesssender;
+	}
+
+	public void setUnrmesssender(int unrmesssender) {
+		this.unrmesssender = unrmesssender;
+	}
+
+	public int getUnrmessreciever() {
+		return unrmessreciever;
+	}
+
+	public void setUnrmessreciever(int unrmessreciever) {
+		this.unrmessreciever = unrmessreciever;
+	}
+
 	public List<Message> getMessage() {
 		return message;
 	}
@@ -69,6 +90,4 @@ public class Dialog {
 	public void setUser(Users user) {
 		this.user = user;
 	}
-	
-	
 }

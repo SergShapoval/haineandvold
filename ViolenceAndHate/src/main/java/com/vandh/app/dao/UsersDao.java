@@ -27,5 +27,10 @@ public interface UsersDao {
 
 	public void updateUserInfo(String email, String password,String age, String height, String weight, String sport, String place, String username);
 	
+	public List<Users> listNewUsers();
+	
+	public void checkNewUsers();
+	
+	public int countOfNewUsers();
 
 }

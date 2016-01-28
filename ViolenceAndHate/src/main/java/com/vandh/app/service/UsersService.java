@@ -21,6 +21,13 @@ public interface UsersService {
 	public void addUserAvatar(String username, String photoPath);
 
 	public boolean checkingEmail(String email);
+
+	public void updateUserInfo(String email, String password, String age, String height, String weight, String sport,
+			String place, String username);
+
+	public List<Users> listNewUsers();
+
+	public void checkNewUsers();
 	
-	public void updateUserInfo(String email, String password, String age, String height, String weight, String sport, String place, String username);
+	public int countOfNewUsers();
 }

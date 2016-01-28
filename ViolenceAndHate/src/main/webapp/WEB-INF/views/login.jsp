@@ -21,21 +21,6 @@
 <script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
 
 </head>
-<style>
-@font-face {
-	font-family: Runic; /* Имя шрифта */
-	src: url(resources/font/runic.ttf); /* Путь к файлу со шрифтом */
-}
-
-h1 {
-
-	font-family: Runic;
-	text-align: center;
-	font-size: 500%;
-	margin:0 auto;
-	padding-left:80px;
-}
-</style>
 <body>
 
 <span class="text-center">
@@ -48,7 +33,9 @@ h1 {
 				</span>
 	
 </span>
-<h1>Haine and Vold</h1>
+<div class="container">
+	<img class="img-responsive logo" src="/app/resources/logo.jpg">
+</div>
 	<br>
 	<div class="centerBlock text-center loginForm">
 		<form:form method="post" action="j_spring_security_check"

@@ -28,9 +28,13 @@ public class Message {
 	@Column(name="messender", length = 50)
 	private String messender;
 
+	@Column(name="checkms")
+	private boolean checkms;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "iddialog", nullable = false)
 	private Dialog dialog;
+	
 	
 	public Long getIdmessage() {
 		return idmessage;
@@ -71,6 +75,14 @@ public class Message {
 
 	public void setMessender(String messender) {
 		this.messender = messender;
+	}
+	
+	public boolean isCheckms() {
+		return checkms;
+	}
+
+	public void setCheckms(boolean checkms) {
+		this.checkms = checkms;
 	}
 	
 

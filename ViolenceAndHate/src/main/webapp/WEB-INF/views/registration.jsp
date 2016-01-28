@@ -27,35 +27,18 @@
 	type="text/css">
 <script src="<c:url value="/resources/Angular/angular.min.js"/>"></script>
 </head>
-<style>
-@font-face {
-	font-family: Runic; /* Имя шрифта */
-	src: url(/app/resources/font/runic.ttf); /* Путь к файлу со шрифтом */
-}
-
-h1 {
-	font-family: Runic;
-	text-align: center;
-	font-size: 500%;
-}
-</style>
 <body>
-	<h1>Haine and Vold</h1>
-
+	<div class="container">
+	<img class="img-responsive logo" src="resources/logo.jpg">
+</div>
 	<h2 class="text-center">
 		<spring:message code="label.regbutton" />
 	</h2>
 	<h5 class="text-center">
 		<spring:message code="label.regphrase" />
 	</h5>
-
-
-
-
 	<div class="col-xs-4 centerBlock text-center">
-
 		<c:url var="saveUrl" value="registration" />
-
 		<form:form modelAttribute="users" method="POST" action="${saveUrl}"
 			class="formular" ng-app="vandh" ng-controller="validateCtrlReg"
 			name="regForm" novalidation="true">
@@ -423,7 +406,7 @@ regForm.username.$dirty && regForm.username.$invalid ||
 
 
 			<form:input path="enabled" type="hidden" value="false" />
-			<form:input path="photo" type="hidden" value="No photo" />
+			<form:input path="checkusr" type="hidden" value="false"/>
 		</form:form>
 	</div>
 	<div id="fixedBlock">

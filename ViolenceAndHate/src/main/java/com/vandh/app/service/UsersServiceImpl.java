@@ -80,4 +80,25 @@ public class UsersServiceImpl implements UsersService {
 		
 	}
 
+
+	@Override
+	@Transactional
+	public List<Users> listNewUsers() {
+		return this.userDao.listNewUsers();
+	}
+
+
+	@Override
+	@Transactional
+	public void checkNewUsers() {
+		this.userDao.checkNewUsers();
+	}
+
+
+	@Override
+	@Transactional
+	public int countOfNewUsers() {
+		return this.userDao.countOfNewUsers();
+	}
+
 }

@@ -83,7 +83,7 @@ public class UsersDaoImpl implements UsersDao {
 	public List<Users> userInfo(String username) {
 		Session session = null;
 		session = sessionFactory.openSession();
-		String query = "select users.username, users.password, users.name, users.enabled, users.surname, users.email, users.gender, users.age, users.weight, users.height, users.sport, users.place, users.photo from users where users.username LIKE '%s'";
+		String query = "select users.username, users.checkusr, users.password, users.name, users.enabled, users.surname, users.email, users.gender, users.age, users.weight, users.height, users.sport, users.place, users.photo from users where users.username LIKE '%s'";
 		List<Users> userInfoList = session.createSQLQuery(String.format(query, username)).addEntity(Users.class).list();
 		session.close();
 		session = null;
@@ -94,7 +94,7 @@ public class UsersDaoImpl implements UsersDao {
 	@Override
 	public List<Users> listUsersSort(String weight, String gender, String place, String ageTo, String currentUser) {
 
-		String query = "select users.username, users.password, users.name, users.enabled, users.surname, users.email, users.gender, users.age, users.weight, users.height, users.sport, users.place, users.photo from users where users.enabled = true";
+		String query = "select users.username, users.checkusr, users.password, users.name, users.enabled, users.surname, users.email, users.gender, users.age, users.weight, users.height, users.sport, users.place, users.photo from users where users.enabled = true";
 		if (weight.isEmpty() == false) {
 			String weightParam = " AND users.weight <= " + weight;
 			query = query.concat(weightParam);
@@ -241,5 +241,39 @@ public class UsersDaoImpl implements UsersDao {
 		session = null;
 		
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Users> listNewUsers() {
+		Session session = null;
+		session = sessionFactory.openSession();
+		List<Users> newUsersList = session.createSQLQuery("select*from users where users.checkusr=0").addEntity(Users.class).list();
+		session.close();
+		session = null;
+		return newUsersList;
+		
+	}
+
+	@Override
+	public void checkNewUsers() {
+		Session session = null;
+		session = sessionFactory.openSession();
+		session.createSQLQuery("UPDATE users SET users.checkusr=1 WHERE users.checkusr=0").addEntity(Users.class).executeUpdate();
+		session.close();
+		session = null;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public int countOfNewUsers() {
+		Session session = null;
+		session = sessionFactory.openSession();
+		List<Users> newUsersList = session.createSQLQuery("select*from users where users.checkusr=0").addEntity(Users.class).list();
+		session.close();
+		session = null;
+		return newUsersList.size();
+	}
+	
+	
 
 }

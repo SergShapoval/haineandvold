@@ -30,7 +30,6 @@ public class ChatController {
 
 	@Autowired
 	private DialogService dialogService;
-
 	@Autowired
 	private MessageService messageService;
 	public void createDialog(String sender, String reciever) {
@@ -54,9 +53,8 @@ public class ChatController {
 		mess.setDialog(dialog);
 		mess.setDate(dateFormat.format(date));
 		mess.setMessender(messender);
-	
 		this.messageService.addMessage(mess);
-
+		this.dialogService.updateUnreadMessInfo(iddialog, messender);
 	}
 
 	public boolean checkingMessage(String text)
@@ -100,6 +98,7 @@ public class ChatController {
 		if(checkingMessage(text)!=true)
 		{
 		sendMessage(iddialog, text, principal.getName());
+	
 		System.out.println("message sent!");
 		return "messagesWithUser";
 		}

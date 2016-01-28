@@ -3,15 +3,9 @@
 	margin-left: auto;
 	margin-right: auto;
 }
-.floatCenter
-{
-	
-	align:center;
-}
 
-.dialogs {
-	width: 20%;
-	float: left;
+.floatCenter {
+	align: center;
 }
 
 .tableSize {
@@ -92,62 +86,86 @@ textarea {
 	height: 370px;
 	overflow-y: scroll;
 }
+
 .scrollTableFeedback {
 	height: 400px;
 	overflow-y: scroll;
 }
 
 .scrollTableMessages {
-	height: 300px;
+	height: 250px;
 	overflow-y: scroll;
 }
 
-.fixedTable
-{
-word-break: break-all;
+.fixedTable {
+	word-break: break-all;
 }
 
-.tableFullHistorySize
-{
-	height:500px;
-	overflow-y:scroll;
+.loginForm {
+	width: 200px;
 }
 
-.loginForm
-{
-	width:200px;
+.noparamserror {
+	color: red;
 }
 
-.noparamserror
-{
-	color:red;
+.rusLogo {
+	float: right;
+	margin: 0;
+	padding: 10px;
 }
 
-
-.rusLogo
-{
-	float:right;
-	margin:0;
-	padding:10px;
-	
-	
-}
-
-.fixedImgAnotherUser
-{
+.fixedImgAnotherUser {
 	border: double black 2px;
 	width: 200px;
 	height: 290px;
 }
 
-.sizeTableDialog
-{
-	width:330px;
+.sizeTableDialog {
+	width: 450px;
 }
 
-.marginbuttons
-{
-margin-top:2px;
-margin-bottom:2px;
+.marginbuttons {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
 
+.logo {
+	margin: 0 auto;
+	width: 550px;
+	length: 900px;
+}
+
+.aDialogs:hover {
+	color: red;
+}
+
+.dialogli:hover {
+	border: 2px solid white;
+	background-color: #4D4949;
+}
+
+.block {
+	margin: 0 auto;
+	width: 600px;
+	
+	
+}
+.block:hover
+{
+	overflow-y: scroll;
+}
+
+.dialogs {
+	
+	width: 350px;
+	height: 300px;
+	font-size:20px;
+}
+
+.mess {
+	float: left;
+	width: 200px;
+	height: 300px;
+	font-size:20px;
 }

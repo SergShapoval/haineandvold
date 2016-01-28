@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.vandh.app.models.Dialog;
 import com.vandh.app.models.Message;
 import com.vandh.app.service.DialogService;
+import com.vandh.app.service.FeedbackService;
 import com.vandh.app.service.MessageService;
 import com.vandh.app.service.UsersService;
 
@@ -30,6 +31,8 @@ public class MessagesController {
 	private DialogService dialogService;
 	@Autowired
 	private MessageService messageService;
+	@Autowired
+	private FeedbackService feedbackService;
 
 	@RequestMapping(value = "/user/messages", method = RequestMethod.GET)
 	public String messagesPage(Model model, Principal principal) {
@@ -37,6 +40,9 @@ public class MessagesController {
 		model.addAttribute("message", new Message());
 		model.addAttribute("listDialogRec", dialogService.listDialogUserReciever(principal.getName()));
 		model.addAttribute("listDialogSend", dialogService.listDialogUserSender(principal.getName()));
+		model.addAttribute("countOfFeedbacks", this.feedbackService.checkUnreadFedbacks().size());
+		model.addAttribute("countOfNewUsers", this.usersService.countOfNewUsers());
+		model.addAttribute("allUserMess", this.dialogService.allNewMessForUser(principal.getName()));
 		return "messages";
 	}
 	
@@ -46,12 +52,15 @@ public class MessagesController {
 		model.addAttribute("message", new Message());
 		model.addAttribute("listMessagesForUser", messageService.listMessagesForUser(iddialog));
 		model.addAttribute("userDialogWith", dialogService.usernameDialogWith(iddialog, principal.getName()));
+		model.addAttribute("countOfNewUsers", this.usersService.countOfNewUsers());
+		model.addAttribute("allUserMess", this.dialogService.allNewMessForUser(principal.getName()));
 		System.out.println("ID dialog is: " + iddialog);
 		return "messagesWithUser";
 	}
 
 	@RequestMapping(value = "/user/mess/{iddialog}", method = RequestMethod.GET)
 	public String messPage(@PathVariable(value = "iddialog") int iddialog, Model model, Principal principal) {
+		this.dialogService.readMess(iddialog, principal.getName());
 		model.addAttribute("message", new Message());
 		model.addAttribute("listMessagesForUser", messageService.listMessagesForUser(iddialog));
 		System.out.println("ID dialog is: " + iddialog);

@@ -26,18 +26,6 @@
 	type="text/css">
 
 </head>
-	<style>
-@font-face {
-    font-family: Runic; /* Имя шрифта */
-    src: url(/app/resources/font/runic.ttf); /* Путь к файлу со шрифтом */
-   }
-h1 {
-    font-family: Runic;
-    text-align:center;
-    font-size:500%;
-   }
-
-</style>
 <body>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -63,7 +51,7 @@ h1 {
 							<li><a href="/app/user/updateinfo"><spring:message code="label.menusettinginfo"/></a></li>
 						</ul>
 						</li>
-					<li><a href="/app/user/messages"><spring:message code="label.menumessages"/></a></li>
+					<li><a href="/app/user/messages"><spring:message code="label.menumessages"/>(${allUserMess})</a></li>
 					<li><a href="/app/user/search"><spring:message code="label.menusearch"/></a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-expanded="false"><spring:message code="label.menuinformation"/><span
@@ -80,8 +68,8 @@ h1 {
 								class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="/app/admin"><spring:message code="label.menuadminpanel"/></a></li>
-								<li><a href="/app/admin/feedbacklist"><spring:message code="label.menufeedbacks"/></a></li>
-
+								<li><a href="/app/admin/feedbacklist"><spring:message code="label.menufeedbacks"/>(${countOfFeedbacks})</a></li>
+<li><a href="/app/admin/newusers"><spring:message code="label.newusers" />(${countOfNewUsers})</a></li>
 							</ul>
 							</li>
 					</security:authorize>
@@ -105,13 +93,10 @@ h1 {
 			</div>
 		</div>
 	</nav>
-
-	<h1>Haine and Vold</h1>
-
-
+<div class="container">
+		<img class="img-responsive logo" src="/app/resources/logo.jpg">
+	</div>
 	<h5 class="text-center noparamserror">${noparams}</h5>
-
-
 	<c:url var="getSearch" value="search" />
 	<br>
 	<div class="container text-center">
