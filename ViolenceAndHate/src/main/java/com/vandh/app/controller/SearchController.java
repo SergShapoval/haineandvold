@@ -57,6 +57,7 @@ return "searchingUser";
 		else{
 	model.addAttribute("users", new Users());
 		model.addAttribute("listUsersSort", usersService.listUsersSort(weight, gender, place, age, principal.getName()));
+		model.addAttribute("allUserMess", this.dialogService.allNewMessForUser(principal.getName()));
 		return "searchingUser";
 		}}
 	
